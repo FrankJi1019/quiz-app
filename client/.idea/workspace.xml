@@ -1,0 +1,331 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="88d1d2c7-6a39-4e3d-a86e-efff11763a3b" name="Changes" comment="feat: a usable UI is completed">
+      <change afterPath="$PROJECT_DIR$/../Server/Server/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Server/Server/Server.sln" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Server/Server/Server/Controllers/HomeController.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Server/Server/Server/Controllers/OptionController.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Server/Server/Server/Controllers/QuestionController.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Server/Server/Server/Controllers/QuizController.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Server/Server/Server/Controllers/TopicController.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Server/Server/Server/Controllers/UserController.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Server/Server/Server/Data/DataContext.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Server/Server/Server/Dto/AnswerOutputDto.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Server/Server/Server/Dto/CheckAnswerDto.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Server/Server/Server/Dto/CreateOptionDto.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Server/Server/Server/Dto/CreateQuestionDto.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Server/Server/Server/Dto/CreateQuestionWithOptionDto.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Server/Server/Server/Dto/CreateQuizDto.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Server/Server/Server/Dto/CreateTopicDto.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Server/Server/Server/Dto/OptionNoAnswerOutputDto.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Server/Server/Server/Dto/OptionOutputDto.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Server/Server/Server/Dto/QuestionOutputDto.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Server/Server/Server/Dto/QuizOutputDto.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Server/Server/Server/Dto/SettingOutputDto.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Server/Server/Server/Dto/TopicOutputDto.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Server/Server/Server/Dto/UpdateOptionDto.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Server/Server/Server/Dto/UpdateQuestionDto.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Server/Server/Server/Dto/UpdateQuizDto.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Server/Server/Server/Dto/UpdateSettingDto.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Server/Server/Server/Dto/UpdateTopicDto.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Server/Server/Server/Dto/UserMetaDataOutputDto.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Server/Server/Server/Helper/MappingProfiles.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Server/Server/Server/Migrations/20220830044753_InitialCreate.Designer.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Server/Server/Server/Migrations/20220830044753_InitialCreate.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Server/Server/Server/Migrations/DataContextModelSnapshot.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Server/Server/Server/Models/Option.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Server/Server/Server/Models/Question.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Server/Server/Server/Models/Quiz.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Server/Server/Server/Models/Setting.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Server/Server/Server/Models/Topic.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Server/Server/Server/Models/User.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Server/Server/Server/Program.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Server/Server/Server/Properties/launchSettings.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Server/Server/Server/Repositories/OptionRepository.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Server/Server/Server/Repositories/QuestionRepository.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Server/Server/Server/Repositories/QuizRepository.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Server/Server/Server/Repositories/TopicRepository.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Server/Server/Server/Repositories/UserRepository.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Server/Server/Server/Server.csproj" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Server/Server/Server/appsettings.Development.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Server/Server/Server/appsettings.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/client.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/codeStyles/Project.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/codeStyles/codeStyleConfig.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/favicon.ico" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/index.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/logo192.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/logo512.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/manifest.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/robots.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Api/OptionAPI.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Api/QuestionAPI.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Api/QuizAPI.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Api/TopicAPI.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Api/UserAPI.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/App.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Components/AllQuizPage/AllQuizModePage.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Components/AllQuizPage/KeywordFilterModePage.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Components/AllQuizPage/NoResult.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Components/AllQuizPage/Quiz.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Components/AllQuizPage/TopicFilterModePage.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Components/AllQuizPage/index.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Components/BackButton.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Components/HomePage/index.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Components/LandingPage/ConfirmationForm.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Components/LandingPage/LoginForm.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Components/LandingPage/SignupForm.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Components/LandingPage/index.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Components/LoadingPage/Loading.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Components/LoadingPage/index.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Components/NavigationPanel/MobileNavigationPanel.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Components/NavigationPanel/PCNavigationPanel.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Components/NavigationPanel/index.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Components/QuestionCreationPage/CreatedOption.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Components/QuestionCreationPage/index.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Components/QuestionDetailPage/ItemBox.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Components/QuestionDetailPage/Option.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Components/QuestionDetailPage/index.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Components/QuizCreationModal.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Components/QuizDetailPage/Question.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Components/QuizDetailPage/index.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Components/QuizReadyPage/index.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Components/QuizStartPage/Question.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Components/QuizStartPage/index.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Components/ResultPage/QuestionResult.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Components/ResultPage/index.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Components/ThemeSelectorModal/ThemePreview.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Components/ThemeSelectorModal/index.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Components/Topic.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Components/UserQuizPage/NoResult.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Components/UserQuizPage/Quiz.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Components/UserQuizPage/index.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Containers/Page.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Providers/AuthProvider.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Providers/CustomThemeProvider.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Providers/UtilProvider.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/RouteControllers/AuthRouter.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/RouteControllers/Dashboard.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Slices/themeSlice.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Themes/baseTheme.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Themes/index.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Themes/palette1.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Themes/palette2.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/cognito.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/constants.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/index.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/public.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/react-app-env.d.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/routes.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/store.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tsconfig.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/types/IOption.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/types/IQuestion.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/types/IQuiz.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/types/ITopic.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/yarn.lock" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="CSS File" />
+        <option value="TypeScript JSX File" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="GitSEFilterConfiguration">
+    <file-type-list>
+      <filtered-out-file-type name="LOCAL_BRANCH" />
+      <filtered-out-file-type name="REMOTE_BRANCH" />
+      <filtered-out-file-type name="TAG" />
+      <filtered-out-file-type name="COMMIT_BY_MESSAGE" />
+    </file-type-list>
+  </component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/src/Components/QuestionDetailPage/index.tsx" root0="FORCE_HIGHLIGHTING" />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProjectId" id="2BZ9SkJJ7tAfIaTlwSZ6Bk73gUg" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/Themes" />
+    <property name="list.type.of.created.stylesheet" value="CSS" />
+    <property name="node.js.detected.package.eslint" value="true" />
+    <property name="node.js.detected.package.standard" value="true" />
+    <property name="node.js.selected.package.eslint" value="(autodetect)" />
+    <property name="node.js.selected.package.standard" value="" />
+    <property name="nodejs_package_manager_path" value="npm" />
+    <property name="settings.editor.selected.configurable" value="settings.javascript.linters.eslint" />
+    <property name="ts.external.directory.path" value="D:\self-study\C#\Quiz System\quiz-system\client\node_modules\typescript\lib" />
+    <property name="vue.rearranger.settings.migration" value="true" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\self-study\C#\Quiz System\quiz-system\client\src\Themes" />
+      <recent name="D:\self-study\C#\Quiz System\quiz-system\client\src\Components\QuestionEditPage" />
+      <recent name="D:\self-study\C#\Quiz System\quiz-system\client\src\Components\UserQuizPage" />
+      <recent name="D:\self-study\C#\Quiz System\quiz-system\client\src\Components\AllQuizPage" />
+      <recent name="D:\self-study\C#\Quiz System\quiz-system\client\src\Pages\LandingPage" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\self-study\C#\Quiz System\quiz-system\client\src\Themes" />
+      <recent name="D:\self-study\C#\Quiz System\quiz-system\client\src\Components\QuizCreationModal" />
+      <recent name="D:\self-study\C#\Quiz System\quiz-system\client\src\Components\NavigationPanel" />
+      <recent name="D:\self-study\C#\Quiz System\quiz-system\client\src\RouteControllers" />
+      <recent name="D:\self-study\C#\Quiz System\quiz-system\client\src\Pages\LoadingPage" />
+    </key>
+  </component>
+  <component name="RunManager">
+    <configuration name="start" type="js.build_tools.npm" nameIsGenerated="true">
+      <package-json value="$PROJECT_DIR$/package.json" />
+      <command value="start" />
+      <node-interpreter value="project" />
+      <envs />
+      <method v="2" />
+    </configuration>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="88d1d2c7-6a39-4e3d-a86e-efff11763a3b" name="Changes" comment="" />
+      <created>1657102747263</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1657102747263</updated>
+      <workItem from="1657102749578" duration="323000" />
+      <workItem from="1657140769600" duration="4000" />
+      <workItem from="1657175230280" duration="10012000" />
+      <workItem from="1657226043213" duration="10000" />
+      <workItem from="1657315050117" duration="2407000" />
+      <workItem from="1657483747938" duration="5000" />
+      <workItem from="1657491346443" duration="8910000" />
+      <workItem from="1657506955408" duration="3486000" />
+      <workItem from="1657529053144" duration="1466000" />
+      <workItem from="1657531064570" duration="958000" />
+      <workItem from="1657532631671" duration="5000" />
+      <workItem from="1657604203275" duration="8617000" />
+      <workItem from="1657657914876" duration="9000" />
+      <workItem from="1657769518341" duration="1819000" />
+      <workItem from="1657831474823" duration="903000" />
+      <workItem from="1657875031841" duration="5835000" />
+      <workItem from="1657923016938" duration="595000" />
+      <workItem from="1657926920966" duration="1563000" />
+      <workItem from="1658090608995" duration="20000" />
+      <workItem from="1658121112156" duration="8199000" />
+      <workItem from="1658135179276" duration="41000" />
+      <workItem from="1658219027781" duration="5005000" />
+      <workItem from="1658262075869" duration="13000" />
+      <workItem from="1658307802526" duration="5791000" />
+      <workItem from="1658352313494" duration="39000" />
+      <workItem from="1658353423252" duration="1341000" />
+      <workItem from="1658389864610" duration="7344000" />
+      <workItem from="1658436109340" duration="4000" />
+      <workItem from="1658480222584" duration="4854000" />
+      <workItem from="1658535344084" duration="5000" />
+      <workItem from="1658649770985" duration="2677000" />
+      <workItem from="1658653250136" duration="4985000" />
+      <workItem from="1658707416660" duration="364000" />
+      <workItem from="1658721767432" duration="5000" />
+      <workItem from="1658737033955" duration="92000" />
+      <workItem from="1658737238688" duration="7890000" />
+      <workItem from="1658778207053" duration="14000" />
+      <workItem from="1658805153740" duration="2356000" />
+      <workItem from="1658813092307" duration="18000" />
+      <workItem from="1658816847041" duration="9503000" />
+      <workItem from="1658866108910" duration="2872000" />
+      <workItem from="1658889553945" duration="26000" />
+      <workItem from="1658907263094" duration="6116000" />
+      <workItem from="1658954596998" duration="6000" />
+      <workItem from="1659141357817" duration="184000" />
+      <workItem from="1659142170105" duration="556000" />
+      <workItem from="1659168028999" duration="9224000" />
+      <workItem from="1659217468199" duration="2070000" />
+      <workItem from="1659228943520" duration="7949000" />
+      <workItem from="1659240711791" duration="3517000" />
+      <workItem from="1659691584671" duration="5406000" />
+      <workItem from="1659772488169" duration="2053000" />
+      <workItem from="1659829047390" duration="131000" />
+      <workItem from="1659829278699" duration="2747000" />
+      <workItem from="1659855845974" duration="2561000" />
+      <workItem from="1659906419265" duration="6000" />
+      <workItem from="1660621623180" duration="12000" />
+      <workItem from="1660641164835" duration="3811000" />
+      <workItem from="1660679016662" duration="7000" />
+      <workItem from="1660680659970" duration="1987000" />
+      <workItem from="1660715096822" duration="4527000" />
+      <workItem from="1660769072052" duration="33000" />
+      <workItem from="1660816527506" duration="2510000" />
+      <workItem from="1660852159665" duration="928000" />
+      <workItem from="1660885874852" duration="10000" />
+      <workItem from="1660976228386" duration="46000" />
+      <workItem from="1661113267294" duration="15000" />
+      <workItem from="1661333412438" duration="1666000" />
+      <workItem from="1661677373737" duration="602000" />
+      <workItem from="1661678133173" duration="3703000" />
+      <workItem from="1661751103711" duration="4000" />
+      <workItem from="1661763783653" duration="3308000" />
+      <workItem from="1661814129603" duration="7000" />
+      <workItem from="1661848061542" duration="360000" />
+      <workItem from="1661848457044" duration="3302000" />
+      <workItem from="1661854311547" duration="782000" />
+    </task>
+    <task id="LOCAL-00001" summary="feat: a usable UI is completed">
+      <created>1658825818092</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1658825818092</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
+    <MESSAGE value="feat: a usable UI is completed" />
+    <option name="LAST_COMMIT_MESSAGE" value="feat: a usable UI is completed" />
+  </component>
+  <component name="XSLT-Support.FileAssociations.UIState">
+    <expand />
+    <select />
+  </component>
+</project>
