@@ -21,9 +21,12 @@ export const themeSlice = createSlice({
     changeTheme: (state, action: PayloadAction<{palette: PaletteOptions, username: string}>) => {
       state.palette = action.payload.palette
     },
+    resetTheme: (state) => {
+      state.palette = palettes[0]
+    }
   }
 })
 
-export const {changeTheme} = themeSlice.actions
+export const {changeTheme, resetTheme} = themeSlice.actions
 
 export default themeSlice.reducer

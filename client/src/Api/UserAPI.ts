@@ -12,3 +12,7 @@ export const getUserSetting = (username: string) => {
 export const updateTheme = (username: string, theme: number) => {
   return axios.patch(`${constants.general.backend}/users/${username}/settings`, {theme})
 }
+
+export const createUser = (username: string) => {
+  return axios.post(`${constants.general.backend}/users/${username}`)
+}

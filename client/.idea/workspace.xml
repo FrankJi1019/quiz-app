@@ -2,134 +2,15 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="88d1d2c7-6a39-4e3d-a86e-efff11763a3b" name="Changes" comment="feat: a usable UI is completed">
-      <change afterPath="$PROJECT_DIR$/../Server/Server/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Server/Server/Server.sln" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Server/Server/Server/Controllers/HomeController.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Server/Server/Server/Controllers/OptionController.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Server/Server/Server/Controllers/QuestionController.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Server/Server/Server/Controllers/QuizController.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Server/Server/Server/Controllers/TopicController.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Server/Server/Server/Controllers/UserController.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Server/Server/Server/Data/DataContext.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Server/Server/Server/Dto/AnswerOutputDto.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Server/Server/Server/Dto/CheckAnswerDto.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Server/Server/Server/Dto/CreateOptionDto.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Server/Server/Server/Dto/CreateQuestionDto.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Server/Server/Server/Dto/CreateQuestionWithOptionDto.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Server/Server/Server/Dto/CreateQuizDto.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Server/Server/Server/Dto/CreateTopicDto.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Server/Server/Server/Dto/OptionNoAnswerOutputDto.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Server/Server/Server/Dto/OptionOutputDto.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Server/Server/Server/Dto/QuestionOutputDto.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Server/Server/Server/Dto/QuizOutputDto.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Server/Server/Server/Dto/SettingOutputDto.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Server/Server/Server/Dto/TopicOutputDto.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Server/Server/Server/Dto/UpdateOptionDto.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Server/Server/Server/Dto/UpdateQuestionDto.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Server/Server/Server/Dto/UpdateQuizDto.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Server/Server/Server/Dto/UpdateSettingDto.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Server/Server/Server/Dto/UpdateTopicDto.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Server/Server/Server/Dto/UserMetaDataOutputDto.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Server/Server/Server/Helper/MappingProfiles.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Server/Server/Server/Migrations/20220830044753_InitialCreate.Designer.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Server/Server/Server/Migrations/20220830044753_InitialCreate.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Server/Server/Server/Migrations/DataContextModelSnapshot.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Server/Server/Server/Models/Option.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Server/Server/Server/Models/Question.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Server/Server/Server/Models/Quiz.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Server/Server/Server/Models/Setting.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Server/Server/Server/Models/Topic.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Server/Server/Server/Models/User.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Server/Server/Server/Program.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Server/Server/Server/Properties/launchSettings.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Server/Server/Server/Repositories/OptionRepository.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Server/Server/Server/Repositories/QuestionRepository.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Server/Server/Server/Repositories/QuizRepository.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Server/Server/Server/Repositories/TopicRepository.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Server/Server/Server/Repositories/UserRepository.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Server/Server/Server/Server.csproj" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Server/Server/Server/appsettings.Development.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Server/Server/Server/appsettings.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/client.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/codeStyles/Project.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/codeStyles/codeStyleConfig.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/favicon.ico" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/index.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/logo192.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/logo512.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/manifest.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/robots.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Api/OptionAPI.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Api/QuestionAPI.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Api/QuizAPI.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Api/TopicAPI.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Api/UserAPI.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/App.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Components/AllQuizPage/AllQuizModePage.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Components/AllQuizPage/KeywordFilterModePage.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Components/AllQuizPage/NoResult.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Components/AllQuizPage/Quiz.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Components/AllQuizPage/TopicFilterModePage.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Components/AllQuizPage/index.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Components/BackButton.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Components/HomePage/index.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Components/LandingPage/ConfirmationForm.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Components/LandingPage/LoginForm.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Components/LandingPage/SignupForm.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Components/LandingPage/index.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Components/LoadingPage/Loading.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Components/LoadingPage/index.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Components/NavigationPanel/MobileNavigationPanel.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Components/NavigationPanel/PCNavigationPanel.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Components/NavigationPanel/index.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Components/QuestionCreationPage/CreatedOption.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Components/QuestionCreationPage/index.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Components/QuestionDetailPage/ItemBox.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Components/QuestionDetailPage/Option.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Components/QuestionDetailPage/index.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Components/QuizCreationModal.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Components/QuizDetailPage/Question.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Components/QuizDetailPage/index.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Components/QuizReadyPage/index.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Components/QuizStartPage/Question.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Components/QuizStartPage/index.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Components/ResultPage/QuestionResult.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Components/ResultPage/index.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Components/ThemeSelectorModal/ThemePreview.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Components/ThemeSelectorModal/index.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Components/Topic.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Components/UserQuizPage/NoResult.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Components/UserQuizPage/Quiz.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Components/UserQuizPage/index.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Containers/Page.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Providers/AuthProvider.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Providers/CustomThemeProvider.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Providers/UtilProvider.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/RouteControllers/AuthRouter.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/RouteControllers/Dashboard.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Slices/themeSlice.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Themes/baseTheme.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Themes/index.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Themes/palette1.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Themes/palette2.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/cognito.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/constants.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/index.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/public.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/react-app-env.d.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/routes.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/store.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/tsconfig.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/types/IOption.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/types/IQuestion.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/types/IQuiz.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/types/ITopic.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/yarn.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../README.md" beforeDir="false" afterPath="$PROJECT_DIR$/../README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Server/Server/Server/Models/Setting.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../Server/Server/Server/Models/Setting.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Server/Server/Server/Server.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/../Server/Server/Server/Server.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Components/LandingPage/SignupForm.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/Components/LandingPage/SignupForm.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Components/NavigationPanel/PCNavigationPanel.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/Components/NavigationPanel/PCNavigationPanel.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Slices/themeSlice.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/Slices/themeSlice.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/yarn.lock" beforeDir="false" afterPath="$PROJECT_DIR$/yarn.lock" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -182,7 +63,7 @@
     <property name="node.js.selected.package.standard" value="" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="settings.editor.selected.configurable" value="settings.javascript.linters.eslint" />
-    <property name="ts.external.directory.path" value="D:\self-study\C#\Quiz System\quiz-system\client\node_modules\typescript\lib" />
+    <property name="ts.external.directory.path" value="D:\self-study\C#\Quiz App\quiz-app\client\node_modules\typescript\lib" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RecentsManager">
@@ -294,6 +175,10 @@
       <workItem from="1661848061542" duration="360000" />
       <workItem from="1661848457044" duration="3302000" />
       <workItem from="1661854311547" duration="782000" />
+      <workItem from="1661895602910" duration="10000" />
+      <workItem from="1661918259580" duration="2000" />
+      <workItem from="1661927993782" duration="595000" />
+      <workItem from="1661935823977" duration="2589000" />
     </task>
     <task id="LOCAL-00001" summary="feat: a usable UI is completed">
       <created>1658825818092</created>

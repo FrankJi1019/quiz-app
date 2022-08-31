@@ -11,9 +11,9 @@ import { getHomePageURL } from "../../routes"
 import { useNavigate } from "react-router-dom"
 import { NavigationPanelProps } from "./index"
 import { useAuth } from "../../Providers/AuthProvider"
-import QuizCreationModal from "../QuizCreationModal";
 import ThemeSelectorModal from "../ThemeSelectorModal";
-import {grey} from "@mui/material/colors";
+import {useDispatch} from "react-redux";
+import {resetTheme} from "../../Slices/themeSlice";
 
 export const drawerWidth = "250px"
 
@@ -28,6 +28,7 @@ const PCNavigationPanel: FC<NavigationPanelProps> = ({ navOptions }) => {
 
   const [menuAnchor, setMenuAnchor] = useState(null)
   const [showThemeSelector, setShowThemeSelector] = useState(false)
+  const dispatch = useDispatch()
 
   return (
     <Box sx={{ width: drawerWidth }}>
@@ -107,7 +108,14 @@ const PCNavigationPanel: FC<NavigationPanelProps> = ({ navOptions }) => {
               sx={{ transform: "translateY(-50px)" }}
             >
               <MenuItem onClick={() => setShowThemeSelector(true)}>Change Theme</MenuItem>
-              <MenuItem onClick={logout}>Log Out</MenuItem>
+              <MenuItem
+                onClick={() => {
+                  logout()
+                  dispatch(resetTheme())
+                }}
+              >
+                Log Out
+              </MenuItem>
             </Menu>
           </Box>
         </Box>

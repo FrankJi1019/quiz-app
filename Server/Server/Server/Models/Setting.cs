@@ -9,6 +9,6 @@ public class Setting {
     [ForeignKey("Users")]
     public string Username { get; set; }
 
-    public int Theme { get; set; } = 1;
+    public int Theme { get; set; } = 0;
 
 }

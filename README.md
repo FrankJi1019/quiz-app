@@ -5,9 +5,9 @@
 ### Environment Setup
 
 1. Please make sure you have [dotnet](https://dotnet.microsoft.com/en-us/download), [Node](https://nodejs.org/en/download/), and [SQL Server](https://www.microsoft.com/en-us/sql-server/sql-server-downloads) installed on your device.
-2. Add the SQL Server connection string in the appsetting.json
+2. Add the SQL Server connection string in the "appsetting.json"
 3. Open a terminal and direct to the Server folder, where the current directory should contain "Models" folder
-4. Excute these two commands: `dotnet ef migrations add InitialCreate` and `dotnet ef database update`
+4. Execute `dotnet ef database update`
 5. Add the .env file to the client folder, below is a example .env file
 
 ```
