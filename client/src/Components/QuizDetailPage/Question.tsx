@@ -2,8 +2,9 @@ import React, { FC } from "react"
 import { Box, Card, IconButton, useTheme } from "@mui/material"
 import { IQuestion } from "../../../types/IQuestion"
 import DeleteIcon from "@mui/icons-material/Delete"
-import { deleteQuestion } from "../../Api/QuestionAPI"
-import { useUtil } from "../../Providers/UtilProvider"
+import {useDeleteQuestionMutation} from "../../Api/QuestionAPI"
+import {useParams} from "react-router-dom";
+import {useFetchQuestionsByQuizId} from "../../Api/QuizAPI";
 
 interface QuestionProps {
   question: IQuestion
@@ -11,7 +12,10 @@ interface QuestionProps {
 
 const Question: FC<QuestionProps> = ({ question }) => {
   const theme = useTheme()
-  const { forceRerender } = useUtil()
+  const { quizId } = useParams()
+
+  const questionsFetch = useFetchQuestionsByQuizId(Number(quizId))
+  const deleteQuestionMutation = useDeleteQuestionMutation()
 
   return (
     <Card
@@ -34,8 +38,9 @@ const Question: FC<QuestionProps> = ({ question }) => {
         <IconButton
           onClick={async (e) => {
             e.stopPropagation()
-            await deleteQuestion(question.id)
-            forceRerender()
+            // await deleteQuestion(question.id)
+            await deleteQuestionMutation.mutateAsync(question.id)
+            questionsFetch.refetch()
           }}
         >
           <DeleteIcon />

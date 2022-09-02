@@ -7,32 +7,32 @@ import BackButton from "../BackButton"
 import { getAllQuizPageURL, getQuizStartPageURL } from "../../routes"
 import Topic from "../Topic"
 import LoadingPage from "../LoadingPage"
-import { getQuestionCount, getQuiz } from "../../Api/QuizAPI"
+import {useFetchQuiz, useFetchQuizQuestionCount} from "../../Api/QuizAPI"
 import { useNavigate, useParams } from "react-router-dom"
 
 const QuizReadyPage = () => {
   const { quizId } = useParams()
   const navigate = useNavigate()
 
-  const [quiz, setQuiz] = useState<IQuiz | null>(null)
-  const [questionCount, setQuestionCount] = useState<number | null>(null)
+  // const [questionCount, setQuestionCount] = useState<number | null>(null)
 
-  if (quizId === null || isNaN(Number(quizId))) return null
+  const quizFetch = useFetchQuiz(Number(quizId))
+  const questionCountFetch = useFetchQuizQuestionCount(Number(quizId))
 
-  useEffect(() => {
-    getQuiz(Number(quizId)).then((res) => {
-      setQuiz(res.data)
-    })
-  }, [quizId])
+  // useEffect(() => {
+  //   if (quizFetch.data === undefined) return
+  //   const quiz = quizFetch.data as IQuiz
+  //   getQuestionCount(quiz.id).then((res) => {
+  //     setQuestionCount(res.data)
+  //   })
+  // }, [quizFetch.data])
 
-  useEffect(() => {
-    if (quiz === null) return
-    getQuestionCount(quiz.id).then((res) => {
-      setQuestionCount(res.data)
-    })
-  }, [quiz])
+  if (quizFetch.isLoading || questionCountFetch.isLoading) return <LoadingPage />
 
-  if (questionCount === null || quiz === null) return <LoadingPage />
+  const quiz = quizFetch.data as IQuiz
+  const questionCount = questionCountFetch.data as number
+
+  // if (questionCount === null || quiz === null) return <LoadingPage />
 
   return (
     <Page sx={{ padding: { xs: "20px", md: "50px" } }}>

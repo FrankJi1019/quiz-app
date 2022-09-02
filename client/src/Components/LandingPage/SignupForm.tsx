@@ -17,7 +17,7 @@ import { getConfirmPageURL, getLoginPageURL } from "../../routes"
 import { useNavigate } from "react-router-dom"
 import VisibilityIcon from "@mui/icons-material/Visibility"
 import VisibilityOffIcon from "@mui/icons-material/VisibilityOff"
-import {createUser} from "../../Api/UserAPI";
+import {useCreateUserMutation} from "../../Api/UserAPI";
 
 const SignupForm = () => {
   const [error, setError] = useState<string | null | undefined>(null)
@@ -26,6 +26,8 @@ const SignupForm = () => {
 
   const { signup } = useAuth()
   const navigate = useNavigate()
+
+  const createUserMutation = useCreateUserMutation()
 
   const formik = useFormik({
     initialValues: {
@@ -37,7 +39,8 @@ const SignupForm = () => {
       setButtonLoading(true)
       const res = await signup(values.username, values.email, values.password)
       if (res === true) {
-        createUser(values.username).then(() => {})
+        // createUser(values.username).then(() => {})
+        createUserMutation.mutate(values.username)
         navigate(getConfirmPageURL(), {
           state: {
             username: values.username,

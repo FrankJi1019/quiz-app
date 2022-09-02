@@ -1,4 +1,4 @@
-import React from "react"
+import React, {useEffect} from "react"
 import AuthRouter from "./RouteControllers/AuthRouter"
 import Dashboard from "./RouteControllers/Dashboard"
 import { useAuth } from "./Providers/AuthProvider"
@@ -8,7 +8,9 @@ const App = () => {
   const { getCurrentUser } = useAuth()
   const { initialiseTheme } = useCustomTheme()
 
-  initialiseTheme()
+  useEffect(() => {
+    initialiseTheme()
+  }, [getCurrentUser])
 
   if (getCurrentUser()) return <Dashboard />
   else return <AuthRouter />

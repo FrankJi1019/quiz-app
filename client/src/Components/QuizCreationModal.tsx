@@ -1,4 +1,4 @@
-import React, { FC, useEffect, useMemo, useState } from "react"
+import React, { FC, useMemo } from "react"
 import {
   Autocomplete,
   Box,
@@ -11,12 +11,12 @@ import {
   Typography
 } from "@mui/material"
 import { useFormik } from "formik"
-import {ICreateQuizDto, IQuiz} from "../../types/IQuiz"
-import { createQuiz } from "../Api/QuizAPI"
+import {ICreateQuizDto} from "../../types/IQuiz"
+import {useCreateQuiz, useFetchNonEmptyQuizzes} from "../Api/QuizAPI"
 import { getQuizDetailPageURL } from "../routes"
 import * as yup from "yup"
 import { useNavigate } from "react-router-dom"
-import { getAllTopics } from "../Api/TopicAPI"
+import {useFetchTopics} from "../Api/TopicAPI"
 import CloseIcon from "@mui/icons-material/Close"
 import { useAuth } from "../Providers/AuthProvider"
 
@@ -37,7 +37,9 @@ const QuizCreationModal: FC<QuizCreationModalProps> = ({ open, onClose }) => {
   )
   const navigate = useNavigate()
 
-  const [topics, setTopics] = useState<Array<string> | null>(null)
+  const topicFetch = useFetchTopics()
+  const quizCreateQuery = useCreateQuiz()
+  const quizFetchQuery = useFetchNonEmptyQuizzes()
 
   const formik = useFormik({
     initialValues: {
@@ -46,13 +48,12 @@ const QuizCreationModal: FC<QuizCreationModalProps> = ({ open, onClose }) => {
       topicStrings: [] as Array<string>
     } as ICreateQuizDto,
     onSubmit: async (values) => {
-      console.log(values, "--values")
-      const res = await createQuiz({
+      const payload = {
         ...values,
         authorId: username
-      })
-      console.log(res, "--res")
-      navigate(getQuizDetailPageURL(res.data.id))
+      }
+      const res = await quizCreateQuery.mutateAsync(payload)
+      navigate(getQuizDetailPageURL(res.id))
       onClose()
     },
     validationSchema: yup.object({
@@ -69,13 +70,9 @@ const QuizCreationModal: FC<QuizCreationModalProps> = ({ open, onClose }) => {
     })
   })
 
-  useEffect(() => {
-    getAllTopics().then((res) =>
-      setTopics(res.data.map((topic: { name: string }) => topic.name))
-    )
-  }, [open, onClose])
+  if (topicFetch.isLoading) return null
 
-  if (!topics) return null
+  const topics = (topicFetch.data as Array<{name: string}>).map(topic => topic.name)
 
   return (
     <Modal open={open} onClose={() => {}}>

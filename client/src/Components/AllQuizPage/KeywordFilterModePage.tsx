@@ -3,8 +3,7 @@ import { SubPageProps } from "./index"
 import Page from "../../Containers/Page"
 import { Box, Button, Grid, TextField } from "@mui/material"
 import Quiz from "./Quiz"
-import { useNavigate } from "react-router-dom"
-import { getAllQuizPageURL } from "../../routes"
+import {useSearchParams} from "react-router-dom"
 import NoResult from "./NoResult"
 
 interface KeywordFilterModeProps extends SubPageProps {
@@ -13,11 +12,10 @@ interface KeywordFilterModeProps extends SubPageProps {
 
 const KeywordFilterModePage: FC<KeywordFilterModeProps> = ({
   quizzes,
-  keyword
+  keyword,
 }) => {
+  const [, setSearchParams] = useSearchParams()
   const [searchInput, setSearchInput] = useState("")
-
-  const navigate = useNavigate()
 
   useEffect(() => {
     setSearchInput(keyword)
@@ -30,7 +28,7 @@ const KeywordFilterModePage: FC<KeywordFilterModeProps> = ({
           style={{ width: "100%", display: "flex" }}
           onSubmit={(e) => {
             e.preventDefault()
-            navigate(`${getAllQuizPageURL()}?keyword=${searchInput}`)
+            setSearchParams({keyword: searchInput})
           }}
         >
           <TextField

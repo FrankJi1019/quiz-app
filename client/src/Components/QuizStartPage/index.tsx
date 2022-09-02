@@ -3,7 +3,7 @@ import Page from "../../Containers/Page"
 import { useNavigate, useParams } from "react-router-dom"
 import LoadingPage from "../LoadingPage"
 import { IUserAnswer, IQuestion } from "../../../types/IQuestion"
-import { getQuestionsByQuizId, getQuizResult } from "../../Api/QuizAPI"
+import {useCheckQuizResultMutation, useFetchQuestionsByQuizId} from "../../Api/QuizAPI"
 import Question from "./Question"
 import { Box, Button, LinearProgress } from "@mui/material"
 import { getResultPageURL } from "../../routes"
@@ -21,24 +21,25 @@ const QuizStartPage = () => {
   const navigate = useNavigate()
   const { forceRerender } = useUtil()
 
-  const [questions, setQuestions] = useState<Array<IQuestion> | null>(null)
   const [userAnswers, setUserAnswers] = useState<Array<IUserAnswer>>([])
 
-  if (!quizId || isNaN(Number(quizId))) return null
+  const questionsFetch = useFetchQuestionsByQuizId(Number(quizId))
+  const checkResultMutation = useCheckQuizResultMutation()
 
   useEffect(() => {
-    getQuestionsByQuizId(Number(quizId)).then((res) => {
-      setQuestions(res.data)
-      setUserAnswers(
-        res.data.map((question: { id: any }) => ({
-          questionId: question.id,
-          answerOptionId: -1
-        }))
-      )
-    })
-  }, [quizId])
+    if (questionsFetch.isLoading) return
+    const questions = questionsFetch.data as Array<IQuestion>
+    setUserAnswers(
+      questions.map((question: { id: any }) => ({
+        questionId: question.id,
+        answerOptionId: -1
+      }))
+    )
+  }, [questionsFetch.isLoading])
 
-  if (!questions) return <LoadingPage />
+  if (questionsFetch.isLoading) return <LoadingPage />
+
+  const questions = questionsFetch.data as Array<IQuestion>
 
   const questionComponents = questions.map((question, index) => (
     <Box sx={{ mb: "40px" }} key={question.id}>
@@ -90,9 +91,10 @@ const QuizStartPage = () => {
         <Button
           variant="contained"
           onClick={async () => {
-            const result = await getQuizResult(Number(quizId), userAnswers)
+            // const result = await getQuizResult(Number(quizId), userAnswers)
+            const result = await checkResultMutation.mutateAsync({quizId: Number(quizId), userAnswers})
             navigate(getResultPageURL(), {
-              state: { result: result.data }
+              state: { result }
             })
           }}
           disabled={getProgress(userAnswers) < 100}

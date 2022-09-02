@@ -1,4 +1,4 @@
-import React, { FC, useEffect, useState } from "react"
+import React, { FC, useState } from "react"
 import {
   Box,
   Card,
@@ -7,8 +7,9 @@ import {
   RadioGroup,
   Typography
 } from "@mui/material"
-import { IOptionWithoutAnswer } from "../../../types/IOption"
-import { getOptionsByQuestionId, getQuestion } from "../../Api/QuestionAPI"
+import {IOption} from "../../../types/IOption"
+import {useFetchOptionsByQuestionId, useFetchQuestionById} from "../../Api/QuestionAPI"
+import {IQuestion} from "../../../types/IQuestion";
 
 interface IProps {
   questionId: number
@@ -17,21 +18,15 @@ interface IProps {
 }
 
 const Question: FC<IProps> = ({ questionId, questionNo, onUserAnswer }) => {
-  const [question, setQuestion] = useState("")
-  const [options, setOptions] = useState<Array<IOptionWithoutAnswer>>([])
   const [userAnswer, setUserAnswer] = useState<number>(-1)
 
-  useEffect(() => {
-    getQuestion(questionId).then((res) => {
-      setQuestion(res.data.content)
-    })
-  }, [questionId])
+  const questionFetch = useFetchQuestionById(questionId)
+  const optionsFetch = useFetchOptionsByQuestionId(questionId)
 
-  useEffect(() => {
-    getOptionsByQuestionId(questionId).then((res) => {
-      setOptions(res.data)
-    })
-  }, [questionId])
+  if (questionFetch.isLoading || optionsFetch.isLoading) return null
+
+  const question = (questionFetch.data as IQuestion).content
+  const options = optionsFetch.data as Array<IOption>
 
   return (
     <Card sx={{ padding: "20px" }} raised>

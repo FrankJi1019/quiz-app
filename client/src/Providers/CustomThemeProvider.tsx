@@ -5,7 +5,7 @@ import {changeTheme} from "../Slices/themeSlice";
 import type {RootState} from "../store";
 import {useSelector, useDispatch} from "react-redux"
 import {useAuth} from "./AuthProvider";
-import {getUserSetting, updateTheme} from "../Api/UserAPI";
+import {useFetchUserSetting, useUpdateThemeMutation} from "../Api/UserAPI";
 import {palettes} from "../Themes";
 
 interface ThemeData {
@@ -18,13 +18,15 @@ const context = createContext(
   {} as ThemeData
 )
 
-
 // @ts-ignore
 const CustomThemeProvider = ({children}) => {
 
   const palette = useSelector((state: RootState) => state.theme.palette)
   const dispatch = useDispatch()
   const {getCurrentUser} = useAuth()
+
+  const fetchSettingMutation = useFetchUserSetting()
+  const updateThemeMutation = useUpdateThemeMutation()
 
   const theme = useMemo(() =>
     createTheme({
@@ -37,15 +39,16 @@ const CustomThemeProvider = ({children}) => {
       if (getCurrentUser() == null) return
       const username = getCurrentUser()!.getUsername()
       dispatch(changeTheme({palette, username}))
-      const paletteNo = palettes.findIndex((p) => p == palette)
-      updateTheme(username, paletteNo).then(() => {})
+      const theme = palettes.findIndex((p) => p == palette)
+      // updateTheme(username, paletteNo).then(() => {})
+      updateThemeMutation.mutate({username, theme})
     },
     getTheme: () => palette,
     initialiseTheme: () => {
       if (getCurrentUser() == null) return
       const username = getCurrentUser()!.getUsername()
-      getUserSetting(username).then(res => {
-        dispatch(changeTheme({palette: palettes[res.data.theme], username}))
+      fetchSettingMutation.mutateAsync(username).then(res => {
+        dispatch(changeTheme({palette: palettes[res.theme], username}))
       })
     }
   }

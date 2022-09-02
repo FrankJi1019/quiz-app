@@ -3,8 +3,6 @@ import type { PayloadAction } from '@reduxjs/toolkit'
 import {PaletteOptions} from '@mui/material'
 import palette1 from "../Themes/palette1";
 import {palettes} from "../Themes";
-import {useAuth} from "../Providers/AuthProvider";
-import {getUserSetting, updateTheme} from "../Api/UserAPI";
 
 export interface ThemeState {
   palette: PaletteOptions

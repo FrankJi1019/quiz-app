@@ -1,8 +1,8 @@
-import React, { useEffect, useState } from "react"
+import React from "react"
 import Page from "../../Containers/Page"
 import { useNavigate, useParams } from "react-router-dom"
 import { IQuiz } from "../../../types/IQuiz"
-import { getQuestionsByQuizId, getQuiz } from "../../Api/QuizAPI"
+import {useFetchQuestionsByQuizId, useFetchQuiz} from "../../Api/QuizAPI"
 import { Box, Button, Typography, useTheme } from "@mui/material"
 import { IQuestion } from "../../../types/IQuestion"
 import {
@@ -12,28 +12,19 @@ import {
 import PersonIcon from "@mui/icons-material/Person"
 import Question from "./Question"
 import Topic from "../Topic"
-import { useUtil } from "../../Providers/UtilProvider"
 
 const QuizDetailPage = () => {
   const { quizId } = useParams()
   const navigate = useNavigate()
   const theme = useTheme()
-  const { forceRerender } = useUtil()
 
-  const [quiz, setQuiz] = useState<IQuiz | null>(null)
-  const [questions, setQuestions] = useState<Array<IQuestion> | null>(null)
+  const quizFetch = useFetchQuiz(Number(quizId))
+  const questionsFetch = useFetchQuestionsByQuizId(Number(quizId))
 
-  if (!quizId || isNaN(Number(quizId))) return null
+  if (quizFetch.isLoading || questionsFetch.isLoading) return null
 
-  useEffect(() => {
-    getQuiz(Number(quizId)).then((res) => setQuiz(res.data))
-  }, [])
-
-  useEffect(() => {
-    getQuestionsByQuizId(Number(quizId)).then((res) => setQuestions(res.data))
-  }, [forceRerender])
-
-  if (!quiz || !questions) return null
+  const quiz = quizFetch.data as IQuiz
+  const questions = questionsFetch.data as Array<IQuestion>
 
   return (
     <Page>

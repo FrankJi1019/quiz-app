@@ -5,40 +5,42 @@ import {Box, Button} from "@mui/material"
 import {IQuestion} from "../../../types/IQuestion"
 import {IOption} from "../../../types/IOption"
 import {
-  getOptionsByQuestionId,
-  getQuestion,
-  updateQuestion
+  useFetchOptionsByQuestionId,
+  useFetchQuestionById,
+  useUpdateQuestionMutation
 } from "../../Api/QuestionAPI"
 import LoadingPage from "../LoadingPage"
 import ItemBox from "./ItemBox"
 import Option from "./Option";
-import {updateOption} from "../../Api/OptionAPI";
+import {useUpdateOptionMutation} from "../../Api/OptionAPI";
 
 const QuestionDetailPage = () => {
   const {questionId} = useParams()
 
-  const [question, setQuestion] = useState<IQuestion | null>(null)
+  const [question, setQuestion] = useState<IQuestion | null>()
   const [initQuestion, setInitQuestion] = useState<IQuestion | null>(null)
   const [options, setOptions] = useState<Array<IOption> | null>(null)
   const [initOptions, setInitOptions] = useState<Array<IOption> | null>(null)
 
-  if (!questionId || isNaN(Number(questionId))) return null
+  const questionFetch = useFetchQuestionById(Number(questionId))
+  const optionsFetch = useFetchOptionsByQuestionId(Number(questionId), true)
+  const updateQuestionMutation = useUpdateQuestionMutation()
+  const updateOptionMutation = useUpdateOptionMutation()
 
   useEffect(() => {
-    getQuestion(Number(questionId)).then((res) => {
-      setQuestion(res.data)
-      setInitQuestion(res.data)
-    })
-  }, [questionId])
+    if (questionFetch.isLoading) return
+    setQuestion({...questionFetch.data} as IQuestion)
+    setInitQuestion({...questionFetch.data} as IQuestion)
+  }, [questionFetch.isLoading])
 
   useEffect(() => {
-    getOptionsByQuestionId(Number(questionId), true).then((res) => {
-      setOptions(res.data.map((obj: any) => ({...obj})))
-      setInitOptions(res.data.map((obj: any) => ({...obj})))
-    })
-  }, [questionId])
+    if (optionsFetch.isLoading) return
+    const data = optionsFetch.data as Array<IOption>
+    setOptions(data.map((obj: any) => ({...obj})))
+    setInitOptions(data.map((obj: any) => ({...obj})))
+  }, [optionsFetch.isLoading])
 
-  if (!question || !options) return <LoadingPage/>
+  if (questionFetch.isLoading || optionsFetch.isLoading || !question || !options) return <LoadingPage/>
 
   return (
     <Page sx={{padding: {xs: "20px 25px", md: "40px 70px"}}}>
@@ -91,9 +93,12 @@ const QuestionDetailPage = () => {
           }}
           onClick={async () => {
             const tasks = []
-            tasks.push(updateQuestion(Number(questionId), question))
+            tasks.push(updateQuestionMutation.mutateAsync({
+              id: Number(questionId), question
+            }))
             options && options.forEach(option => {
-              tasks.push(updateOption(option.id, option))
+              // tasks.push(updateOption(option.id, option))
+              tasks.push(updateOptionMutation.mutateAsync({id: option.id, option}))
             })
             Promise.all(tasks).then(() => window.location.reload())
           }}

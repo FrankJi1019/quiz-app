@@ -1,7 +1,6 @@
 ﻿namespace Server.Dto; 
 
 public class QuizOutputDto {
-    
     public int Id { get; set; }
     
     public string Name { get; set; }

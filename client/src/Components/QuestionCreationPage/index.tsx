@@ -13,7 +13,7 @@ import {
 import { useFormik } from "formik"
 import * as yup from "yup"
 import { useUtil } from "../../Providers/UtilProvider"
-import { createQuestionWithOptions } from "../../Api/QuestionAPI"
+import {useCreateQuestionWithOptions} from "../../Api/QuestionAPI"
 import { ICreateQuestionWithOptions } from "../../../types/IQuestion"
 import { useNavigate, useParams } from "react-router-dom"
 import { getQuizDetailPageURL } from "../../routes"
@@ -31,6 +31,8 @@ const QuestionCreationPage = () => {
 
   const [option, setOption] = useState("")
 
+  const createQuestionMutation = useCreateQuestionWithOptions()
+
   if (!quizId || isNaN(Number(quizId))) return null
 
   const formik = useFormik({
@@ -44,10 +46,9 @@ const QuestionCreationPage = () => {
       }>,
       quizId: Number(quizId)
     } as ICreateQuestionWithOptions,
-    onSubmit: (values) => {
-      createQuestionWithOptions(values).then(() =>
-        navigate(getQuizDetailPageURL(Number(quizId)))
-      )
+    onSubmit: async (values) => {
+      await createQuestionMutation.mutateAsync(values)
+      navigate(getQuizDetailPageURL(Number(quizId)))
     },
     validationSchema: yup.object({
       content: yup.string().required("Question body is required"),

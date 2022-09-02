@@ -2,14 +2,32 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="88d1d2c7-6a39-4e3d-a86e-efff11763a3b" name="Changes" comment="feat: a usable UI is completed">
-      <change beforePath="$PROJECT_DIR$/../README.md" beforeDir="false" afterPath="$PROJECT_DIR$/../README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Server/Server/Server/Models/Setting.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../Server/Server/Server/Models/Setting.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Server/Server/Server/Server.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/../Server/Server/Server/Server.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Server/Server/Server/Dto/QuizOutputDto.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../Server/Server/Server/Dto/QuizOutputDto.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Api/OptionAPI.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/Api/OptionAPI.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Api/QuestionAPI.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/Api/QuestionAPI.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Api/QuizAPI.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/Api/QuizAPI.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Api/TopicAPI.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/Api/TopicAPI.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Api/UserAPI.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/Api/UserAPI.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/App.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Components/AllQuizPage/KeywordFilterModePage.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/Components/AllQuizPage/KeywordFilterModePage.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Components/AllQuizPage/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/Components/AllQuizPage/index.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Components/LandingPage/SignupForm.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/Components/LandingPage/SignupForm.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Components/NavigationPanel/PCNavigationPanel.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/Components/NavigationPanel/PCNavigationPanel.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Components/NavigationPanel/MobileNavigationPanel.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/Components/NavigationPanel/MobileNavigationPanel.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Components/QuestionCreationPage/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/Components/QuestionCreationPage/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Components/QuestionDetailPage/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/Components/QuestionDetailPage/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Components/QuizCreationModal.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/Components/QuizCreationModal.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Components/QuizDetailPage/Question.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/Components/QuizDetailPage/Question.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Components/QuizDetailPage/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/Components/QuizDetailPage/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Components/QuizReadyPage/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/Components/QuizReadyPage/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Components/QuizStartPage/Question.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/Components/QuizStartPage/Question.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Components/QuizStartPage/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/Components/QuizStartPage/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Components/UserQuizPage/Quiz.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/Components/UserQuizPage/Quiz.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Components/UserQuizPage/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/Components/UserQuizPage/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Providers/CustomThemeProvider.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/Providers/CustomThemeProvider.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Slices/themeSlice.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/Slices/themeSlice.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/yarn.lock" beforeDir="false" afterPath="$PROJECT_DIR$/yarn.lock" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -178,7 +196,14 @@
       <workItem from="1661895602910" duration="10000" />
       <workItem from="1661918259580" duration="2000" />
       <workItem from="1661927993782" duration="595000" />
-      <workItem from="1661935823977" duration="2589000" />
+      <workItem from="1661935823977" duration="4637000" />
+      <workItem from="1661970514380" duration="6095000" />
+      <workItem from="1661982892320" duration="9000" />
+      <workItem from="1662020972945" duration="3900000" />
+      <workItem from="1662060527406" duration="5465000" />
+      <workItem from="1662066968782" duration="9000" />
+      <workItem from="1662104221527" duration="1062000" />
+      <workItem from="1662108197846" duration="6218000" />
     </task>
     <task id="LOCAL-00001" summary="feat: a usable UI is completed">
       <created>1658825818092</created>

@@ -5,17 +5,19 @@ import moment from "moment"
 import {getQuizDetailPageURL} from "../../routes"
 import {useNavigate} from "react-router-dom"
 import RemoveCircleIcon from '@mui/icons-material/RemoveCircle'
-import {deleteQuiz} from "../../Api/QuizAPI";
+import {useDeleteQuiz} from "../../Api/QuizAPI";
 import {useUtil} from "../../Providers/UtilProvider";
 
 interface IProps {
   quiz: IQuiz
+  onDelete: () => void
 }
 
-const Quiz: FC<IProps> = ({quiz}) => {
+const Quiz: FC<IProps> = ({quiz, onDelete}) => {
   const navigate = useNavigate()
   const theme = useTheme()
   const {forceRerender} = useUtil()
+  const deleteQuizMutation = useDeleteQuiz()
 
   return (
     <Grid
@@ -51,7 +53,8 @@ const Quiz: FC<IProps> = ({quiz}) => {
           }}
           onClick={(e) => {
             e.stopPropagation()
-            deleteQuiz(quiz.id).then(() => forceRerender())
+            deleteQuizMutation.mutateAsync(quiz.id).then(onDelete)
+            // deleteQuiz(quiz.id).then(() => forceRerender())
           }}
         >
           <RemoveCircleIcon/>

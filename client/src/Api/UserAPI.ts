@@ -1,18 +1,35 @@
 import axios from "axios"
 import { constants } from "../constants"
+import {useMutation, useQuery, UseQueryResult} from "react-query";
+import {IQuiz} from "../../types/IQuiz";
 
-export const getUserQuizzes = (username: string) => {
-  return axios.get(`${constants.general.backend}/users/${username}/quizzes`)
+export const useFetchUserQuizzes = (username: string): UseQueryResult<Array<IQuiz>> => {
+  return useQuery(["user-quizzes", username], async () => {
+    const {data} = await axios.get(`${constants.general.backend}/users/${username}/quizzes`)
+    return data
+  })
 }
 
-export const getUserSetting = (username: string) => {
-  return axios.get(`${constants.general.backend}/users/${username}/settings`)
+export const useFetchUserSetting = () => {
+  return useMutation(async (username: string) => {
+    const {data} = await axios.get(`${constants.general.backend}/users/${username}/settings`)
+    return data
+  })
 }
 
-export const updateTheme = (username: string, theme: number) => {
-  return axios.patch(`${constants.general.backend}/users/${username}/settings`, {theme})
+export const useUpdateThemeMutation = () => {
+  return useMutation(async (data: { username: string, theme: number }) => {
+    const {data: response} = await axios.patch(
+      `${constants.general.backend}/users/${data.username}/settings`,
+      {theme: data.theme}
+    )
+    return response
+  })
 }
 
-export const createUser = (username: string) => {
-  return axios.post(`${constants.general.backend}/users/${username}`)
+export const useCreateUserMutation = () => {
+  return useMutation(async (username: string) => {
+    const {data} = await axios.post(`${constants.general.backend}/users/${username}`)
+    return data
+  })
 }

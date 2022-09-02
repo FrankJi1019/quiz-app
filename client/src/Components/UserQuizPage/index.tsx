@@ -1,28 +1,23 @@
-import React, { useEffect, useState } from "react"
+import React from "react"
 import Page from "../../Containers/Page"
 import { Box, Grid, Typography, useTheme } from "@mui/material"
 import { useParams } from "react-router-dom"
 import { IQuiz } from "../../../types/IQuiz"
 import LoadingPage from "../LoadingPage"
-import { getUserQuizzes } from "../../Api/UserAPI"
+import {useFetchUserQuizzes} from "../../Api/UserAPI"
 import Quiz from "./Quiz"
 import NoResult from "../AllQuizPage/NoResult"
-import {useUtil} from "../../Providers/UtilProvider";
 
 const UserQuizPage = () => {
-  const [quizzes, setQuizzes] = useState<Array<IQuiz> | null>(null)
 
   const { username } = useParams()
   const theme = useTheme()
-  const {forceRerender} = useUtil()
 
-  if (username == undefined) return null
+  const quizzesFetch = useFetchUserQuizzes(username as string)
 
-  useEffect(() => {
-    getUserQuizzes(username).then((res) => setQuizzes(res.data))
-  }, [username, forceRerender])
+  if (quizzesFetch.isLoading) return <LoadingPage />
 
-  if (!quizzes) return <LoadingPage />
+  const quizzes = quizzesFetch.data as Array<IQuiz>
 
   return (
     <Page sx={{ padding: { xs: "20px", md: "40px" } }}>
@@ -48,9 +43,14 @@ const UserQuizPage = () => {
       </Box>
       {quizzes.length !== 0 ? (
         <Grid container>
-          {quizzes.map((quiz) => (
-            <Quiz quiz={quiz} />
-          ))}
+          {
+            quizzes.map((quiz) => (
+              <Quiz
+                quiz={quiz}
+                onDelete={() => quizzesFetch.refetch()}
+              />
+            ))
+          }
         </Grid>
       ) : (
         <NoResult />

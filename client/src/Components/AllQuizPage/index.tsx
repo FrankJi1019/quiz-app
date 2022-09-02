@@ -1,6 +1,9 @@
-import React, { useEffect, useState } from "react"
+import React, {useMemo} from "react"
 import { IQuiz } from "../../../types/IQuiz"
-import {getNoneEmptyQuizzesByTopic, getNonEmptyQuizzes} from "../../Api/QuizAPI"
+import {
+  useFetchNonEmptyQuizzes,
+  useFetchNonEmptyQuizzesByTopic
+} from "../../Api/QuizAPI"
 import LoadingPage from "../LoadingPage"
 import { useSearchParams } from "react-router-dom"
 import AllQuizModePage from "./AllQuizModePage"
@@ -12,42 +15,32 @@ export interface SubPageProps {
 }
 
 const AllQuizPage = () => {
-  const [quizzes, setQuizzes] = useState<Array<IQuiz> | null>(null)
 
-  const [searchParam, setSearchParam] = useSearchParams()
+  const [searchParam] = useSearchParams()
 
-  useEffect(() => {
-    const topic = searchParam.get("topic")
-    const keyword = searchParam.get("keyword")
-    if (topic != null && topic.trim() != "") {
-      getNoneEmptyQuizzesByTopic(topic).then((res) => {
-        setQuizzes(res.data)
-      })
-    } else {
-      getNonEmptyQuizzes({keyword}).then((res) => {
-        setQuizzes(res.data)
-      })
-    }
-  }, [searchParam])
+  const topic = useMemo(() => searchParam.get("topic"), [searchParam.get("topic")])
+  const keyword = useMemo(() => searchParam.get("keyword"), [searchParam.get("keyword")])
+  const {data, isLoading} = (topic != null && topic.trim() != "") ?
+    useFetchNonEmptyQuizzesByTopic(topic) : useFetchNonEmptyQuizzes(keyword)
 
-  if (!quizzes) return <LoadingPage />
+  if (isLoading) return <LoadingPage />
 
   if (searchParam.get("topic") != null) {
     return (
       <TopicFilterModePage
         topic={searchParam.get("topic")!}
-        quizzes={quizzes}
+        quizzes={data as Array<IQuiz>}
       />
     )
   } else if (searchParam.get("keyword")) {
     return (
       <KeywordFilterModePage
         keyword={searchParam.get("keyword")!}
-        quizzes={quizzes}
+        quizzes={data as Array<IQuiz>}
       />
     )
   } else {
-    return <AllQuizModePage quizzes={quizzes} />
+    return <AllQuizModePage quizzes={data as Array<IQuiz>} />
   }
 }
 

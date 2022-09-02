@@ -73,6 +73,7 @@ const MobileNavigationPanel: FC<NavigationPanelProps> = ({ navOptions }) => {
           <Box>
             {navOptions.map((option, index) => (
               <Box
+                key={option.text}
                 onClick={() => {
                   option.onClick()
                   setOpenSideBar(false)
