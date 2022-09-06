@@ -15,6 +15,13 @@ public class QuizRepository {
     public ICollection<Quiz> GetAll() {
         return this._context.Quizzes.OrderByDescending(x => x.CreatedAt).ToList();
     }
+    
+    public ICollection<Quiz> GetAll(bool ignoreEmpty) {
+        return this._context.Quizzes
+            .Where(x => !ignoreEmpty || x.Questions.Count != 0)
+            .OrderByDescending(x => x.CreatedAt)
+            .ToList();
+    }
 
     public ICollection<Quiz> GetAllNonEmpty() {
         return this._context.Quizzes
@@ -25,7 +32,10 @@ public class QuizRepository {
     }
 
     public Quiz? GetOneById(int id) {
-        return this._context.Quizzes.Include(x => x.Topics).FirstOrDefault(x => x.Id == id);
+        return this._context.Quizzes
+            .Include(x => x.Topics)
+            .Include(x => x.Author)
+            .FirstOrDefault(x => x.Id == id);
     }
 
     public bool IsQuizExist(int id) {
@@ -89,7 +99,7 @@ public class QuizRepository {
     }
 
     public ICollection<Quiz> GetQuizzesByUser(string user) {
-        var quizzes = this._context.Quizzes.Where(x => x.AuthorId == user).ToList();
+        var quizzes = this._context.Quizzes.Where(x => x.Author.Username == user).ToList();
         return quizzes;
     }
 

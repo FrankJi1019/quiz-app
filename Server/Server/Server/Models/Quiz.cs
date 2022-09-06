@@ -14,11 +14,13 @@ public class Quiz {
     public DateTime CreatedAt { get; set; } = DateTime.Now;
     
     [Required]
-    public string AuthorId { get; set; }
+    public User Author { get; set; }
     
     public ICollection<Topic> Topics { get; set; }
     
     public ICollection<Question> Questions { get; set; }
+    
+    public ICollection<Session> Sessions { get; set; }
 
     public override bool Equals(object? obj) {
         if (obj == null) {

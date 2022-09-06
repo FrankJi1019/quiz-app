@@ -3,13 +3,13 @@ export interface IQuiz {
   name: string,
   description: string,
   createdAt: Date,
-  authorId: string,
+  authorUsername: string,
   topics: Array<string>
 }
 
 export interface ICreateQuizDto {
   name: string,
   description: string,
-  authorId: string,
+  authorUsername: string,
   topicStrings: Array<string>
 }

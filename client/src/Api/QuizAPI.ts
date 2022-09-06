@@ -16,7 +16,9 @@ export const useFetchNonEmptyQuizzes = (keyword?: string | null): UseQueryResult
 
 export const useFetchNonEmptyQuizzesByTopic = (topic: string): UseQueryResult<Array<IQuiz>> => {
   return useQuery(["get", topic], async () => {
-    const {data} = await axios.get(`${constants.general.backend}/topics/${topic}/quizzes`)
+    const {data} = await axios.get(
+      `${constants.general.backend}/topics/${topic}/quizzes?ignoreEmpty=true`
+    )
     return data
   })
 }

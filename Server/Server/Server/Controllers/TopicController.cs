@@ -85,10 +85,10 @@ public class TopicController : Controller {
     [HttpGet("{name}/quizzes")]
     [ProducesResponseType(200, Type = typeof(TopicOutputDto))]
     [ProducesResponseType(404, Type = typeof(string))]
-    public IActionResult GetQuizzesByTopicId(string name) {
+    public IActionResult GetQuizzesByTopicId(string name, [FromQuery] bool ignoreEmpty) {
         var topic = this._topicRepository.GetOneByName(name);
         if (topic == null) return NotFound("Topic does not exist");
-        var quizzes = this._topicRepository.GetQuizzesByTopic(topic);
+        var quizzes = this._topicRepository.GetQuizzesByTopic(topic, ignoreEmpty);
         var quizOutput = this._mapper.Map<ICollection<QuizOutputDto>>(quizzes);
         return Ok(quizOutput);
     }

@@ -12,7 +12,7 @@ using Server.Data;
 namespace Server.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20220830044753_InitialCreate")]
+    [Migration("20220904080915_InitialCreate")]
     partial class InitialCreate
     {
         /// <inheritdoc />
@@ -38,6 +38,34 @@ namespace Server.Migrations
                     b.HasIndex("TopicsId");
 
                     b.ToTable("QuizTopic");
+                });
+
+            modelBuilder.Entity("Server.Models.Attempt", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("OptionId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("QuestionId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("SessionId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("OptionId");
+
+                    b.HasIndex("QuestionId");
+
+                    b.HasIndex("SessionId");
+
+                    b.ToTable("Attempts");
                 });
 
             modelBuilder.Entity("Server.Models.Option", b =>
@@ -99,9 +127,9 @@ namespace Server.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<string>("AuthorId")
+                    b.Property<string>("AuthorUsername")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("datetime2");
@@ -115,18 +143,60 @@ namespace Server.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("AuthorUsername");
+
                     b.ToTable("Quizzes");
+                });
+
+            modelBuilder.Entity("Server.Models.Session", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("QuizId")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("StartedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("State")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Username")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("QuizId");
+
+                    b.HasIndex("Username");
+
+                    b.ToTable("Sessions");
                 });
 
             modelBuilder.Entity("Server.Models.Setting", b =>
                 {
-                    b.Property<string>("Username")
-                        .HasColumnType("nvarchar(450)");
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<int>("Theme")
                         .HasColumnType("int");
 
-                    b.HasKey("Username");
+                    b.Property<string>("username")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("username")
+                        .IsUnique();
 
                     b.ToTable("Settings");
                 });
@@ -176,6 +246,33 @@ namespace Server.Migrations
                         .IsRequired();
                 });
 
+            modelBuilder.Entity("Server.Models.Attempt", b =>
+                {
+                    b.HasOne("Server.Models.Option", "Option")
+                        .WithMany()
+                        .HasForeignKey("OptionId")
+                        .OnDelete(DeleteBehavior.NoAction)
+                        .IsRequired();
+
+                    b.HasOne("Server.Models.Question", "Question")
+                        .WithMany()
+                        .HasForeignKey("QuestionId")
+                        .OnDelete(DeleteBehavior.NoAction)
+                        .IsRequired();
+
+                    b.HasOne("Server.Models.Session", "Session")
+                        .WithMany("Attempts")
+                        .HasForeignKey("SessionId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Option");
+
+                    b.Navigation("Question");
+
+                    b.Navigation("Session");
+                });
+
             modelBuilder.Entity("Server.Models.Option", b =>
                 {
                     b.HasOne("Server.Models.Question", "Question")
@@ -198,6 +295,47 @@ namespace Server.Migrations
                     b.Navigation("Quiz");
                 });
 
+            modelBuilder.Entity("Server.Models.Quiz", b =>
+                {
+                    b.HasOne("Server.Models.User", "Author")
+                        .WithMany()
+                        .HasForeignKey("AuthorUsername")
+                        .OnDelete(DeleteBehavior.NoAction)
+                        .IsRequired();
+
+                    b.Navigation("Author");
+                });
+
+            modelBuilder.Entity("Server.Models.Session", b =>
+                {
+                    b.HasOne("Server.Models.Quiz", "Quiz")
+                        .WithMany("Sessions")
+                        .HasForeignKey("QuizId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Server.Models.User", "User")
+                        .WithMany()
+                        .HasForeignKey("Username")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Quiz");
+
+                    b.Navigation("User");
+                });
+
+            modelBuilder.Entity("Server.Models.Setting", b =>
+                {
+                    b.HasOne("Server.Models.User", "User")
+                        .WithOne("Setting")
+                        .HasForeignKey("Server.Models.Setting", "username")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("User");
+                });
+
             modelBuilder.Entity("Server.Models.Question", b =>
                 {
                     b.Navigation("Options");
@@ -206,6 +344,19 @@ namespace Server.Migrations
             modelBuilder.Entity("Server.Models.Quiz", b =>
                 {
                     b.Navigation("Questions");
+
+                    b.Navigation("Sessions");
+                });
+
+            modelBuilder.Entity("Server.Models.Session", b =>
+                {
+                    b.Navigation("Attempts");
+                });
+
+            modelBuilder.Entity("Server.Models.User", b =>
+                {
+                    b.Navigation("Setting")
+                        .IsRequired();
                 });
 #pragma warning restore 612, 618
         }

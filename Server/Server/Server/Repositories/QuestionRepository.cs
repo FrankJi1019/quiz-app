@@ -62,4 +62,9 @@ public class QuestionRepository {
         return options;
     }
 
+    public Question? GetQuestionByOption(int optionId) {
+        return this._context.Questions
+            .FirstOrDefault(x => x.Options.Any(y => y.Id == optionId));
+    }
+
 }

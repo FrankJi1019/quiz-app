@@ -52,12 +52,17 @@ public class OptionController : Controller {
             return Conflict("Option already exist");
         } else if (question == null) {
             return NotFound("Question does not exist");
-        } else {
-            option.Question = question;
-            var createdOption = this._optionRepository.AddOption(option);
-            var optionOutput = this._mapper.Map<OptionOutputDto>(createdOption);
-            return CreatedAtAction(nameof(GetOne), new { optionOutput.Id }, optionOutput);
         }
+        var optionsOfQuestion = 
+            this._questionRepository.GetOptionsOfQuestion(createOptionDto.QuestionId)!;
+        var isContentRepeated = optionsOfQuestion.Any(x => x.Content == createOptionDto.Content);
+        if (isContentRepeated) {
+            return Conflict("Option already exist with same content");
+        }
+        option.Question = question;
+        var createdOption = this._optionRepository.AddOption(option);
+        var optionOutput = this._mapper.Map<OptionOutputDto>(createdOption);
+        return CreatedAtAction(nameof(GetOne), new { optionOutput.Id }, optionOutput);
     }
     
     [HttpDelete("{id}")]

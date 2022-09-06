@@ -31,6 +31,8 @@ public class MappingProfiles : Profile {
         CreateMap<Setting, SettingOutputDto>();
 
         CreateMap<User, UserMetaDataOutputDto>();
+
+        CreateMap<Session, SessionOutputDto>();
     }
     
 }

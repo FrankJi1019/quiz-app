@@ -110,12 +110,17 @@ public class QuestionController : Controller {
     [HttpPost("with-options")]
     [ProducesResponseType(200, Type = typeof(QuestionOutputDto))]
     [ProducesResponseType(404, Type = typeof(string))]
+    [ProducesResponseType(409, Type = typeof(string))]
     public IActionResult CreateQuestionWithOptions([FromBody] CreateQuestionWithOptionDto createQuestionDto) {
         var question = this._mapper.Map<Question>(createQuestionDto);
         var options = new List<Option>();
         var quiz = this._quizRepository.GetOneById(createQuestionDto.QuizId);
         if (quiz == null) return NotFound("Quiz does not exist");
         question.Quiz = quiz;
+        foreach (var option in createQuestionDto.Options) {
+            var repeatedContentCount = createQuestionDto.Options.Count(x => x.Content == option.Content);
+            if (repeatedContentCount > 1) return Conflict("Repeated option content");
+        }
         foreach (var createOptionDto in createQuestionDto.Options) {
             createOptionDto.QuestionId = 0;
             var option = this._mapper.Map<Option>(createOptionDto);

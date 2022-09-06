@@ -39,7 +39,6 @@ const QuizCreationModal: FC<QuizCreationModalProps> = ({ open, onClose }) => {
 
   const topicFetch = useFetchTopics()
   const quizCreateQuery = useCreateQuiz()
-  const quizFetchQuery = useFetchNonEmptyQuizzes()
 
   const formik = useFormik({
     initialValues: {
@@ -50,7 +49,7 @@ const QuizCreationModal: FC<QuizCreationModalProps> = ({ open, onClose }) => {
     onSubmit: async (values) => {
       const payload = {
         ...values,
-        authorId: username
+        authorUsername: username
       }
       const res = await quizCreateQuery.mutateAsync(payload)
       navigate(getQuizDetailPageURL(res.id))

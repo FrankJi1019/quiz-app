@@ -1,4 +1,5 @@
-﻿using Server.Data;
+﻿using Microsoft.AspNetCore.Mvc;
+using Server.Data;
 using Server.Models;
 
 namespace Server.Repositories; 
@@ -55,11 +56,12 @@ public class TopicRepository {
         }
     }
 
-    public ICollection<Quiz> GetQuizzesByTopic(Topic topic) {
+    public ICollection<Quiz> GetQuizzesByTopic(Topic topic, [FromQuery] bool ignoreEmpty) {
         var quizzes = this._context.Quizzes
             .Where(x => x.Topics
                 .Any(y => y.Id == topic.Id)
             )
+            .Where(x => !ignoreEmpty || x.Questions.Count != 0)
             .ToList();
         return quizzes;
     } 

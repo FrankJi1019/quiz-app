@@ -82,7 +82,7 @@ const QuizDetailPage = () => {
                 }
               }}
             >
-              {quiz.authorId}
+              {quiz.authorUsername}
             </Typography>
           </Box>
           <Box

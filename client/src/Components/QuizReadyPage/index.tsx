@@ -49,7 +49,7 @@ const QuizReadyPage = () => {
           borderBottom: "2px solid #ccc"
         }}
       >
-        <Typography variant="body1">{`Created by ${quiz.authorId}`}</Typography>
+        <Typography variant="body1">{`Created by ${quiz.authorUsername}`}</Typography>
         <Typography variant="body1">
           {`Created on ${moment(new Date(quiz.createdAt)).format(
             "YYYY-MM-DD"

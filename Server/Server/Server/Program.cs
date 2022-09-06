@@ -33,6 +33,8 @@ builder.Services.AddScoped<QuestionRepository>();
 builder.Services.AddScoped<OptionRepository>();
 builder.Services.AddScoped<TopicRepository>();
 builder.Services.AddScoped<UserRepository>();
+builder.Services.AddScoped<SessionRepository>();
+builder.Services.AddScoped<AttemptRepository>();
 
 builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 

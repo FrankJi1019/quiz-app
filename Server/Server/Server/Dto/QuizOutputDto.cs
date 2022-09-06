@@ -9,7 +9,7 @@ public class QuizOutputDto {
     
     public DateTime CreatedAt { get; set; }
     
-    public string AuthorId { get; set; }
+    public string AuthorUsername { get; set; }
 
     public ICollection<string> Topics { get; set; }
 

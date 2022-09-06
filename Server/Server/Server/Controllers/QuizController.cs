@@ -36,7 +36,8 @@ public class QuizController : Controller {
     [HttpGet]
     [ProducesResponseType(200, Type = typeof(ICollection<QuizOutputDto>))]
     public IActionResult GetAll([FromQuery] bool ignoreEmpty, [FromQuery] string? keyword = "") {
-        var quizzes = ignoreEmpty ? this._quizRepository.GetAllNonEmpty() : this._quizRepository.GetAll() ;
+        // var quizzes = ignoreEmpty ? this._quizRepository.GetAllNonEmpty() : this._quizRepository.GetAll() ;
+        var quizzes = this._quizRepository.GetAll(ignoreEmpty);
         quizzes = quizzes.Where(x => x.Name.ToLower().Contains(keyword!.ToLower())).ToList();
         var quizOutputs = this._mapper.Map<ICollection<QuizOutputDto>>(quizzes);
         return Ok(quizOutputs);
@@ -52,6 +53,7 @@ public class QuizController : Controller {
         } else {
             QuizOutputDto quizOutput = this._mapper.Map<QuizOutputDto>(quiz);
             quizOutput.Topics = quiz.Topics.Select(x => x.Name).ToList();
+            quizOutput.AuthorUsername = quiz.Author.Username;
             return Ok(quizOutput);
         }
     }
@@ -87,7 +89,8 @@ public class QuizController : Controller {
     [ProducesResponseType(404, Type = typeof(string))]
     [ProducesResponseType(409, Type = typeof(string))]
     public IActionResult AddOne([FromBody] CreateQuizDto createQuizDto) {
-        if (!_userRepository.IsUserExist(createQuizDto.AuthorId)) {
+        var author = this._userRepository.GetUser(createQuizDto.AuthorUsername);
+        if (author == null) {
             return NotFound("Invalid author ID");
         }
         if (createQuizDto.TopicStrings.Count > 3) {
@@ -106,6 +109,7 @@ public class QuizController : Controller {
         if (this._quizRepository.IsQuizExist(quiz.Id)) {
             return Conflict("Quiz already exist");
         } else {
+            quiz.Author = author;
             var createdQuiz = this._quizRepository.AddQuiz(quiz);
             var quizOutput = this._mapper.Map<QuizOutputDto>(createdQuiz);
             this.AppendTopicStringList(createdQuiz, quizOutput);

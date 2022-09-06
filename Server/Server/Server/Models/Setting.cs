@@ -1,14 +1,15 @@
-﻿using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
+﻿using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Server.Models; 
 
 public class Setting {
     
-    [Key]
-    [ForeignKey("Users")]
-    public string Username { get; set; }
+    public int Id { get; set; }
 
     public int Theme { get; set; } = 0;
-
+    
+    public User User { get; set; }
+    [ForeignKey("User")]
+    public string username { get; set; }
+    
 }

@@ -1,4 +1,5 @@
-﻿using Server.Data;
+﻿using Microsoft.EntityFrameworkCore;
+using Server.Data;
 using Server.Models;
 
 namespace Server.Repositories; 
@@ -16,7 +17,10 @@ public class OptionRepository {
     }
 
     public Option? GetOneById(int id) {
-        return this._context.Options.FirstOrDefault(x => x.Id == id);
+        return this._context.Options
+            .Where(x => x.Id == id)
+            .Include(x => x.Question)
+            .FirstOrDefault();
     }
     
     public bool IsOptionExist(int id) {
@@ -49,5 +53,5 @@ public class OptionRepository {
             return entityEntry.Entity;
         }
     }
-    
+
 }

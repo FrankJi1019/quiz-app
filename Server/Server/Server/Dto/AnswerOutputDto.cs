@@ -10,4 +10,6 @@ public class AnswerOutputDto {
     
     public string UserAnswer { get; set; }
     
+    public bool IsCorrect { get; set; }
+    
 }

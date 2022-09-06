@@ -11,6 +11,7 @@ import { useFormik } from "formik"
 import { useNavigate } from "react-router-dom"
 import { getSignupPageURL } from "../../routes"
 import { useAuth } from "../../Providers/AuthProvider"
+import {useCreateUserMutation} from "../../Api/UserAPI";
 
 const LoginForm = () => {
   const [error, setError] = useState<string | null>(null)
@@ -18,6 +19,8 @@ const LoginForm = () => {
 
   const navigate = useNavigate()
   const { login } = useAuth()
+
+  const createUserMutation = useCreateUserMutation()
 
   const formik = useFormik({
     initialValues: {
@@ -28,6 +31,7 @@ const LoginForm = () => {
       setButtonLoading(true)
       const res = await login(values.username, values.password)
       if (res !== true) setError(res as string)
+      createUserMutation.mutate(values.username, {onError: () => {}})
       setButtonLoading(false)
     }
   })

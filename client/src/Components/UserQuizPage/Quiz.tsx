@@ -76,7 +76,7 @@ const Quiz: FC<IProps> = ({quiz, onDelete}) => {
             mt: "20px"
           }}
         >
-          <Box>{quiz.authorId}</Box>
+          <Box>{quiz.authorUsername}</Box>
           <Box>{moment(new Date(quiz.createdAt)).format("YYYY-MM-DD")}</Box>
         </Box>
       </Paper>

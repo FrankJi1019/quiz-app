@@ -53,7 +53,7 @@ const Quiz: FC<IProps> = ({ quiz }) => {
             mt: "10px"
           }}
         >
-          <Box>{quiz.authorId}</Box>
+          <Box>{quiz.authorUsername}</Box>
           <Box>{moment(new Date(quiz.createdAt)).format("YYYY-MM-DD")}</Box>
         </Box>
       </Paper>
