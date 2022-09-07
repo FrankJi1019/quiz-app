@@ -1,7 +1,7 @@
 import axios from "axios"
 import { constants } from "../constants"
-import {IQuestion, IUserAnswer} from "../../types/IQuestion"
-import {ICreateQuizDto, IQuiz} from "../../types/IQuiz"
+import {IQuestion, IUserAnswer} from "../types/IQuestion"
+import {ICreateQuizDto, IQuiz} from "../types/IQuiz"
 import {useMutation, useQuery, UseQueryResult} from "react-query";
 
 export const useFetchNonEmptyQuizzes = (keyword?: string | null): UseQueryResult<Array<IQuiz>> => {

@@ -2,8 +2,8 @@ import React, {useEffect, useState} from "react"
 import Page from "../../Containers/Page"
 import {useParams} from "react-router-dom"
 import {Box, Button} from "@mui/material"
-import {IQuestion} from "../../../types/IQuestion"
-import {IOption} from "../../../types/IOption"
+import {IQuestion} from "../../types/IQuestion"
+import {IOption} from "../../types/IOption"
 import {
   useFetchOptionsByQuestionId,
   useFetchQuestionById,

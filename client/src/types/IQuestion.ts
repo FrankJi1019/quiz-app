@@ -8,7 +8,7 @@ export interface IQuestion {
 
 export interface IUserAnswer {
   questionId: number;
-  answerOptionId: number; // optionId
+  answerOptionId: number | undefined;
 }
 
 export interface ICreateQuestionWithOptions {

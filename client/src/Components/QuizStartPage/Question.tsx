@@ -7,18 +7,19 @@ import {
   RadioGroup,
   Typography
 } from "@mui/material"
-import {IOption} from "../../../types/IOption"
+import {IOption} from "../../types/IOption"
 import {useFetchOptionsByQuestionId, useFetchQuestionById} from "../../Api/QuestionAPI"
-import {IQuestion} from "../../../types/IQuestion";
+import {IQuestion} from "../../types/IQuestion";
 
 interface IProps {
   questionId: number
   questionNo: number
-  onUserAnswer: (e: any) => void
+  initAnswer?: number
+  onUserAnswer: (newOptionId: number) => void
 }
 
-const Question: FC<IProps> = ({ questionId, questionNo, onUserAnswer }) => {
-  const [userAnswer, setUserAnswer] = useState<number>(-1)
+const Question: FC<IProps> = ({ questionId, questionNo, onUserAnswer, initAnswer = -1 }) => {
+  const [userAnswer, setUserAnswer] = useState<number>(initAnswer)
 
   const questionFetch = useFetchQuestionById(questionId)
   const optionsFetch = useFetchOptionsByQuestionId(questionId)

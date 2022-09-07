@@ -11,7 +11,7 @@ import {
   Typography
 } from "@mui/material"
 import { useFormik } from "formik"
-import {ICreateQuizDto} from "../../types/IQuiz"
+import {ICreateQuizDto} from "../types/IQuiz"
 import {useCreateQuiz, useFetchNonEmptyQuizzes} from "../Api/QuizAPI"
 import { getQuizDetailPageURL } from "../routes"
 import * as yup from "yup"

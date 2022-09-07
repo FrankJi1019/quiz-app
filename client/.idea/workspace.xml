@@ -2,39 +2,36 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="88d1d2c7-6a39-4e3d-a86e-efff11763a3b" name="Changes" comment="feat: a usable UI is completed">
-      <change afterPath="$PROJECT_DIR$/../Server/Server/Server/Controllers/AttemptController.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Server/Server/Server/Controllers/SessionController.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Server/Server/Server/Dto/AttemptOutputDto.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Server/Server/Server/Dto/CreateAttemptDto.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Server/Server/Server/Dto/SessionOutputDto.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Server/Server/Server/Models/Attempt.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Server/Server/Server/Models/Session.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Server/Server/Server/Models/SessionState.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Server/Server/Server/Repositories/AttemptRepository.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Server/Server/Server/Repositories/SessionRepository.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Server/Server/Server/Controllers/QuizController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../Server/Server/Server/Controllers/QuizController.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Server/Server/Server/Data/DataContext.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../Server/Server/Server/Data/DataContext.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Server/Server/Server/Dto/CreateQuizDto.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../Server/Server/Server/Dto/CreateQuizDto.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Server/Server/Server/Dto/QuizOutputDto.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../Server/Server/Server/Dto/QuizOutputDto.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Server/Server/Server/Helper/MappingProfiles.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../Server/Server/Server/Helper/MappingProfiles.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Server/Server/Server/Migrations/20220830044753_InitialCreate.Designer.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Server/Server/Server/Migrations/20220830044753_InitialCreate.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Server/Server/Server/Migrations/DataContextModelSnapshot.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Server/Server/Server/Models/Quiz.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../Server/Server/Server/Models/Quiz.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Server/Server/Server/Models/Setting.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../Server/Server/Server/Models/Setting.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Server/Server/Server/Models/User.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../Server/Server/Server/Models/User.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Server/Server/Server/Program.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../Server/Server/Server/Program.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Server/Server/Server/Repositories/QuizRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../Server/Server/Server/Repositories/QuizRepository.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Server/Server/Server/Repositories/UserRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../Server/Server/Server/Repositories/UserRepository.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Server/Server/Server/Dto/RecordOutputDto.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Api/AttemptAPI.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Api/SessionAPI.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/types/Session.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Server/Server/Server/Controllers/SessionController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../Server/Server/Server/Controllers/SessionController.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Server/Server/Server/Repositories/SessionRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../Server/Server/Server/Repositories/SessionRepository.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Api/OptionAPI.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/Api/OptionAPI.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Api/QuestionAPI.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/Api/QuestionAPI.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Api/QuizAPI.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/Api/QuizAPI.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Api/UserAPI.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/Api/UserAPI.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Components/AllQuizPage/Quiz.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/Components/AllQuizPage/Quiz.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Components/LandingPage/LoginForm.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/Components/LandingPage/LoginForm.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Components/AllQuizPage/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/Components/AllQuizPage/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Components/QuestionCreationPage/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/Components/QuestionCreationPage/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Components/QuestionDetailPage/Option.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/Components/QuestionDetailPage/Option.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Components/QuestionDetailPage/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/Components/QuestionDetailPage/index.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Components/QuizCreationModal.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/Components/QuizCreationModal.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Components/QuizDetailPage/Question.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/Components/QuizDetailPage/Question.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Components/QuizDetailPage/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/Components/QuizDetailPage/index.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Components/QuizReadyPage/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/Components/QuizReadyPage/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Components/QuizStartPage/Question.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/Components/QuizStartPage/Question.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Components/QuizStartPage/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/Components/QuizStartPage/index.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Components/UserQuizPage/Quiz.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/Components/UserQuizPage/Quiz.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/types/IQuiz.ts" beforeDir="false" afterPath="$PROJECT_DIR$/types/IQuiz.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Components/UserQuizPage/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/Components/UserQuizPage/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/RouteControllers/Dashboard.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/RouteControllers/Dashboard.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/routes.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/types/IOption.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/types/IOption.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/types/IQuestion.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/types/IQuestion.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/types/IQuiz.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/types/IQuiz.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/types/ITopic.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/types/ITopic.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -99,11 +96,11 @@
       <recent name="D:\self-study\C#\Quiz System\quiz-system\client\src\Pages\LandingPage" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\self-study\C#\Quiz App\quiz-app\client\src" />
       <recent name="D:\self-study\C#\Quiz System\quiz-system\client\src\Themes" />
       <recent name="D:\self-study\C#\Quiz System\quiz-system\client\src\Components\QuizCreationModal" />
       <recent name="D:\self-study\C#\Quiz System\quiz-system\client\src\Components\NavigationPanel" />
       <recent name="D:\self-study\C#\Quiz System\quiz-system\client\src\RouteControllers" />
-      <recent name="D:\self-study\C#\Quiz System\quiz-system\client\src\Pages\LoadingPage" />
     </key>
   </component>
   <component name="RunManager">
@@ -211,6 +208,7 @@
       <workItem from="1662104221527" duration="1062000" />
       <workItem from="1662108197846" duration="6218000" />
       <workItem from="1662281268840" duration="3198000" />
+      <workItem from="1662538190440" duration="7115000" />
     </task>
     <task id="LOCAL-00001" summary="feat: a usable UI is completed">
       <created>1658825818092</created>

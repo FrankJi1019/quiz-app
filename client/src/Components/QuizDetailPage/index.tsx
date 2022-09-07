@@ -1,10 +1,10 @@
 import React from "react"
 import Page from "../../Containers/Page"
 import { useNavigate, useParams } from "react-router-dom"
-import { IQuiz } from "../../../types/IQuiz"
+import { IQuiz } from "../../types/IQuiz"
 import {useFetchQuestionsByQuizId, useFetchQuiz} from "../../Api/QuizAPI"
 import { Box, Button, Typography, useTheme } from "@mui/material"
-import { IQuestion } from "../../../types/IQuestion"
+import { IQuestion } from "../../types/IQuestion"
 import {
   getCreateQuestionPageURL,
   getQuestionDetailPageURL

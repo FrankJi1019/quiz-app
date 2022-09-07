@@ -1,6 +1,6 @@
 import axios from "axios"
 import { constants } from "../constants"
-import {IOption} from "../../types/IOption";
+import {IOption} from "../types/IOption";
 import {useMutation} from "react-query";
 
 export const useUpdateOptionMutation = () => {

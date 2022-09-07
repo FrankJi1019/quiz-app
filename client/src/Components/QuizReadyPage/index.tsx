@@ -1,38 +1,75 @@
 import Page from "../../Containers/Page"
-import { IQuiz } from "../../../types/IQuiz"
-import React, { useEffect, useState } from "react"
+import { IQuiz } from "../../types/IQuiz"
+import React, {useCallback, useMemo} from "react"
 import { Box, Button, Typography } from "@mui/material"
 import moment from "moment"
 import BackButton from "../BackButton"
-import { getAllQuizPageURL, getQuizStartPageURL } from "../../routes"
+import {getAllQuizPageURL, getQuizStartPageURL, getSessionPageURL} from "../../routes"
 import Topic from "../Topic"
 import LoadingPage from "../LoadingPage"
 import {useFetchQuiz, useFetchQuizQuestionCount} from "../../Api/QuizAPI"
 import { useNavigate, useParams } from "react-router-dom"
+import {useCreateSessionMutation, useFetchSession} from "../../Api/SessionAPI";
+import {useAuth} from "../../Providers/AuthProvider";
+import {ISession} from "../../types/Session";
 
 const QuizReadyPage = () => {
   const { quizId } = useParams()
   const navigate = useNavigate()
+  const { getCurrentUser } = useAuth()
 
-  // const [questionCount, setQuestionCount] = useState<number | null>(null)
+  const username = getCurrentUser()!.getUsername()
 
   const quizFetch = useFetchQuiz(Number(quizId))
   const questionCountFetch = useFetchQuizQuestionCount(Number(quizId))
+  const sessionFetch = useFetchSession(Number(quizId), username)
+  const createSessionMutation = useCreateSessionMutation()
 
-  // useEffect(() => {
-  //   if (quizFetch.data === undefined) return
-  //   const quiz = quizFetch.data as IQuiz
-  //   getQuestionCount(quiz.id).then((res) => {
-  //     setQuestionCount(res.data)
-  //   })
-  // }, [quizFetch.data])
+  const noSessionButton = useCallback((disabled: boolean) => (
+    <Button
+      variant="contained"
+      onClick={() => {
+        createSessionMutation
+          .mutateAsync({quizId: Number(quizId), username})
+          .then((response) => {
+            navigate(getSessionPageURL(response.id))
+          })
+      }}
+      disabled={disabled}
+    >
+      Start
+    </Button>
+  ), [quizId])
+
+  const sessionExistsButton = useCallback((session: ISession, disabled: boolean) => (
+    <>
+      <Button
+        variant="contained"
+        onClick={() => navigate(getSessionPageURL(session.id))}
+        disabled={disabled}
+      >
+        Resume Quiz
+      </Button>
+      <Button
+        variant="contained"
+        onClick={() => {
+          createSessionMutation
+            .mutateAsync({quizId: Number(quizId), username})
+            .then((response) => {
+              navigate(getSessionPageURL(response.id))
+            })
+        }}
+        disabled={disabled}
+      >
+        Start new Quiz
+      </Button>
+    </>
+  ), [quizId])
 
   if (quizFetch.isLoading || questionCountFetch.isLoading) return <LoadingPage />
 
   const quiz = quizFetch.data as IQuiz
   const questionCount = questionCountFetch.data as number
-
-  // if (questionCount === null || quiz === null) return <LoadingPage />
 
   return (
     <Page sx={{ padding: { xs: "20px", md: "50px" } }}>
@@ -74,13 +111,13 @@ const QuizReadyPage = () => {
           justifyContent: "flex-end"
         }}
       >
-        <Button
-          variant="contained"
-          onClick={() => navigate(getQuizStartPageURL(quizId))}
-          disabled={questionCount === 0}
-        >
-          Start
-        </Button>
+        {
+          sessionFetch.isLoading || (
+            (sessionFetch.data as Array<ISession>).length == 0 ?
+              noSessionButton(questionCount === 0) :
+              sessionExistsButton((sessionFetch.data as Array<ISession>)[0], questionCount === 0)
+          )
+        }
       </Box>
     </Page>
   )

@@ -1,7 +1,7 @@
 import CheckCircleIcon from "@mui/icons-material/CheckCircle";
 import {Box, Card} from "@mui/material";
 import React, {FC} from "react";
-import {IOption} from "../../../types/IOption";
+import {IOption} from "../../types/IOption";
 import ItemBox from "./ItemBox";
 
 interface OptionProps {

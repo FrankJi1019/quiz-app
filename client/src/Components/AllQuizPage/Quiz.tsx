@@ -1,5 +1,5 @@
 import React, { FC } from "react"
-import { IQuiz } from "../../../types/IQuiz"
+import { IQuiz } from "../../types/IQuiz"
 import { Box, Grid, Paper, Typography, useTheme } from "@mui/material"
 import moment from "moment"
 import { getQuizReadyPageURL } from "../../routes"

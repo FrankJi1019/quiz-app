@@ -2,12 +2,16 @@ import React, { useEffect, useState } from "react"
 import Page from "../../Containers/Page"
 import { useNavigate, useParams } from "react-router-dom"
 import LoadingPage from "../LoadingPage"
-import { IUserAnswer, IQuestion } from "../../../types/IQuestion"
-import {useCheckQuizResultMutation, useFetchQuestionsByQuizId} from "../../Api/QuizAPI"
+import { IUserAnswer, IQuestion } from "../../types/IQuestion"
+import {useCheckQuizResultMutation} from "../../Api/QuizAPI"
 import Question from "./Question"
 import { Box, Button, LinearProgress } from "@mui/material"
 import { getResultPageURL } from "../../routes"
 import { useUtil } from "../../Providers/UtilProvider"
+import {useFetchSessionRecord} from "../../Api/SessionAPI";
+import {IOption} from "../../types/IOption";
+import {Record} from "../../types/Session";
+import {useChangeAttemptOptionMutation} from "../../Api/AttemptAPI";
 
 const getProgress = (userAnswer: Array<IUserAnswer>) => {
   const total = userAnswer.length
@@ -17,44 +21,62 @@ const getProgress = (userAnswer: Array<IUserAnswer>) => {
 }
 
 const QuizStartPage = () => {
-  const { quizId } = useParams()
+  const { sessionId } = useParams()
   const navigate = useNavigate()
   const { forceRerender } = useUtil()
 
   const [userAnswers, setUserAnswers] = useState<Array<IUserAnswer>>([])
 
-  const questionsFetch = useFetchQuestionsByQuizId(Number(quizId))
+  const sessionRecordFetch = useFetchSessionRecord(Number(sessionId))
+  const changeAttemptOptionMutation = useChangeAttemptOptionMutation()
   const checkResultMutation = useCheckQuizResultMutation()
 
   useEffect(() => {
-    if (questionsFetch.isLoading) return
-    const questions = questionsFetch.data as Array<IQuestion>
+    if (sessionRecordFetch.isLoading) return
+    const records = sessionRecordFetch.data as Array<Record>
     setUserAnswers(
-      questions.map((question: { id: any }) => ({
-        questionId: question.id,
-        answerOptionId: -1
+      records.map((record) => ({
+        questionId: record.question.id,
+        answerOptionId: record.option == undefined ? undefined : record.option.id
       }))
     )
-  }, [questionsFetch.isLoading])
+  }, [sessionRecordFetch.isLoading])
 
-  if (questionsFetch.isLoading) return <LoadingPage />
+  if (sessionRecordFetch.isLoading) return <LoadingPage />
 
-  const questions = questionsFetch.data as Array<IQuestion>
+  const sessionRecord = sessionRecordFetch.data as Array<Record>
 
-  const questionComponents = questions.map((question, index) => (
-    <Box sx={{ mb: "40px" }} key={question.id}>
+  const questionComponents = sessionRecord.map((record, index) => (
+    <Box sx={{ mb: "40px" }} key={record.question.id}>
       <Question
-        questionId={question.id}
+        questionId={record.question.id}
         questionNo={index}
-        onUserAnswer={(newAnswer) => {
-          setUserAnswers((userAnswers) => {
-            const i = userAnswers.findIndex((u) => u.questionId === question.id)
-            userAnswers[i] = {
-              questionId: question.id,
-              answerOptionId: newAnswer
-            }
-            return userAnswers
-          })
+        initAnswer={record.option == undefined ? undefined : record.option.id}
+        onUserAnswer={(optionId) => {
+
+          changeAttemptOptionMutation
+            .mutateAsync(({questionId: record.question.id, optionId, sessionId: Number(sessionId)}))
+            .then(() => sessionRecordFetch.refetch())
+            .then(({data: records}) => {
+              // const records = sessionRecordFetch.data as Array<Record>
+              // console.log(records)
+              if (records == undefined) return
+              setUserAnswers(
+                records.map((record) => ({
+                  questionId: record.question.id,
+                  answerOptionId: record.option == undefined ? undefined : record.option.id
+                }))
+              )
+            })
+
+          // setUserAnswers((userAnswers) => {
+          //   const i = userAnswers.findIndex((u) => u.questionId === questionId)
+          //   userAnswers[i] = {
+          //     questionId: questionId,
+          //     answerOptionId: newAnswer
+          //   }
+          //   return userAnswers
+          // })
           forceRerender()
         }}
       />
@@ -91,11 +113,11 @@ const QuizStartPage = () => {
         <Button
           variant="contained"
           onClick={async () => {
-            // const result = await getQuizResult(Number(quizId), userAnswers)
-            const result = await checkResultMutation.mutateAsync({quizId: Number(quizId), userAnswers})
-            navigate(getResultPageURL(), {
-              state: { result }
-            })
+            console.log(userAnswers)
+            // const result = await checkResultMutation.mutateAsync({quizId: Number(quizId), userAnswers})
+            // navigate(getResultPageURL(), {
+            //   state: { result }
+            // })
           }}
           disabled={getProgress(userAnswers) < 100}
         >

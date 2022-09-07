@@ -56,6 +56,7 @@ public class SessionRepository {
         return this._context.Sessions
             .Where(x => x.Id == id)
             .Include(x => x.Quiz)
+            .Include(x => x.User)
             .FirstOrDefault();
     }
 

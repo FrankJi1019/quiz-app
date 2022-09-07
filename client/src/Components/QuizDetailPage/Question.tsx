@@ -1,6 +1,6 @@
 import React, { FC } from "react"
 import { Box, Card, IconButton, useTheme } from "@mui/material"
-import { IQuestion } from "../../../types/IQuestion"
+import { IQuestion } from "../../types/IQuestion"
 import DeleteIcon from "@mui/icons-material/Delete"
 import {useDeleteQuestionMutation} from "../../Api/QuestionAPI"
 import {useParams} from "react-router-dom";

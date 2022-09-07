@@ -1,5 +1,5 @@
 import React, {useMemo} from "react"
-import { IQuiz } from "../../../types/IQuiz"
+import { IQuiz } from "../../types/IQuiz"
 import {
   useFetchNonEmptyQuizzes,
   useFetchNonEmptyQuizzesByTopic

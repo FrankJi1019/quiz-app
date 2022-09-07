@@ -8,6 +8,9 @@ export const getQuizReadyPageURL = (id: string | number = ":quizId") =>
 export const getQuizStartPageURL = (id: string | number = ":quizId") =>
   getAllQuizPageURL() + "/" + id + "/start"
 
+export const getSessionPageURL = (id: string | number = ":sessionId") =>
+  "/sessions/" + id
+
 export const getQuizDetailPageURL = (id: string | number = ":quizId") =>
   getAllQuizPageURL() + "/" + id
 

@@ -117,5 +117,33 @@ public class SessionController : Controller {
         sessionOutput.Username = deletedSession.User.Username;
         return Ok(sessionOutput);
     }
+    
+    [HttpGet("{id}")]
+    public IActionResult GetSessionById(int id) {
+        var session = this._sessionRepository.GetOneById(id);
+        if (session == null) return NotFound("Session does not exist");
+        var sessionOutput = this._mapper.Map<SessionOutputDto>(session);
+        sessionOutput.Username = session.User.Username;
+        return Ok(sessionOutput);
+    }
+    
+    [HttpGet("{id}/detailed-record")]
+    public IActionResult GetSessionRecordById(int id) {
+        var session = this._sessionRepository.GetOneById(id);
+        if (session == null) return NotFound("Session does not exist");
+        if (session.State == SessionState.FINISHED) return BadRequest("Session has finished");
+        var attempts = this._attemptRepository.GetAttemptsBySession(session.Id, true);
+        var questions = this._quizRepository.GetAllQuestions(session.Quiz.Id)!;
+        var recordOutputList = new List<RecordOutputDto>();
+        foreach (var question in questions) {
+            var attempt = attempts.FirstOrDefault(x => x.Question.Id == question.Id);
+            var recordOutput = new RecordOutputDto {
+                Question = this._mapper.Map<QuestionOutputDto>(question),
+                Option = attempt == null ? null : this._mapper.Map<OptionOutputDto>(attempt.Option)
+            };
+            recordOutputList.Add(recordOutput);
+        }
+        return Ok(recordOutputList);
+    }
 
 }

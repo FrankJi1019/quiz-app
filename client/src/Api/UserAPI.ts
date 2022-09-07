@@ -1,7 +1,7 @@
 import axios from "axios"
 import { constants } from "../constants"
 import {useMutation, useQuery, UseQueryResult} from "react-query";
-import {IQuiz} from "../../types/IQuiz";
+import {IQuiz} from "../types/IQuiz";
 
 export const useFetchUserQuizzes = (username: string): UseQueryResult<Array<IQuiz>> => {
   return useQuery(["user-quizzes", username], async () => {

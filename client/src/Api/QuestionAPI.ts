@@ -1,8 +1,8 @@
 import axios from "axios"
 import { constants } from "../constants"
-import { ICreateQuestionWithOptions, IQuestion } from "../../types/IQuestion"
+import { ICreateQuestionWithOptions, IQuestion } from "../types/IQuestion"
 import {useMutation, useQuery, UseQueryResult} from "react-query";
-import {IOption} from "../../types/IOption";
+import {IOption} from "../types/IOption";
 
 export const useFetchQuestionById = (questionId: number): UseQueryResult<IQuestion> => {
   return useQuery(["get-question", questionId], async () => {
