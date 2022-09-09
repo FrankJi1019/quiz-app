@@ -1,7 +1,7 @@
 import axios from "axios"
 import { constants } from "../constants"
 import {useMutation, useQuery, UseQueryResult} from "react-query";
-import {ISession, Record, SessionState} from "../types/Session";
+import {ISession, Record, Result, SessionState} from "../types/Session";
 import {IQuestion} from "../types/IQuestion";
 import {IOption} from "../types/IOption";
 
@@ -33,6 +33,13 @@ export const useFetchSessionById = (id: number): UseQueryResult<ISession> => {
 export const useFetchSessionRecord = (id: number): UseQueryResult<Array<Record>> => {
   return useQuery(["get-session-record", id], async () => {
     const {data} = await axios.get(`${constants.general.backend}/sessions/${id}/detailed-record`)
+    return data
+  })
+}
+
+export const useFetchSessionResult = (id: number): UseQueryResult<Array<Result>> => {
+  return useQuery(["get-session-result", id], async () => {
+    const {data} = await axios.get(`${constants.general.backend}/sessions/${id}/check-answer`)
     return data
   })
 }

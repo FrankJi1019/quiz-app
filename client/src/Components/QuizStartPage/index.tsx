@@ -6,7 +6,7 @@ import { IUserAnswer, IQuestion } from "../../types/IQuestion"
 import {useCheckQuizResultMutation} from "../../Api/QuizAPI"
 import Question from "./Question"
 import { Box, Button, LinearProgress } from "@mui/material"
-import { getResultPageURL } from "../../routes"
+import {getResultPageURL, getSessionResultPageURL} from "../../routes"
 import { useUtil } from "../../Providers/UtilProvider"
 import {useFetchSessionRecord} from "../../Api/SessionAPI";
 import {IOption} from "../../types/IOption";
@@ -58,8 +58,6 @@ const QuizStartPage = () => {
             .mutateAsync(({questionId: record.question.id, optionId, sessionId: Number(sessionId)}))
             .then(() => sessionRecordFetch.refetch())
             .then(({data: records}) => {
-              // const records = sessionRecordFetch.data as Array<Record>
-              // console.log(records)
               if (records == undefined) return
               setUserAnswers(
                 records.map((record) => ({
@@ -68,15 +66,6 @@ const QuizStartPage = () => {
                 }))
               )
             })
-
-          // setUserAnswers((userAnswers) => {
-          //   const i = userAnswers.findIndex((u) => u.questionId === questionId)
-          //   userAnswers[i] = {
-          //     questionId: questionId,
-          //     answerOptionId: newAnswer
-          //   }
-          //   return userAnswers
-          // })
           forceRerender()
         }}
       />
@@ -113,11 +102,7 @@ const QuizStartPage = () => {
         <Button
           variant="contained"
           onClick={async () => {
-            console.log(userAnswers)
-            // const result = await checkResultMutation.mutateAsync({quizId: Number(quizId), userAnswers})
-            // navigate(getResultPageURL(), {
-            //   state: { result }
-            // })
+            navigate(getSessionResultPageURL(sessionId))
           }}
           disabled={getProgress(userAnswers) < 100}
         >

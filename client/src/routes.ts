@@ -24,6 +24,9 @@ export const getCreateQuestionPageURL = (quizId: string | number = ":quizId") =>
 
 export const getResultPageURL = () => "/result"
 
+export const getSessionResultPageURL = (id: string | number = ":sessionId") =>
+  getSessionPageURL(id) + "/result"
+
 export const getUserQuizPageURL = (username: string = ":username") =>
   "/users/" + username + "/quizzes"
 

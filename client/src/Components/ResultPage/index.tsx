@@ -1,34 +1,29 @@
-import React, { useEffect, useState } from "react"
+import React, {useEffect, useMemo, useState} from "react"
 import Page from "../../Containers/Page"
-import { useLocation } from "react-router-dom"
+import {useLocation, useParams} from "react-router-dom"
 import { Box, Typography } from "@mui/material"
 import QuestionResult from "./QuestionResult"
+import {useFetchSessionResult} from "../../Api/SessionAPI";
+import LoadingPage from "../LoadingPage";
+import {Result} from "../../types/Session";
 
 const ResultPage = () => {
-  const { state } = useLocation()
+  const {sessionId} = useParams()
 
-  const [mark, setMark] = useState(-1)
+  const sessionResultFetch = useFetchSessionResult(Number(sessionId))
 
-  if (!state) return null
-
-  const result = (
-    state as {
-      result: Array<{
-        questionId: number
-        questionContent: string
-        userAnswer: string
-        correctAnswer: string
-      }>
-    }
-  ).result
-
-  useEffect(() => {
-    if (result === null) return
-    const total = result.length
+  const mark = useMemo(() => {
+    console.log(sessionResultFetch.data)
+    if (sessionResultFetch.isLoading) return ""
+    const results = sessionResultFetch.data as Array<Result>
     let correct = 0
-    result.forEach((r) => (correct += r.correctAnswer === r.userAnswer ? 1 : 0))
-    setMark(Math.round((correct / total) * 100))
-  }, [state])
+    results.forEach(r => correct += r.isCorrect ? 1 : 0)
+    return Math.round((correct / results.length) * 100)
+  }, [sessionResultFetch.isLoading])
+
+  if (sessionResultFetch.isLoading) return <LoadingPage />
+
+  const result = sessionResultFetch.data as Array<Result>
 
   return (
     <Page sx={{ padding: { xs: "20px", md: "50px" } }}>

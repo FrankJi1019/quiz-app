@@ -17,3 +17,11 @@ export interface Record {
   question: IQuestion
   option: IOption | null
 }
+
+export interface Result {
+  questionId: number
+  questionContent: string
+  correctAnswer: string
+  userAnswer: string
+  isCorrect: boolean
+}

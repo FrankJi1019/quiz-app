@@ -2,36 +2,13 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="88d1d2c7-6a39-4e3d-a86e-efff11763a3b" name="Changes" comment="feat: a usable UI is completed">
-      <change afterPath="$PROJECT_DIR$/../Server/Server/Server/Dto/RecordOutputDto.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Api/AttemptAPI.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Api/SessionAPI.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/types/Session.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Server/Server/Server/Controllers/SessionController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../Server/Server/Server/Controllers/SessionController.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Server/Server/Server/Repositories/SessionRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../Server/Server/Server/Repositories/SessionRepository.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Api/OptionAPI.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/Api/OptionAPI.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Api/QuestionAPI.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/Api/QuestionAPI.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Api/QuizAPI.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/Api/QuizAPI.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Api/UserAPI.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/Api/UserAPI.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Components/AllQuizPage/Quiz.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/Components/AllQuizPage/Quiz.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Components/AllQuizPage/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/Components/AllQuizPage/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Components/QuestionCreationPage/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/Components/QuestionCreationPage/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Components/QuestionDetailPage/Option.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/Components/QuestionDetailPage/Option.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Components/QuestionDetailPage/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/Components/QuestionDetailPage/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Components/QuizCreationModal.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/Components/QuizCreationModal.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Components/QuizDetailPage/Question.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/Components/QuizDetailPage/Question.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Components/QuizDetailPage/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/Components/QuizDetailPage/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Components/QuizReadyPage/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/Components/QuizReadyPage/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Components/QuizStartPage/Question.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/Components/QuizStartPage/Question.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Api/SessionAPI.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/Api/SessionAPI.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Components/QuizStartPage/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/Components/QuizStartPage/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Components/UserQuizPage/Quiz.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/Components/UserQuizPage/Quiz.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Components/UserQuizPage/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/Components/UserQuizPage/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Components/ResultPage/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/Components/ResultPage/index.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/RouteControllers/Dashboard.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/RouteControllers/Dashboard.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/routes.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/types/IOption.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/types/IOption.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/types/IQuestion.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/types/IQuestion.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/types/IQuiz.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/types/IQuiz.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/types/ITopic.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/types/ITopic.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/types/Session.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/types/Session.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -76,7 +53,7 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/Themes" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../../../../work/Centrapass/Power'd/event-token-service" />
     <property name="list.type.of.created.stylesheet" value="CSS" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.standard" value="true" />
@@ -208,7 +185,9 @@
       <workItem from="1662104221527" duration="1062000" />
       <workItem from="1662108197846" duration="6218000" />
       <workItem from="1662281268840" duration="3198000" />
-      <workItem from="1662538190440" duration="7115000" />
+      <workItem from="1662538190440" duration="7614000" />
+      <workItem from="1662581886682" duration="66000" />
+      <workItem from="1662708666834" duration="2536000" />
     </task>
     <task id="LOCAL-00001" summary="feat: a usable UI is completed">
       <created>1658825818092</created>

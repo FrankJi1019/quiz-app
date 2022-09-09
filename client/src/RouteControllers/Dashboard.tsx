@@ -10,7 +10,7 @@ import {
   getQuizDetailPageURL,
   getQuestionDetailPageURL,
   getCreateQuestionPageURL,
-  getUserQuizPageURL, getSessionPageURL
+  getUserQuizPageURL, getSessionPageURL, getSessionResultPageURL
 } from "../routes"
 import AllQuizPage from "../Components/AllQuizPage"
 import HomePage from "../Components/HomePage"
@@ -41,9 +41,8 @@ const Dashboard = () => {
         <Route path={getHomePageURL()} element={<HomePage />} />
         <Route path={getAllQuizPageURL()} element={<AllQuizPage />} />
         <Route path={getQuizReadyPageURL()} element={<QuizReadyPage />} />
-        {/*<Route path={getQuizStartPageURL()} element={<QuizStartPage />} />*/}
         <Route path={getSessionPageURL()} element={<QuizStartPage />} />
-        <Route path={getResultPageURL()} element={<ResultPage />} />
+        <Route path={getSessionResultPageURL()} element={<ResultPage />} />
         <Route path={getQuizDetailPageURL()} element={<QuizDetailPage />} />
         <Route
           path={getQuestionDetailPageURL()}
