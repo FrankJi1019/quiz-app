@@ -3,25 +3,23 @@ import React from "react"
 import { Routes, Route, Navigate } from "react-router-dom"
 import {
   getHomePageURL,
-  getAllQuizPageURL,
-  getQuizReadyPageURL,
-  getQuizStartPageURL,
-  getResultPageURL,
-  getQuizDetailPageURL,
+  getQuizListPageURL,
+  getQuizIntroPageURL,
+  getQuizManagingPageURL,
   getQuestionDetailPageURL,
   getCreateQuestionPageURL,
-  getUserQuizPageURL, getSessionPageURL, getSessionResultPageURL
+  getUserQuizPageURL, getActiveSessionPageURL, getFinishedSessionPageURL
 } from "../routes"
-import AllQuizPage from "../Components/AllQuizPage"
-import HomePage from "../Components/HomePage"
-import QuizReadyPage from "../Components/QuizReadyPage"
-import QuizStartPage from "../Components/QuizStartPage"
-import ResultPage from "../Components/ResultPage"
-import QuizDetailPage from "../Components/QuizDetailPage"
-import QuestionDetailPage from "../Components/QuestionDetailPage"
-import QuestionCreationPage from "../Components/QuestionCreationPage"
-import NavigationPanel from "../Components/NavigationPanel"
-import UserQuizPage from "../Components/UserQuizPage"
+import QuizListPage from "../Pages/QuizListPage"
+import HomePage from "../Pages/HomePage"
+import QuizIntroPage from "../Pages/QuizIntroPage"
+import ActiveSessionPage from "../Pages/ActiveSessionPage"
+import FinishedSessionPage from "../Pages/FinishedSessionPage"
+import QuizManagingPage from "../Pages/QuizManagingPage"
+import QuestionDetailPage from "../Pages/QuestionDetailPage"
+import QuestionCreationPage from "../Pages/QuestionCreationPage"
+import NavigationPanel from "../Pages/NavigationPanel"
+import UserQuizPage from "../Pages/UserQuizPage"
 
 const Dashboard = () => {
   return (
@@ -39,11 +37,11 @@ const Dashboard = () => {
       <NavigationPanel />
       <Routes>
         <Route path={getHomePageURL()} element={<HomePage />} />
-        <Route path={getAllQuizPageURL()} element={<AllQuizPage />} />
-        <Route path={getQuizReadyPageURL()} element={<QuizReadyPage />} />
-        <Route path={getSessionPageURL()} element={<QuizStartPage />} />
-        <Route path={getSessionResultPageURL()} element={<ResultPage />} />
-        <Route path={getQuizDetailPageURL()} element={<QuizDetailPage />} />
+        <Route path={getQuizListPageURL()} element={<QuizListPage />} />
+        <Route path={getQuizIntroPageURL()} element={<QuizIntroPage />} />
+        <Route path={getActiveSessionPageURL()} element={<ActiveSessionPage />} />
+        <Route path={getFinishedSessionPageURL()} element={<FinishedSessionPage />} />
+        <Route path={getQuizManagingPageURL()} element={<QuizManagingPage />} />
         <Route
           path={getQuestionDetailPageURL()}
           element={<QuestionDetailPage />}

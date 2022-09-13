@@ -1,21 +1,17 @@
 import React, { FC } from "react"
 import { Box, useTheme } from "@mui/material"
-import { useNavigate } from "react-router-dom"
-import { getAllQuizPageURL } from "../routes"
 
 interface IProps {
   text: string
+  onClick: (topic: string) => void
 }
 
-const Topic: FC<IProps> = ({ text }) => {
+const Topic: FC<IProps> = ({ text, onClick }) => {
   const theme = useTheme()
-  const navigate = useNavigate()
 
   return (
     <Box
-      onClick={() => {
-        navigate(`${getAllQuizPageURL()}?topic=${text}`)
-      }}
+      onClick={() => onClick(text)}
       sx={{
         padding: {
           xs: "8px 8px",

@@ -13,7 +13,7 @@ import {
 import { useFormik } from "formik"
 import {ICreateQuizDto} from "../types/IQuiz"
 import {useCreateQuiz, useFetchNonEmptyQuizzes} from "../Api/QuizAPI"
-import { getQuizDetailPageURL } from "../routes"
+import { getQuizManagingPageURL } from "../routes"
 import * as yup from "yup"
 import { useNavigate } from "react-router-dom"
 import {useFetchTopics} from "../Api/TopicAPI"
@@ -52,18 +52,18 @@ const QuizCreationModal: FC<QuizCreationModalProps> = ({ open, onClose }) => {
         authorUsername: username
       }
       const res = await quizCreateQuery.mutateAsync(payload)
-      navigate(getQuizDetailPageURL(res.id))
+      navigate(getQuizManagingPageURL(res.id))
       onClose()
     },
     validationSchema: yup.object({
-      name: yup.string().required("Quiz name is required"),
+      name: yup.string().required("QuizCard name is required"),
       topicStrings: yup.array()
         .test({
-          message: "Quiz must have at least one topic",
+          message: "QuizCard must have at least one topic",
           test: (arr) => arr !== undefined && arr.length !== 0
         })
         .test({
-          message: "Quiz can have up to three topics",
+          message: "QuizCard can have up to three topics",
           test: (arr) => arr !== undefined && arr.length <= 3
         })
     })

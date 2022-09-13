@@ -1,7 +1,7 @@
 import React from "react"
 import { Routes, Route, Navigate } from "react-router-dom"
 import { getConfirmPageURL, getLoginPageURL, getSignupPageURL } from "../routes"
-import LandingPage from "../Components/LandingPage"
+import LandingPage from "../Pages/LandingPage"
 import { Box } from "@mui/material"
 
 const AuthRouter = () => {

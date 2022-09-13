@@ -1,35 +1,29 @@
 export const getHomePageURL = () => "/"
 
-export const getAllQuizPageURL = () => "/quiz"
+export const getQuizListPageURL = () => "/quiz"
 
-export const getQuizReadyPageURL = (id: string | number = ":quizId") =>
-  getAllQuizPageURL() + "/" + id + "/meta"
+export const getQuizIntroPageURL = (id: string | number = ":quizId") => getQuizListPageURL() + "/" + id + "/intro"
 
-export const getQuizStartPageURL = (id: string | number = ":quizId") =>
-  getAllQuizPageURL() + "/" + id + "/start"
+export const getActiveSessionPageURL = (id: string | number = ":sessionId") => "/sessions/" + id
 
-export const getSessionPageURL = (id: string | number = ":sessionId") =>
-  "/sessions/" + id
-
-export const getQuizDetailPageURL = (id: string | number = ":quizId") =>
-  getAllQuizPageURL() + "/" + id
+export const getQuizManagingPageURL = (id: string | number = ":quizId") => getQuizListPageURL() + "/" + id
 
 export const getQuestionDetailPageURL = (
   quizId: string | number = ":quizId",
   questionId: string | number = ":questionId"
-) => getQuizDetailPageURL(quizId) + "/questions/" + questionId
+) => getQuizManagingPageURL(quizId) + "/questions/" + questionId
 
 export const getCreateQuestionPageURL = (quizId: string | number = ":quizId") =>
-  getQuizDetailPageURL(quizId) + "/questions/create"
+  getQuizManagingPageURL(quizId) + "/questions/create"
 
 export const getResultPageURL = () => "/result"
 
-export const getSessionResultPageURL = (id: string | number = ":sessionId") =>
-  getSessionPageURL(id) + "/result"
+export const getFinishedSessionPageURL = (id: string | number = ":sessionId") => getActiveSessionPageURL(id) + "/result"
 
-export const getUserQuizPageURL = (username: string = ":username") =>
-  "/users/" + username + "/quizzes"
+export const getUserQuizPageURL = (username: string = ":username") => "/users/" + username + "/quizzes"
 
 export const getLoginPageURL = () => "/login"
+
 export const getSignupPageURL = () => "/signup"
+
 export const getConfirmPageURL = () => "/confirm"
