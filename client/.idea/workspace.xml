@@ -2,50 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="88d1d2c7-6a39-4e3d-a86e-efff11763a3b" name="Changes" comment="feat: a usable UI is completed">
-      <change afterPath="$PROJECT_DIR$/src/Components/PageTitle.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Components/QuizList.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Components/SearchBar.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Pages/QuizListPage.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Pages/UserQuizPage.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Server/Server/Server/Seed.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Server/Server/Server/Program.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../Server/Server/Server/Program.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Components/AllQuizPage/AllQuizModePage.tsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Components/AllQuizPage/KeywordFilterModePage.tsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Components/AllQuizPage/NoResult.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/Components/NoResultText.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Components/AllQuizPage/Quiz.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/Components/QuizCard.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Components/AllQuizPage/TopicFilterModePage.tsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Components/AllQuizPage/index.tsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Components/HomePage/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/Pages/HomePage.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Components/LandingPage/ConfirmationForm.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/Components/ConfirmationForm.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Components/LandingPage/LoginForm.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/Components/LoginForm.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Components/LandingPage/SignupForm.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/Components/SignupForm.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Components/LandingPage/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/Pages/LandingPage.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Components/LoadingPage/Loading.tsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Components/LoadingPage/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/Pages/LoadingPage.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Components/NavigationPanel/MobileNavigationPanel.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/Pages/MobileNavigationPanel.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Components/NavigationPanel/PCNavigationPanel.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/Pages/PCNavigationPanel.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Components/NavigationPanel/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/Pages/NavigationPanel.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Components/QuestionCreationPage/CreatedOption.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/Components/CreatedOption.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Components/QuestionCreationPage/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/Pages/QuestionCreationPage.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Components/QuestionDetailPage/ItemBox.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/Components/ModifiableTextView.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Components/QuestionDetailPage/Option.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/Components/OptionView.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Components/QuestionDetailPage/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/Pages/QuestionDetailPage.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Components/QuizCreationModal.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/Components/QuizCreationModal.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Components/QuizDetailPage/Question.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/Components/QuestionOverview.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Components/QuizDetailPage/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/Pages/QuizManagingPage.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Components/QuizReadyPage/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/Pages/QuizIntroPage.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Components/QuizStartPage/Question.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/Components/QuestionForm.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Components/QuizStartPage/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/Pages/ActiveSessionPage.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Components/ResultPage/QuestionResult.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/Components/QuestionResult.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Components/ResultPage/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/Pages/FinishedSessionPage.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Components/ThemeSelectorModal/ThemePreview.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/Components/ThemePreview.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Components/ThemeSelectorModal/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/Components/ThemeSelectorModal.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Components/Topic.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/Components/Topic.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Components/UserQuizPage/NoResult.tsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Components/UserQuizPage/Quiz.tsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Components/UserQuizPage/index.tsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/RouteControllers/AuthRouter.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/RouteControllers/AuthRouter.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/RouteControllers/Dashboard.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/RouteControllers/Dashboard.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/routes.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -229,7 +188,8 @@
       <workItem from="1663012699732" duration="367000" />
       <workItem from="1663016364992" duration="409000" />
       <workItem from="1663039789855" duration="146000" />
-      <workItem from="1663057017196" duration="4603000" />
+      <workItem from="1663057017196" duration="5918000" />
+      <workItem from="1663188666731" duration="641000" />
     </task>
     <task id="LOCAL-00001" summary="feat: a usable UI is completed">
       <created>1658825818092</created>
