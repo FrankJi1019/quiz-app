@@ -8,7 +8,11 @@ import {
   getQuizManagingPageURL,
   getQuestionDetailPageURL,
   getCreateQuestionPageURL,
-  getUserQuizPageURL, getActiveSessionPageURL, getFinishedSessionPageURL
+  getUserQuizPageURL,
+  getActiveSessionPageURL,
+  getFinishedSessionPageURL,
+  getAttemptedQuizzesPageURL,
+  getPastSessionPageURL
 } from "../routes"
 import QuizListPage from "../Pages/QuizListPage"
 import HomePage from "../Pages/HomePage"
@@ -20,6 +24,8 @@ import QuestionDetailPage from "../Pages/QuestionDetailPage"
 import QuestionCreationPage from "../Pages/QuestionCreationPage"
 import NavigationPanel from "../Pages/NavigationPanel"
 import UserQuizPage from "../Pages/UserQuizPage"
+import AttemptedQuizListPage from "../Pages/AttemptedQuizListPage";
+import PastSessionPage from "../Pages/PastSessionPage";
 
 const Dashboard = () => {
   return (
@@ -42,15 +48,11 @@ const Dashboard = () => {
         <Route path={getActiveSessionPageURL()} element={<ActiveSessionPage />} />
         <Route path={getFinishedSessionPageURL()} element={<FinishedSessionPage />} />
         <Route path={getQuizManagingPageURL()} element={<QuizManagingPage />} />
-        <Route
-          path={getQuestionDetailPageURL()}
-          element={<QuestionDetailPage />}
-        />
-        <Route
-          path={getCreateQuestionPageURL()}
-          element={<QuestionCreationPage />}
-        />
+        <Route path={getQuestionDetailPageURL()} element={<QuestionDetailPage />}/>
+        <Route path={getCreateQuestionPageURL()} element={<QuestionCreationPage />}/>
         <Route path={getUserQuizPageURL()} element={<UserQuizPage />} />
+        <Route path={getAttemptedQuizzesPageURL()} element={<AttemptedQuizListPage />} />
+        <Route path={getPastSessionPageURL()} element={<PastSessionPage />} />
         <Route path={"*"} element={<Navigate to={getHomePageURL()} />} />
       </Routes>
     </Box>

@@ -104,6 +104,7 @@ public class SessionController : Controller {
             };
             answerOutputList.Add(answerOutput);
         }
+        this._sessionRepository.FinishSession(id);
         return Ok(answerOutputList);
     }
 

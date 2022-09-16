@@ -1,11 +1,11 @@
-import React, {useEffect, useMemo, useState} from "react"
+import React, {useMemo} from "react"
 import Page from "../Containers/Page"
-import {useLocation, useParams} from "react-router-dom"
+import {useParams} from "react-router-dom"
 import { Box, Typography } from "@mui/material"
-import QuestionResult from "../Components/QuestionResult"
 import {useFetchSessionResult} from "../Api/SessionAPI";
 import LoadingPage from "./LoadingPage";
 import {Result} from "../types/Session";
+import QuestionResultList from "../Components/QuestionResultList";
 
 const FinishedSessionPage = () => {
   const {sessionId} = useParams()
@@ -13,7 +13,6 @@ const FinishedSessionPage = () => {
   const sessionResultFetch = useFetchSessionResult(Number(sessionId))
 
   const mark = useMemo(() => {
-    console.log(sessionResultFetch.data)
     if (sessionResultFetch.isLoading) return ""
     const results = sessionResultFetch.data as Array<Result>
     let correct = 0
@@ -31,15 +30,7 @@ const FinishedSessionPage = () => {
         <Typography variant="h3">{"Your result is: " + mark}</Typography>
       </Box>
       <Box>
-        {result.map((r) => (
-          <Box key={r.questionId} sx={{ mb: "20px" }}>
-            <QuestionResult
-              question={r.questionContent}
-              userAnswer={r.userAnswer}
-              correctAnswer={r.correctAnswer}
-            />
-          </Box>
-        ))}
+        <QuestionResultList results={result} />
       </Box>
     </Page>
   )

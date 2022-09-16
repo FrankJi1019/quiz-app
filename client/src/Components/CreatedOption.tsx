@@ -16,17 +16,10 @@ const CreatedOption: FC<CreatedOptionProps> = ({
   const theme = useTheme()
 
   return (
-    <Box
-      sx={{
-        display: "flex",
-        alignItems: "center"
-      }}
-    >
+    <Box sx={{display: "flex", alignItems: "center"}}>
       <IconButton onClick={onToggleCorrect}>
         <CheckCircleIcon
-          sx={{
-            color: isCorrect ? theme.palette.success.main : "auto"
-          }}
+          sx={{color: isCorrect ? theme.palette.success.main : "auto"}}
         />
       </IconButton>
       <Typography>{content}</Typography>

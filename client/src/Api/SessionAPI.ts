@@ -2,19 +2,30 @@ import axios from "axios"
 import { constants } from "../constants"
 import {useMutation, useQuery, UseQueryResult} from "react-query";
 import {ISession, Record, Result, SessionState} from "../types/Session";
-import {IQuestion} from "../types/IQuestion";
-import {IOption} from "../types/IOption";
 
-export const useFetchSession = (quizId: number, username: string): UseQueryResult<Array<ISession>> => {
-  return useQuery(["get-session", quizId, username], async () => {
-    const {data} = await axios.get(`${constants.general.backend}/sessions`, {
-      params: {
-        username, quizId, state: SessionState.ACTIVE
-      }
+export const useFetchActiveSessionByQuizAndUser =
+  (quizId: number, username: string): UseQueryResult<Array<ISession>> => {
+    return useQuery(["get-session", quizId, username], async () => {
+      const {data} = await axios.get(`${constants.general.backend}/sessions`, {
+        params: {
+          username, quizId, state: SessionState.ACTIVE
+        }
+      })
+      return data
     })
-    return data
-  })
-}
+  }
+
+export const useFetchFinishedSessionByQuizAndUser =
+  (quizId: number, username: string): UseQueryResult<Array<ISession>> => {
+    return useQuery(["get-session", quizId, username], async () => {
+      const {data} = await axios.get(`${constants.general.backend}/sessions`, {
+        params: {
+          username, quizId, state: SessionState.FINISHED
+        }
+      })
+      return data
+    })
+  }
 
 export const useCreateSessionMutation = () => {
   return useMutation(async (data: {quizId: number, username: string}) => {
@@ -39,7 +50,15 @@ export const useFetchSessionRecord = (id: number): UseQueryResult<Array<Record>>
 
 export const useFetchSessionResult = (id: number): UseQueryResult<Array<Result>> => {
   return useQuery(["get-session-result", id], async () => {
+    if (isNaN(id) || id === 0) return null
     const {data} = await axios.get(`${constants.general.backend}/sessions/${id}/check-answer`)
+    return data
+  })
+}
+
+export const useFetchSession = (id: number): UseQueryResult<ISession> => {
+  return useQuery(["get-session-entity", id], async () => {
+    const {data} = await axios.get(`${constants.general.backend}/sessions/${id}`)
     return data
   })
 }

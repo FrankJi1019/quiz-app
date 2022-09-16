@@ -3,7 +3,7 @@ import {IOption} from "./IOption";
 
 export interface ISession {
   id: number
-  createdAt: Date
+  startedAt: Date
   quizId: number
   username: string
   state: SessionState

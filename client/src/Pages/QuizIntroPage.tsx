@@ -9,7 +9,7 @@ import Topic from "../Components/Topic"
 import LoadingPage from "./LoadingPage"
 import {useFetchQuiz, useFetchQuizQuestionCount} from "../Api/QuizAPI"
 import { useNavigate, useParams } from "react-router-dom"
-import {useCreateSessionMutation, useFetchSession} from "../Api/SessionAPI";
+import {useCreateSessionMutation, useFetchActiveSessionByQuizAndUser} from "../Api/SessionAPI";
 import {useAuth} from "../Providers/AuthProvider";
 import {ISession} from "../types/Session";
 
@@ -22,7 +22,7 @@ const QuizIntroPage = () => {
 
   const quizFetch = useFetchQuiz(Number(quizId))
   const questionCountFetch = useFetchQuizQuestionCount(Number(quizId))
-  const sessionFetch = useFetchSession(Number(quizId), username)
+  const sessionFetch = useFetchActiveSessionByQuizAndUser(Number(quizId), username)
   const createSessionMutation = useCreateSessionMutation()
 
   const noSessionButton = useCallback((disabled: boolean) => (

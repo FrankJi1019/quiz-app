@@ -77,4 +77,15 @@ public class UserController : Controller {
         return Ok(settingOutput);
     }
 
+    [HttpGet("{username}/attempted-quizzes")]
+    [ProducesResponseType(200, Type = typeof(ICollection<QuizOutputDto>))]
+    [ProducesResponseType(404, Type = typeof(string))]
+    public IActionResult GetAttemptedQuizzes(string username) {
+        var isUserExist = this._userRepository.IsUserExist(username);
+        if (!isUserExist) return NotFound("Username does not exist");
+        var attemptedQuizzes = this._quizRepository.GetUserAttemptedQuizzes(username);
+        var quizOutputList = this._mapper.Map<ICollection<QuizOutputDto>>(attemptedQuizzes);
+        return Ok(quizOutputList);
+    }
+
 }

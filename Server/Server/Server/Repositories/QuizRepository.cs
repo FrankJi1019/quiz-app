@@ -103,4 +103,13 @@ public class QuizRepository {
         return quizzes;
     }
 
+    public ICollection<Quiz> GetUserAttemptedQuizzes(string username) {
+        var sessions = this._context.Sessions
+            .Where(x => x.User.Username == username)
+            .Include(x => x.Quiz)
+            .ToList();
+        var quizzes = sessions.Select(x => x.Quiz).Distinct().ToList();
+        return quizzes;
+    }
+
 }

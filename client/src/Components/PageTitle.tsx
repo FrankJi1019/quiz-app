@@ -20,7 +20,7 @@ const PageTitle: FC<PageTitleProps> = ({data}) => {
       <Typography
         variant="h1"
         sx={{
-          color: theme.palette.secondary.dark,
+          color: theme.palette.primary.dark,
           fontSize: {
             xs: "25px",
             md: theme.typography.h1.fontSize

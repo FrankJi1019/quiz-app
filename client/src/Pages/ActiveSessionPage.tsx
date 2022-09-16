@@ -1,16 +1,14 @@
-import React, { useEffect, useState } from "react"
+import React, {useEffect, useState} from "react"
 import Page from "../Containers/Page"
-import { useNavigate, useParams } from "react-router-dom"
+import {useNavigate, useParams} from "react-router-dom"
 import LoadingPage from "./LoadingPage"
-import { IUserAnswer, IQuestion } from "../types/IQuestion"
-import {useCheckQuizResultMutation} from "../Api/QuizAPI"
+import {IUserAnswer} from "../types/IQuestion"
 import QuestionForm from "../Components/QuestionForm"
-import { Box, Button, LinearProgress } from "@mui/material"
-import {getResultPageURL, getFinishedSessionPageURL} from "../routes"
-import { useUtil } from "../Providers/UtilProvider"
-import {useFetchSessionRecord} from "../Api/SessionAPI";
-import {IOption} from "../types/IOption";
-import {Record} from "../types/Session";
+import {Box, Button, LinearProgress} from "@mui/material"
+import {getFinishedSessionPageURL} from "../routes"
+import {useUtil} from "../Providers/UtilProvider"
+import {useFetchSession, useFetchSessionRecord} from "../Api/SessionAPI";
+import {ISession, Record, SessionState} from "../types/Session";
 import {useChangeAttemptOptionMutation} from "../Api/AttemptAPI";
 
 const getProgress = (userAnswer: Array<IUserAnswer>) => {
@@ -29,7 +27,7 @@ const ActiveSessionPage = () => {
 
   const sessionRecordFetch = useFetchSessionRecord(Number(sessionId))
   const changeAttemptOptionMutation = useChangeAttemptOptionMutation()
-  const checkResultMutation = useCheckQuizResultMutation()
+  const sessionFetch = useFetchSession(Number(sessionId))
 
   useEffect(() => {
     if (sessionRecordFetch.isLoading) return
@@ -42,7 +40,10 @@ const ActiveSessionPage = () => {
     )
   }, [sessionRecordFetch.isLoading])
 
-  if (sessionRecordFetch.isLoading) return <LoadingPage />
+  if (sessionRecordFetch.isLoading || sessionFetch.isLoading) return <LoadingPage />
+
+  if ((sessionFetch.data as ISession).state != SessionState.ACTIVE)
+    return <h1>Session has finished</h1>
 
   const sessionRecord = sessionRecordFetch.data as Array<Record>
 
@@ -53,7 +54,6 @@ const ActiveSessionPage = () => {
         questionNo={index}
         initAnswer={record.option == undefined ? undefined : record.option.id}
         onUserAnswer={(optionId) => {
-
           changeAttemptOptionMutation
             .mutateAsync(({questionId: record.question.id, optionId, sessionId: Number(sessionId)}))
             .then(() => sessionRecordFetch.refetch())

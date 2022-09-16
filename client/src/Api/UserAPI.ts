@@ -33,3 +33,10 @@ export const useCreateUserMutation = () => {
     return data
   })
 }
+
+export const useFetchAttemptedQuizzes = (username: string) : UseQueryResult<Array<IQuiz>> => {
+  return useQuery(['attempted-quiz', username], async () => {
+    const {data} = await axios.get(`${constants.general.backend}/users/${username}/attempted-quizzes`)
+    return data
+  })
+}

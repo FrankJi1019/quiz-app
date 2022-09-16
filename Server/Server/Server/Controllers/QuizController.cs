@@ -16,6 +16,7 @@ public class QuizController : Controller {
     private readonly QuestionRepository _questionRepository;
     private readonly OptionRepository _optionRepository;
     private readonly UserRepository _userRepository;
+    private readonly SessionRepository _sessionRepository;
 
     public QuizController(
         IMapper mapper, 
@@ -23,7 +24,8 @@ public class QuizController : Controller {
         TopicRepository topicRepository, 
         QuestionRepository questionRepository,
         OptionRepository optionRepository,
-        UserRepository userRepository
+        UserRepository userRepository,
+        SessionRepository sessionRepository
     ) {
         this._mapper = mapper;
         this._quizRepository = quizRepository;
@@ -31,6 +33,7 @@ public class QuizController : Controller {
         this._questionRepository = questionRepository;
         this._optionRepository = optionRepository;
         this._userRepository = userRepository;
+        this._sessionRepository = sessionRepository;
     }
 
     [HttpGet]

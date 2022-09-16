@@ -16,11 +16,13 @@ export const getQuestionDetailPageURL = (
 export const getCreateQuestionPageURL = (quizId: string | number = ":quizId") =>
   getQuizManagingPageURL(quizId) + "/questions/create"
 
-export const getResultPageURL = () => "/result"
-
 export const getFinishedSessionPageURL = (id: string | number = ":sessionId") => getActiveSessionPageURL(id) + "/result"
 
 export const getUserQuizPageURL = (username: string = ":username") => "/users/" + username + "/quizzes"
+
+export const getAttemptedQuizzesPageURL = (username: string = ":username") => "/users/" + username + "/attempted-quizzes"
+
+export const getPastSessionPageURL = (quizId: string | number = ":quizId") => "/quiz/" + quizId + "/finished-sessions"
 
 export const getLoginPageURL = () => "/login"
 

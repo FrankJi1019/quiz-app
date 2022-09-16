@@ -6,7 +6,7 @@ import { useNavigate } from "react-router-dom"
 import {
   getQuizListPageURL,
   getHomePageURL,
-  getUserQuizPageURL
+  getUserQuizPageURL, getAttemptedQuizzesPageURL
 } from "../routes"
 import QuizCreationModal from "../Components/QuizCreationModal"
 import HomeIcon from "@mui/icons-material/Home"
@@ -53,7 +53,12 @@ const NavigationPanel = () => {
         onClick: () => navigate(getUserQuizPageURL(username))
       },
       {
-        text: "Create QuizCard",
+        text: "Attempted Quizzes",
+        icon: <PortraitIcon />,
+        onClick: () => navigate(getAttemptedQuizzesPageURL(username))
+      },
+      {
+        text: "Create Quiz",
         icon: <AddCircleIcon />,
         onClick: () => setOpenQuizCreator(true)
       }
