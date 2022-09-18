@@ -11,29 +11,45 @@ public class Seed {
     }
 
     public void SeedDataContext() {
-        if (this._context.Users.Any()) return;
+        // if (this._context.Users.Any()) return;
+        
+        this._context.Users.RemoveRange(this._context.Users.ToList());
+        this._context.Topics.RemoveRange(this._context.Topics.ToList());
+        this._context.Settings.RemoveRange(this._context.Settings.ToList());
+        this._context.Quizzes.RemoveRange(this._context.Quizzes.ToList());
+        this._context.Sessions.RemoveRange(this._context.Sessions.ToList());
 
         // users
         var alice = new User { Username = "Alice", Setting = new Setting() };
         var bob = new User { Username = "Bob", Setting = new Setting() };
         var cathy = new User { Username = "Cathy", Setting = new Setting() };
         var david = new User { Username = "David", Setting = new Setting() };
+        var emma = new User { Username = "Emma", Setting = new Setting() };
+        var franklin = new User { Username = "Franklin", Setting = new Setting() };
+        var gina = new User { Username = "Gina", Setting = new Setting() };
+        var hank = new User { Username = "Hank", Setting = new Setting() };
 
         this._context.Users.Add(alice);
         this._context.Users.Add(bob);
         this._context.Users.Add(cathy);
         this._context.Users.Add(david);
+        this._context.Users.Add(emma);
+        this._context.Users.Add(franklin);
+        this._context.Users.Add(gina);
+        this._context.Users.Add(hank);
 
         // topics
         var mathTopic = new Topic { Name = "math" };
         var programmingTopic = new Topic { Name = "programming" };
         var funTopic = new Topic { Name = "fun" };
         var elementaryTopic = new Topic { Name = "elementary" };
+        var sportTopic = new Topic { Name = "sport" };
 
         this._context.Topics.Add(mathTopic);
         this._context.Topics.Add(programmingTopic);
         this._context.Topics.Add(funTopic);
         this._context.Topics.Add(elementaryTopic);
+        this._context.Topics.Add(sportTopic);
 
         // quizzes, questions, options
         var simpleMathQ1Correct = new Option { Content = "9", IsCorrect = true };
@@ -287,28 +303,151 @@ public class Seed {
             }
         };
 
-        this._context.Quizzes.Add(simpleMathQuiz);
-        this._context.Quizzes.Add(helloWorldQuiz);
-        this._context.Quizzes.Add(oddOneOutQuiz);
+        var webQ1Correct = new Option { Content = "Angular", IsCorrect = true };
+        var webQ1Wrong1 = new Option { Content = "React", IsCorrect = false };
+        var webQ1Wrong2 = new Option { Content = "JQuery", IsCorrect = false };
         
-        // sessions, attempts
-        var aliceOddOneOut = new Session {
-            Quiz = oddOneOutQuiz,
-            User = alice,
-            Attempts = new List<Attempt> {
-                new Attempt { Question = oddOneOutQ1, Option = oddOneOutQ1Correct },
-                new Attempt { Question = oddOneOutQ2, Option = oddOneOutQ2Wrong1 },
-                new Attempt { Question = oddOneOutQ3, Option = oddOneOutQ3Correct },
-                new Attempt { Question = oddOneOutQ4, Option = oddOneOutQ4Correct },
-                new Attempt { Question = oddOneOutQ5, Option = oddOneOutQ5Correct },
-                new Attempt { Question = oddOneOutQ6, Option = oddOneOutQ6Correct },
-                new Attempt { Question = oddOneOutQ7, Option = oddOneOutQ7Correct }
+        var webQ1 = new Question {
+            Content = "Which of this is a front end framework",
+            Explanation = "React is a library, not a framework",
+            Options = new List<Option> {
+                webQ1Correct, webQ1Wrong1, webQ1Wrong2
             }
         };
         
-        var cathySimpleMath = new Session {
+        var webQ2Correct = new Option { Content = "World Wide Web Consortium", IsCorrect = true };
+        var webQ2Wrong1 = new Option { Content = "World Wealthy Web Consortium", IsCorrect = false };
+        var webQ2Wrong2 = new Option { Content = "World Warehouse Web Consortium", IsCorrect = false };
+        
+        var webQ2 = new Question {
+            Content = "What does W3C stand for?",
+            Explanation = "",
+            Options = new List<Option> {
+                webQ2Wrong1, webQ2Correct, webQ2Wrong2
+            }
+        };
+        
+        var webQ3Correct = new Option { Content = "HTML", IsCorrect = true };
+        var webQ3Wrong1 = new Option { Content = "Java", IsCorrect = false };
+        var webQ3Wrong2 = new Option { Content = "PHP", IsCorrect = false };
+        var webQ3Wrong3 = new Option { Content = "Javascript", IsCorrect = false };
+        
+        var webQ3 = new Question {
+            Content = "Which of the following language is NOT a backend language?",
+            Explanation = "",
+            Options = new List<Option> {
+                webQ3Wrong1, webQ3Wrong2, webQ3Wrong3, webQ3Correct
+            }
+        };
+        
+        var webQuiz = new Quiz {
+            Name = "Web",
+            Description = "Some web dev knowledge",
+            Author = alice,
+            Topics = new List<Topic> { programmingTopic },
+            Questions = new List<Question> {
+                webQ1, webQ2, webQ3
+            }
+        };
+        
+        var sportQ1Correct = new Option { Content = "22", IsCorrect = true };
+        var sportQ1Wrong1 = new Option { Content = "11", IsCorrect = false };
+        var sportQ1Wrong2 = new Option { Content = "10", IsCorrect = false };
+        var sportQ1Wrong3 = new Option { Content = "20", IsCorrect = false };
+        
+        var sportQ1 = new Question {
+            Content = "How many people are in one soccer game?",
+            Explanation = "",
+            Options = new List<Option> {
+                sportQ1Wrong1, sportQ1Correct, sportQ1Wrong2, sportQ1Wrong3
+            }
+        };
+        
+        var sportQ2Correct = new Option { Content = "10", IsCorrect = true };
+        var sportQ2Wrong1 = new Option { Content = "8", IsCorrect = false };
+        var sportQ2Wrong2 = new Option { Content = "5", IsCorrect = false };
+        var sportQ2Wrong3 = new Option { Content = "4", IsCorrect = false };
+        
+        var sportQ2 = new Question {
+            Content = "How many people are in basketball team?",
+            Explanation = "",
+            Options = new List<Option> {
+                sportQ2Wrong1, sportQ2Correct, sportQ2Wrong2, sportQ2Wrong3
+            }
+        };
+        
+        var sportQ3Correct = new Option { Content = "15", IsCorrect = true };
+        var sportQ3Wrong1 = new Option { Content = "5", IsCorrect = false };
+        var sportQ3Wrong2 = new Option { Content = "10", IsCorrect = false };
+        var sportQ3Wrong3 = new Option { Content = "20", IsCorrect = false };
+        
+        var sportQ3 = new Question {
+            Content = "How many people are in rugby team?",
+            Explanation = "",
+            Options = new List<Option> {
+                sportQ3Wrong1, sportQ3Wrong2, sportQ3Correct, sportQ3Wrong3
+            }
+        };
+        
+        var sportQ4Correct = new Option { Content = "6", IsCorrect = true };
+        var sportQ4Wrong1 = new Option { Content = "7", IsCorrect = false };
+        var sportQ4Wrong2 = new Option { Content = "8", IsCorrect = false };
+        var sportQ4Wrong3 = new Option { Content = "9", IsCorrect = false };
+        
+        var sportQ4 = new Question {
+            Content = "How many people are in volleyball team?",
+            Explanation = "",
+            Options = new List<Option> {
+                sportQ4Correct, sportQ4Wrong1, sportQ4Wrong2, sportQ4Wrong3
+            }
+        };
+        
+        var sportQuiz = new Quiz {
+            Name = "How many people?",
+            Description = "",
+            Author = alice,
+            Topics = new List<Topic> { funTopic, sportTopic },
+            Questions = new List<Question> {
+                sportQ1, sportQ2, sportQ3, sportQ4
+            }
+        };
+
+        this._context.Quizzes.Add(simpleMathQuiz);
+        this._context.Quizzes.Add(helloWorldQuiz);
+        this._context.Quizzes.Add(oddOneOutQuiz);
+        this._context.Quizzes.Add(webQuiz);
+        this._context.Quizzes.Add(sportQuiz);
+        
+        // sessions, attempts
+
+        // -- simple math
+        var aliceSimpleMath = new Session {
             Quiz = simpleMathQuiz,
-            User = cathy,
+            User = alice,
+            Attempts = new List<Attempt> {
+                new Attempt { Question = simpleMathQ1, Option = simpleMathQ1Wrong1 },
+                new Attempt { Question = simpleMathQ2, Option = simpleMathQ2Wrong3 },
+                new Attempt { Question = simpleMathQ3, Option = simpleMathQ3Wrong2 },
+                new Attempt { Question = simpleMathQ4, Option = simpleMathQ4Correct },
+                new Attempt { Question = simpleMathQ5, Option = simpleMathQ5Correct },
+            }
+        };
+        
+        var davidSimpleMath = new Session {
+            Quiz = simpleMathQuiz,
+            User = david,
+            Attempts = new List<Attempt> {
+                new Attempt { Question = simpleMathQ1, Option = simpleMathQ1Correct },
+                new Attempt { Question = simpleMathQ2, Option = simpleMathQ2Wrong1 },
+                new Attempt { Question = simpleMathQ3, Option = simpleMathQ3Wrong1 },
+                new Attempt { Question = simpleMathQ4, Option = simpleMathQ4Correct },
+                new Attempt { Question = simpleMathQ5, Option = simpleMathQ5Correct },
+            }
+        };
+        
+        var emmaSimpleMath = new Session {
+            Quiz = simpleMathQuiz,
+            User = emma,
             Attempts = new List<Attempt> {
                 new Attempt { Question = simpleMathQ1, Option = simpleMathQ1Correct },
                 new Attempt { Question = simpleMathQ2, Option = simpleMathQ2Correct },
@@ -318,47 +457,22 @@ public class Seed {
             }
         };
         
-        var cathyHelloWorld = new Session {
-            Quiz = helloWorldQuiz,
-            User = cathy,
-            Attempts = new List<Attempt> {
-                new Attempt { Question = helloWorldQ1, Option = helloWorldQ1Correct },
-                new Attempt { Question = helloWorldQ2, Option = helloWorldQ2Wrong2 },
-                new Attempt { Question = helloWorldQ3, Option = helloWorldQ3Wrong1 },
-                new Attempt { Question = helloWorldQ4, Option = helloWorldQ4Correct },
-                new Attempt { Question = helloWorldQ5, Option = helloWorldQ5Wrong1 },
-            }
-        };
-        
-        var cathyOddOneOut = new Session {
-            Quiz = oddOneOutQuiz,
-            User = cathy,
-            Attempts = new List<Attempt> {
-                new Attempt { Question = oddOneOutQ1, Option = oddOneOutQ1Correct },
-                new Attempt { Question = oddOneOutQ2, Option = oddOneOutQ2Wrong3 },
-                new Attempt { Question = oddOneOutQ3, Option = oddOneOutQ3Correct },
-                new Attempt { Question = oddOneOutQ4, Option = oddOneOutQ4Correct },
-                new Attempt { Question = oddOneOutQ5, Option = oddOneOutQ5Wrong1 },
-                new Attempt { Question = oddOneOutQ6, Option = oddOneOutQ6Correct },
-                new Attempt { Question = oddOneOutQ7, Option = oddOneOutQ7Correct }
-            }
-        };
-        
-        var davidSimpleMath = new Session {
+        var franklinSimpleMath = new Session {
             Quiz = simpleMathQuiz,
-            User = david,
+            User = franklin,
             Attempts = new List<Attempt> {
-                new Attempt { Question = simpleMathQ1, Option = simpleMathQ1Wrong2 },
+                new Attempt { Question = simpleMathQ1, Option = simpleMathQ1Correct },
                 new Attempt { Question = simpleMathQ2, Option = simpleMathQ2Correct },
                 new Attempt { Question = simpleMathQ3, Option = simpleMathQ3Correct },
                 new Attempt { Question = simpleMathQ4, Option = simpleMathQ4Correct },
-                new Attempt { Question = simpleMathQ5, Option = simpleMathQ5Wrong3 },
+                new Attempt { Question = simpleMathQ5, Option = simpleMathQ5Correct },
             }
         };
         
-        var davidHelloWorld = new Session {
+        // -- hello world
+        var aliceHelloWorld = new Session {
             Quiz = helloWorldQuiz,
-            User = david,
+            User = alice,
             Attempts = new List<Attempt> {
                 new Attempt { Question = helloWorldQ1, Option = helloWorldQ1Correct },
                 new Attempt { Question = helloWorldQ2, Option = helloWorldQ2Correct },
@@ -367,13 +481,220 @@ public class Seed {
                 new Attempt { Question = helloWorldQ5, Option = helloWorldQ5Correct },
             }
         };
+        
+        var bobHelloWorld = new Session {
+            Quiz = helloWorldQuiz,
+            User = bob,
+            Attempts = new List<Attempt> {
+                new Attempt { Question = helloWorldQ1, Option = helloWorldQ1Correct },
+                new Attempt { Question = helloWorldQ2, Option = helloWorldQ2Correct },
+                new Attempt { Question = helloWorldQ3, Option = helloWorldQ3Wrong1 },
+                new Attempt { Question = helloWorldQ4, Option = helloWorldQ4Correct },
+                new Attempt { Question = helloWorldQ5, Option = helloWorldQ5Correct },
+            }
+        };
+        
+        var cathyHelloWorld = new Session {
+            Quiz = helloWorldQuiz,
+            User = cathy,
+            Attempts = new List<Attempt> {
+                new Attempt { Question = helloWorldQ1, Option = helloWorldQ1Correct },
+                new Attempt { Question = helloWorldQ2, Option = helloWorldQ2Correct },
+                new Attempt { Question = helloWorldQ3, Option = helloWorldQ3Correct },
+                new Attempt { Question = helloWorldQ4, Option = helloWorldQ4Correct },
+                new Attempt { Question = helloWorldQ5, Option = helloWorldQ5Wrong2 },
+            }
+        };
+        
+        var davidHelloWorld = new Session {
+            Quiz = helloWorldQuiz,
+            User = david,
+            Attempts = new List<Attempt> {
+                new Attempt { Question = helloWorldQ1, Option = helloWorldQ1Wrong1 },
+                new Attempt { Question = helloWorldQ2, Option = helloWorldQ2Correct },
+                new Attempt { Question = helloWorldQ3, Option = helloWorldQ3Correct },
+                new Attempt { Question = helloWorldQ4, Option = helloWorldQ4Correct },
+                new Attempt { Question = helloWorldQ5, Option = helloWorldQ5Wrong3 },
+            }
+        };
+        
+        var emmaHelloWorld = new Session {
+            Quiz = helloWorldQuiz,
+            User = emma,
+            Attempts = new List<Attempt> {
+                new Attempt { Question = helloWorldQ1, Option = helloWorldQ1Correct },
+                new Attempt { Question = helloWorldQ2, Option = helloWorldQ2Correct },
+                new Attempt { Question = helloWorldQ3, Option = helloWorldQ3Correct },
+                new Attempt { Question = helloWorldQ4, Option = helloWorldQ4Correct },
+                new Attempt { Question = helloWorldQ5, Option = helloWorldQ5Correct },
+            }
+        };
+        
+        var franklinHelloWorld = new Session {
+            Quiz = helloWorldQuiz,
+            User = franklin,
+            Attempts = new List<Attempt> {
+                new Attempt { Question = helloWorldQ1, Option = helloWorldQ1Correct },
+                new Attempt { Question = helloWorldQ2, Option = helloWorldQ2Correct },
+                new Attempt { Question = helloWorldQ3, Option = helloWorldQ3Correct },
+                new Attempt { Question = helloWorldQ4, Option = helloWorldQ4Correct },
+                new Attempt { Question = helloWorldQ5, Option = helloWorldQ5Correct },
+            }
+        };
+        
+        var ginaHelloWorld = new Session {
+            Quiz = helloWorldQuiz,
+            User = gina,
+            Attempts = new List<Attempt> {
+                new Attempt { Question = helloWorldQ1, Option = helloWorldQ1Correct },
+                new Attempt { Question = helloWorldQ2, Option = helloWorldQ2Correct },
+                new Attempt { Question = helloWorldQ3, Option = helloWorldQ3Correct },
+                new Attempt { Question = helloWorldQ4, Option = helloWorldQ4Correct },
+                new Attempt { Question = helloWorldQ5, Option = helloWorldQ5Correct },
+            }
+        };
+        
+        // -- odd one out
+        var bobOddOneOut = new Session {
+            Quiz = oddOneOutQuiz,
+            User = bob,
+            Attempts = new List<Attempt> {
+                new Attempt { Question = oddOneOutQ1, Option = oddOneOutQ1Correct },
+                new Attempt { Question = oddOneOutQ2, Option = oddOneOutQ2Correct },
+                new Attempt { Question = oddOneOutQ3, Option = oddOneOutQ3Correct },
+                new Attempt { Question = oddOneOutQ4, Option = oddOneOutQ4Correct },
+                new Attempt { Question = oddOneOutQ5, Option = oddOneOutQ5Correct },
+                new Attempt { Question = oddOneOutQ6, Option = oddOneOutQ6Correct },
+                new Attempt { Question = oddOneOutQ7, Option = oddOneOutQ7Correct }
+            }
+        };
+        
+        var davidOddOneOut = new Session {
+            Quiz = oddOneOutQuiz,
+            User = david,
+            Attempts = new List<Attempt> {
+                new Attempt { Question = oddOneOutQ1, Option = oddOneOutQ1Correct },
+                new Attempt { Question = oddOneOutQ2, Option = oddOneOutQ2Correct },
+                new Attempt { Question = oddOneOutQ3, Option = oddOneOutQ3Correct },
+                new Attempt { Question = oddOneOutQ4, Option = oddOneOutQ4Correct },
+                new Attempt { Question = oddOneOutQ5, Option = oddOneOutQ5Correct },
+                new Attempt { Question = oddOneOutQ6, Option = oddOneOutQ6Correct },
+                new Attempt { Question = oddOneOutQ7, Option = oddOneOutQ7Correct }
+            }
+        };
+        
+        var franklinOddOneOut = new Session {
+            Quiz = oddOneOutQuiz,
+            User = franklin,
+            Attempts = new List<Attempt> {
+                new Attempt { Question = oddOneOutQ1, Option = oddOneOutQ1Correct },
+                new Attempt { Question = oddOneOutQ2, Option = oddOneOutQ2Correct },
+                new Attempt { Question = oddOneOutQ3, Option = oddOneOutQ3Wrong1 },
+                new Attempt { Question = oddOneOutQ4, Option = oddOneOutQ4Correct },
+                new Attempt { Question = oddOneOutQ5, Option = oddOneOutQ5Correct },
+                new Attempt { Question = oddOneOutQ6, Option = oddOneOutQ6Correct },
+                new Attempt { Question = oddOneOutQ7, Option = oddOneOutQ7Correct }
+            }
+        };
+        
+        var hankOddOneOut = new Session {
+            Quiz = oddOneOutQuiz,
+            User = hank,
+            Attempts = new List<Attempt> {
+                new Attempt { Question = oddOneOutQ1, Option = oddOneOutQ1Wrong1 },
+                new Attempt { Question = oddOneOutQ2, Option = oddOneOutQ2Correct },
+                new Attempt { Question = oddOneOutQ3, Option = oddOneOutQ3Correct },
+                new Attempt { Question = oddOneOutQ4, Option = oddOneOutQ4Correct },
+                new Attempt { Question = oddOneOutQ5, Option = oddOneOutQ5Correct },
+                new Attempt { Question = oddOneOutQ6, Option = oddOneOutQ6Correct },
+                new Attempt { Question = oddOneOutQ7, Option = oddOneOutQ7Correct }
+            }
+        };
+        
+        // -- web
+        var aliceWeb = new Session {
+            Quiz = webQuiz,
+            User = alice,
+            Attempts = new List<Attempt> {
+                new Attempt { Question = webQ1, Option = webQ1Correct },
+                new Attempt { Question = webQ2, Option = webQ2Correct },
+                new Attempt { Question = webQ3, Option = webQ3Correct }
+            }
+        };
+        
+        var cathyWeb = new Session {
+            Quiz = webQuiz,
+            User = cathy,
+            Attempts = new List<Attempt> {
+                new Attempt { Question = webQ1, Option = webQ1Correct },
+                new Attempt { Question = webQ2, Option = webQ2Wrong1 },
+                new Attempt { Question = webQ3, Option = webQ3Correct }
+            }
+        };
+        
+        var emmaWeb = new Session {
+            Quiz = webQuiz,
+            User = emma,
+            Attempts = new List<Attempt> {
+                new Attempt { Question = webQ1, Option = webQ1Wrong2 },
+                new Attempt { Question = webQ2, Option = webQ2Correct },
+                new Attempt { Question = webQ3, Option = webQ3Correct }
+            }
+        };
+        
+        var franklinWeb = new Session {
+            Quiz = webQuiz,
+            User = franklin,
+            Attempts = new List<Attempt> {
+                new Attempt { Question = webQ1, Option = webQ1Correct },
+                new Attempt { Question = webQ2, Option = webQ2Correct },
+                new Attempt { Question = webQ3, Option = webQ3Correct }
+            }
+        };
+        
+        var hankWeb = new Session {
+            Quiz = webQuiz,
+            User = hank,
+            Attempts = new List<Attempt> {
+                new Attempt { Question = webQ1, Option = webQ1Correct },
+                new Attempt { Question = webQ2, Option = webQ2Correct },
+                new Attempt { Question = webQ3, Option = webQ3Correct }
+            }
+        };
+        
+        // -- sport
+        var hankSport = new Session {
+            Quiz = sportQuiz,
+            User = hank,
+            Attempts = new List<Attempt> {
+                new Attempt { Question = sportQ1, Option = sportQ1Correct },
+                new Attempt { Question = sportQ2, Option = sportQ2Correct },
+                new Attempt { Question = sportQ3, Option = sportQ3Correct },
+                new Attempt { Question = sportQ4, Option = sportQ4Correct }
+            }
+        };
 
-        this._context.Sessions.Add(aliceOddOneOut);
-        this._context.Sessions.Add(cathySimpleMath);
-        this._context.Sessions.Add(cathyHelloWorld);
-        this._context.Sessions.Add(cathyOddOneOut);
+        this._context.Sessions.Add(aliceSimpleMath);
         this._context.Sessions.Add(davidSimpleMath);
+        this._context.Sessions.Add(emmaSimpleMath);
+        this._context.Sessions.Add(franklinSimpleMath);
+        this._context.Sessions.Add(aliceHelloWorld);
+        this._context.Sessions.Add(bobHelloWorld);
+        this._context.Sessions.Add(cathyHelloWorld);
         this._context.Sessions.Add(davidHelloWorld);
+        this._context.Sessions.Add(emmaHelloWorld);
+        this._context.Sessions.Add(franklinHelloWorld);
+        this._context.Sessions.Add(ginaHelloWorld);
+        this._context.Sessions.Add(bobOddOneOut);
+        this._context.Sessions.Add(davidOddOneOut);
+        this._context.Sessions.Add(franklinOddOneOut);
+        this._context.Sessions.Add(hankOddOneOut);
+        this._context.Sessions.Add(aliceWeb);
+        this._context.Sessions.Add(cathyWeb);
+        this._context.Sessions.Add(emmaWeb);
+        this._context.Sessions.Add(franklinWeb);
+        this._context.Sessions.Add(hankWeb);
+        this._context.Sessions.Add(hankSport);
 
         this._context.SaveChanges();
     }

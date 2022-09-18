@@ -31,7 +31,7 @@ const SessionOverview: FC<SessionOverviewProps> = ({session, onClick, shouldHigh
       }}
       onClick={() => onClick(session)}
     >
-      {moment(session.startedAt).format("YYYY-MM-DD HH:SS")}
+      {moment(session.startedAt).format("YYYY-MM-DD HH:mm")}
     </Box>
   )
 }

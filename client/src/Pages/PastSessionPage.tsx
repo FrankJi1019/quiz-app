@@ -4,7 +4,7 @@ import {useAuth} from "../Providers/AuthProvider";
 import {useParams, useSearchParams} from "react-router-dom";
 import {useFetchFinishedSessionByQuizAndUser, useFetchSessionResult} from "../Api/SessionAPI";
 import LoadingPage from "./LoadingPage";
-import {ISession, Result} from "../types/Session";
+import {ISession} from "../types/Session";
 import {Box} from "@mui/material";
 import SessionOverview from "../Components/SessionOverview";
 import QuestionResultList from "../Components/QuestionResultList";
