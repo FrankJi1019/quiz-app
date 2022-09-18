@@ -39,7 +39,6 @@ public class QuizController : Controller {
     [HttpGet]
     [ProducesResponseType(200, Type = typeof(ICollection<QuizOutputDto>))]
     public IActionResult GetAll([FromQuery] bool ignoreEmpty, [FromQuery] string? keyword = "") {
-        // var quizzes = ignoreEmpty ? this._quizRepository.GetAllNonEmpty() : this._quizRepository.GetAll() ;
         var quizzes = this._quizRepository.GetAll(ignoreEmpty);
         quizzes = quizzes.Where(x => x.Name.ToLower().Contains(keyword!.ToLower())).ToList();
         var quizOutputs = this._mapper.Map<ICollection<QuizOutputDto>>(quizzes);
@@ -55,8 +54,6 @@ public class QuizController : Controller {
             return NotFound("Quiz does not exist");
         } else {
             QuizOutputDto quizOutput = this._mapper.Map<QuizOutputDto>(quiz);
-            quizOutput.Topics = quiz.Topics.Select(x => x.Name).ToList();
-            quizOutput.AuthorUsername = quiz.Author.Username;
             return Ok(quizOutput);
         }
     }

@@ -3,7 +3,7 @@ import {
   Box,
   Drawer,
   Menu,
-  MenuItem,
+  MenuItem, styled,
   Typography,
   useTheme
 } from "@mui/material"
@@ -17,7 +17,7 @@ import {resetTheme} from "../Slices/themeSlice";
 
 export const drawerWidth = "250px"
 
-const PCNavigationPanel: FC<NavigationPanelProps> = ({ navOptions }) => {
+const PCNavigationPanel: FC<NavigationPanelProps> = ({ navOptions, highlightOption, onLogout, onGoHome }) => {
   const theme = useTheme()
   const navigate = useNavigate()
   const { getCurrentUser, logout } = useAuth()
@@ -29,6 +29,32 @@ const PCNavigationPanel: FC<NavigationPanelProps> = ({ navOptions }) => {
   const [menuAnchor, setMenuAnchor] = useState(null)
   const [showThemeSelector, setShowThemeSelector] = useState(false)
   const dispatch = useDispatch()
+
+  const NavOption = useMemo(() => styled(Box)({
+    cursor: "pointer",
+    width: "100%",
+    padding: "10px 20px",
+    boxSizing: "border-box",
+    transition: 'all .18s',
+    "&:hover": {
+      backgroundColor: theme.palette.primary.main + "55",
+      borderLeft: "5px solid " + theme.palette.primary.dark,
+      color: theme.palette.primary.dark,
+      fontWeight: "bold"
+    }
+  }), [theme])
+
+  const HighlightedNavOption = useMemo(() => styled(Box)({
+    cursor: "pointer",
+    width: "100%",
+    padding: "10px 20px",
+    boxSizing: "border-box",
+    transition: 'all .18s',
+    backgroundColor: theme.palette.primary.main + "55",
+    borderLeft: "5px solid " + theme.palette.primary.dark,
+    color: theme.palette.primary.dark,
+    fontWeight: "bold"
+  }), [theme])
 
   return (
     <Box sx={{ width: drawerWidth }}>
@@ -46,37 +72,37 @@ const PCNavigationPanel: FC<NavigationPanelProps> = ({ navOptions }) => {
           <Box>
             <Box>
               <Typography
-                onClick={() => navigate(getHomePageURL())}
+                onClick={onGoHome}
                 sx={{
                   padding: "20px 0",
                   fontSize: "40px",
                   fontWeight: "bolder",
                   cursor: "pointer",
                   textAlign: "center",
-                  color: theme.palette.secondary.dark,
+                  color: theme.palette.primary.dark,
                 }}
               >
                 {" " + "QUIZZY" + " "}
               </Typography>
             </Box>
             <Box>
-              {navOptions.map((option) => (
-                <Box
-                  key={option.text}
-                  onClick={option.onClick}
-                  sx={{
-                    cursor: "pointer",
-                    width: "100%",
-                    padding: "10px 20px",
-                    boxSizing: "border-box",
-                    "&:hover": {
-                      backgroundColor: theme.palette.secondary.light
-                    }
-                  }}
-                >
-                  {option.text}
-                </Box>
-              ))}
+              {
+                navOptions.map((option) => (
+                  highlightOption === option.text ?
+                    <HighlightedNavOption
+                      key={option.text}
+                      onClick={option.onClick}
+                    >
+                      {option.text}
+                    </HighlightedNavOption> :
+                    <NavOption
+                      key={option.text}
+                      onClick={option.onClick}
+                    >
+                      {option.text}
+                    </NavOption>
+                ))
+              }
             </Box>
           </Box>
           <Box
@@ -108,12 +134,7 @@ const PCNavigationPanel: FC<NavigationPanelProps> = ({ navOptions }) => {
               sx={{ transform: "translateY(-50px)" }}
             >
               <MenuItem onClick={() => setShowThemeSelector(true)}>Change Theme</MenuItem>
-              <MenuItem
-                onClick={() => {
-                  logout()
-                  dispatch(resetTheme())
-                }}
-              >
+              <MenuItem onClick={onLogout}>
                 Log Out
               </MenuItem>
             </Menu>

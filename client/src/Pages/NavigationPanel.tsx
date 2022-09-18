@@ -14,6 +14,8 @@ import QuestionAnswerIcon from "@mui/icons-material/QuestionAnswer"
 import AddCircleIcon from "@mui/icons-material/AddCircle"
 import PortraitIcon from "@mui/icons-material/Portrait"
 import { useAuth } from "../Providers/AuthProvider"
+import {resetTheme} from "../Slices/themeSlice";
+import {useDispatch} from "react-redux";
 
 interface NavigationOption {
   text: string
@@ -23,7 +25,12 @@ interface NavigationOption {
 
 export interface NavigationPanelProps {
   navOptions: Array<NavigationOption>
+  highlightOption: string
+  onLogout: () => void
+  onGoHome: () => void
 }
+
+let highlightOption = "Home"
 
 const NavigationPanel = () => {
   const navigate = useNavigate()
@@ -35,27 +42,42 @@ const NavigationPanel = () => {
 
   const [openQuizCreator, setOpenQuizCreator] = useState(false)
 
+  const dispatch = useDispatch()
+  const { logout } = useAuth()
+
   const navOptions: Array<NavigationOption> = useMemo(
     () => [
       {
         text: "Home",
         icon: <HomeIcon />,
-        onClick: () => navigate(getHomePageURL())
+        onClick: () => {
+          navigate(getHomePageURL())
+          highlightOption = "Home"
+        }
       },
       {
         text: "All Quizzes",
         icon: <QuestionAnswerIcon />,
-        onClick: () => navigate(getQuizListPageURL())
+        onClick: () => {
+          navigate(getQuizListPageURL())
+          highlightOption = "All Quizzes"
+        }
       },
       {
         text: "Your Quizzes",
         icon: <PortraitIcon />,
-        onClick: () => navigate(getUserQuizPageURL(username))
+        onClick: () => {
+          navigate(getUserQuizPageURL(username))
+          highlightOption = "Your Quizzes"
+        }
       },
       {
         text: "Attempted Quizzes",
         icon: <PortraitIcon />,
-        onClick: () => navigate(getAttemptedQuizzesPageURL(username))
+        onClick: () => {
+          navigate(getAttemptedQuizzesPageURL(username))
+          highlightOption = "Attempted Quizzes"
+        }
       },
       {
         text: "Create Quiz",
@@ -66,13 +88,26 @@ const NavigationPanel = () => {
     []
   )
 
+  const data = {
+    navOptions, highlightOption,
+    onLogout: () => {
+      logout()
+      dispatch(resetTheme())
+      highlightOption = "Home"
+    },
+    onGoHome: () => {
+      navigate(getHomePageURL())
+      highlightOption = "Home"
+    }
+  } as NavigationPanelProps
+
   return (
     <Box>
       <Box sx={{ display: { xs: "none", md: "block" } }}>
-        <PCNavigationPanel navOptions={navOptions} />
+        <PCNavigationPanel {...data} />
       </Box>
       <Box sx={{ display: { xs: "block", md: "none" } }}>
-        <MobileNavigationPanel navOptions={navOptions} />
+        <MobileNavigationPanel {...data} />
       </Box>
       <Box>
         <QuizCreationModal

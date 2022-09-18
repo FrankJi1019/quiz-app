@@ -86,7 +86,7 @@ const QuizIntroPage = () => {
           borderBottom: "2px solid #ccc"
         }}
       >
-        <Typography variant="body1">{`Created by ${quiz.authorUsername}`}</Typography>
+        <Typography variant="body1">{`Created by ${quiz.authorName}`}</Typography>
         <Typography variant="body1">
           {`Created on ${moment(new Date(quiz.createdAt)).format(
             "YYYY-MM-DD"

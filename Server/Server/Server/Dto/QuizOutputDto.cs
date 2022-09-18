@@ -9,7 +9,11 @@ public class QuizOutputDto {
     
     public DateTime CreatedAt { get; set; }
     
-    public string AuthorUsername { get; set; }
+    public int QuestionCount { get; set; }
+    
+    public int SessionCount { get; set; }
+    
+    public string AuthorName { get; set; }
 
     public ICollection<string> Topics { get; set; }
 

@@ -7,10 +7,10 @@ namespace Server.Helper;
 public class MappingProfiles : Profile {
 
     public MappingProfiles() {
-        
+
         CreateMap<Quiz, QuizOutputDto>().ForMember(
-            x => x.Topics, 
-            o => o.Ignore()
+            x => x.Topics,
+            o => o.MapFrom(x => x.TopicList)
         );
         CreateMap<CreateQuizDto, Quiz>();
 

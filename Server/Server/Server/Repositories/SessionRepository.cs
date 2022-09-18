@@ -23,6 +23,7 @@ public class SessionRepository {
 
     public Session CreateUserSession(Session session) {
         var entityEntry = this._context.Sessions.Add(session);
+        this._context.Quizzes.Update(session.Quiz);
         this._context.SaveChanges();
         return entityEntry.Entity;
     }

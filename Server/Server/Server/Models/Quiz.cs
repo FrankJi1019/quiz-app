@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Server.Models; 
 
@@ -15,6 +16,18 @@ public class Quiz {
     
     [Required]
     public User Author { get; set; }
+    
+    [NotMapped]
+    public int QuestionCount { get; set; }
+    
+    [NotMapped]
+    public int SessionCount { get; set; }
+    
+    [NotMapped]
+    public string AuthorName { get; set; }
+    
+    [NotMapped]
+    public List<string> TopicList { get; set; }
     
     public ICollection<Topic> Topics { get; set; }
     
