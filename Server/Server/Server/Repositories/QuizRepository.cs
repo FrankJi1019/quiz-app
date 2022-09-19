@@ -120,11 +120,22 @@ public class QuizRepository {
     }
 
     public ICollection<Quiz> GetUserAttemptedQuizzes(string username) {
-        var sessions = this._context.Sessions
+        var quizzes = this._context.Sessions
             .Where(x => x.User.Username == username)
             .Include(x => x.Quiz)
+            .Select(x => x.Quiz)
+            .Distinct()
+            .Select(x => new Quiz {
+                Id = x.Id,
+                Name = x.Name,
+                Description = x.Description,
+                CreatedAt = x.CreatedAt,
+                QuestionCount = x.Questions.Count,
+                SessionCount = x.Sessions.Count,
+                AuthorName = x.Author.Username,
+                TopicList = x.Topics.Select(y => y.Name).ToList()
+            })
             .ToList();
-        var quizzes = sessions.Select(x => x.Quiz).Distinct().ToList();
         return quizzes;
     }
 
