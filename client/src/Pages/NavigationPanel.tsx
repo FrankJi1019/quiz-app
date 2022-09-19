@@ -2,7 +2,7 @@ import React, { ReactNode, useMemo, useState } from "react"
 import { Box } from "@mui/material"
 import PCNavigationPanel from "./PCNavigationPanel"
 import MobileNavigationPanel from "./MobileNavigationPanel"
-import { useNavigate } from "react-router-dom"
+import {useLocation, useNavigate} from "react-router-dom"
 import {
   getQuizListPageURL,
   getHomePageURL,
@@ -21,16 +21,14 @@ interface NavigationOption {
   text: string
   icon: ReactNode
   onClick: () => void
+  shouldHighlight: () => boolean
 }
 
 export interface NavigationPanelProps {
   navOptions: Array<NavigationOption>
-  highlightOption: string
   onLogout: () => void
   onGoHome: () => void
 }
-
-let highlightOption = "Home"
 
 const NavigationPanel = () => {
   const navigate = useNavigate()
@@ -44,60 +42,52 @@ const NavigationPanel = () => {
 
   const dispatch = useDispatch()
   const { logout } = useAuth()
+  const { pathname } = useLocation()
 
   const navOptions: Array<NavigationOption> = useMemo(
     () => [
       {
         text: "Home",
         icon: <HomeIcon />,
-        onClick: () => {
-          navigate(getHomePageURL())
-          highlightOption = "Home"
-        }
+        onClick: () => navigate(getHomePageURL()),
+        shouldHighlight: () => pathname === getHomePageURL()
       },
       {
         text: "All Quizzes",
         icon: <QuestionAnswerIcon />,
-        onClick: () => {
-          navigate(getQuizListPageURL())
-          highlightOption = "All Quizzes"
-        }
+        onClick: () => navigate(getQuizListPageURL()),
+        shouldHighlight: () => pathname === getQuizListPageURL()
       },
       {
         text: "Your Quizzes",
         icon: <PortraitIcon />,
-        onClick: () => {
-          navigate(getUserQuizPageURL(username))
-          highlightOption = "Your Quizzes"
-        }
+        onClick: () => navigate(getUserQuizPageURL(username)),
+        shouldHighlight: () => new RegExp("^" + getUserQuizPageURL(".*") + "$").test(pathname)
       },
       {
         text: "Attempted Quizzes",
         icon: <PortraitIcon />,
-        onClick: () => {
-          navigate(getAttemptedQuizzesPageURL(username))
-          highlightOption = "Attempted Quizzes"
-        }
+        onClick: () => navigate(getAttemptedQuizzesPageURL(username)),
+        shouldHighlight: () => new RegExp("^" + getAttemptedQuizzesPageURL(".*") + "$").test(pathname)
       },
       {
         text: "Create Quiz",
         icon: <AddCircleIcon />,
-        onClick: () => setOpenQuizCreator(true)
+        onClick: () => setOpenQuizCreator(true),
+        shouldHighlight: () => false
       }
     ],
-    []
+    [navigate]
   )
 
   const data = {
-    navOptions, highlightOption,
+    navOptions,
     onLogout: () => {
       logout()
       dispatch(resetTheme())
-      highlightOption = "Home"
     },
     onGoHome: () => {
       navigate(getHomePageURL())
-      highlightOption = "Home"
     }
   } as NavigationPanelProps
 

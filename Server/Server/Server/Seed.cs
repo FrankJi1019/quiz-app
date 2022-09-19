@@ -11,8 +11,7 @@ public class Seed {
     }
 
     public void SeedDataContext() {
-        // if (this._context.Users.Any()) return;
-        
+
         this._context.Users.RemoveRange(this._context.Users.ToList());
         this._context.Topics.RemoveRange(this._context.Topics.ToList());
         this._context.Settings.RemoveRange(this._context.Settings.ToList());

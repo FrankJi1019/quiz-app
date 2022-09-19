@@ -7,20 +7,15 @@ import {
   Typography,
   useTheme
 } from "@mui/material"
-import { getHomePageURL } from "../routes"
-import { useNavigate } from "react-router-dom"
 import { NavigationPanelProps } from "./NavigationPanel"
 import { useAuth } from "../Providers/AuthProvider"
 import ThemeSelectorModal from "../Components/ThemeSelectorModal";
-import {useDispatch} from "react-redux";
-import {resetTheme} from "../Slices/themeSlice";
 
 export const drawerWidth = "250px"
 
-const PCNavigationPanel: FC<NavigationPanelProps> = ({ navOptions, highlightOption, onLogout, onGoHome }) => {
+const PCNavigationPanel: FC<NavigationPanelProps> = ({ navOptions, onLogout, onGoHome }) => {
   const theme = useTheme()
-  const navigate = useNavigate()
-  const { getCurrentUser, logout } = useAuth()
+  const { getCurrentUser } = useAuth()
   const username = useMemo(
     () => getCurrentUser()!.getUsername(),
     [getCurrentUser]
@@ -28,7 +23,6 @@ const PCNavigationPanel: FC<NavigationPanelProps> = ({ navOptions, highlightOpti
 
   const [menuAnchor, setMenuAnchor] = useState(null)
   const [showThemeSelector, setShowThemeSelector] = useState(false)
-  const dispatch = useDispatch()
 
   const NavOption = useMemo(() => styled(Box)({
     cursor: "pointer",
@@ -88,7 +82,7 @@ const PCNavigationPanel: FC<NavigationPanelProps> = ({ navOptions, highlightOpti
             <Box>
               {
                 navOptions.map((option) => (
-                  highlightOption === option.text ?
+                  option.shouldHighlight() ?
                     <HighlightedNavOption
                       key={option.text}
                       onClick={option.onClick}

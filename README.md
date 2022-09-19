@@ -6,9 +6,13 @@
 
 1. Please make sure you have [dotnet](https://dotnet.microsoft.com/en-us/download), [Node](https://nodejs.org/en/download/), and [SQL Server](https://www.microsoft.com/en-us/sql-server/sql-server-downloads) installed on your device.
 2. Add the SQL Server connection string in the "appsetting.json"
-3. Open a terminal and direct to the Server folder, where the current directory should contain "Models" folder
+3. Open a terminal and direct to the Server folder, where the current directory should contain "Program.cs"
 4. Execute `dotnet ef database update`
-5. Add the .env file to the client folder, below is a example .env file
+5. [Optional] To add in mock data, execute `dotnet run seeddata`. 
+   1. **Note that this will clear all the existing data in the database**
+   2. If you do not want to clear the database, please comment out line 15-19 in "Seed.cs"
+
+6. Add the .env file to the client folder, below is a example .env file
 
 ```
 REACT_APP_SERVER_URL=https://localhost:8000
