@@ -91,7 +91,6 @@ const PCNavigationPanel: FC<NavigationPanelProps> = ({navOptions, onGoHome}) => 
           </Box>
         </Box>
       </Drawer>
-      <ThemeSelectorModal open={showThemeSelector} onClose={() => setShowThemeSelector(false)}/>
     </Box>
   )
 }

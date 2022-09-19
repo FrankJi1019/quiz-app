@@ -2,6 +2,8 @@ import {Box, Menu, MenuItem, styled, SxProps} from "@mui/material"
 import React, {FC, ReactNode, useMemo, useState} from "react";
 import {useAuth} from "../Providers/AuthProvider";
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
+import {useDispatch} from "react-redux";
+import {showModal} from "../Slices/showThemeSelectorSlice";
 
 interface PageProps {
   sx?: SxProps
@@ -24,7 +26,9 @@ const ProfileAvatar = styled(Box)({
 
 const Page: FC<PageProps> = ({sx, children}) => {
 
+  const dispatch = useDispatch()
   const { getCurrentUser, logout } = useAuth()
+
   const username = useMemo(
     () => {
       const user = getCurrentUser()
@@ -38,7 +42,6 @@ const Page: FC<PageProps> = ({sx, children}) => {
   )
 
   const [menuAnchor, setMenuAnchor] = useState(null)
-  const [showThemeSelector, setShowThemeSelector] = useState(false)
 
   return (
     <Box
@@ -96,7 +99,7 @@ const Page: FC<PageProps> = ({sx, children}) => {
                 onMouseLeave: () => setMenuAnchor(null)
               }}
             >
-              <MenuItem onClick={() => setShowThemeSelector(true)}>Change Theme</MenuItem>
+              <MenuItem onClick={() => dispatch(showModal())}>Change Theme</MenuItem>
               <MenuItem onClick={logout}>
                 Log Out
               </MenuItem>

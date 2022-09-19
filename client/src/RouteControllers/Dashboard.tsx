@@ -26,8 +26,15 @@ import NavigationPanel from "../Pages/NavigationPanel"
 import UserQuizPage from "../Pages/UserQuizPage"
 import AttemptedQuizListPage from "../Pages/AttemptedQuizListPage";
 import PastSessionPage from "../Pages/PastSessionPage";
+import ThemeSelectorModal from "../Components/ThemeSelectorModal";
+import {useDispatch, useSelector} from "react-redux";
+import {hideModal} from "../Slices/showThemeSelectorSlice";
 
 const Dashboard = () => {
+
+  const dispatch = useDispatch()
+  const showModal = useSelector(state => (state as {showThemeSelector: boolean}).showThemeSelector)
+
   return (
     <Box
       sx={{
@@ -55,6 +62,10 @@ const Dashboard = () => {
         <Route path={getPastSessionPageURL()} element={<PastSessionPage />} />
         <Route path={"*"} element={<Navigate to={getHomePageURL()} />} />
       </Routes>
+      <ThemeSelectorModal
+        open={showModal}
+        onClose={() => dispatch(hideModal())}
+      />
     </Box>
   )
 }
