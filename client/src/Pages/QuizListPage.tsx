@@ -29,7 +29,7 @@ const QuizListPage = () => {
   const quizzes = data as Array<IQuiz>
 
   return (
-    <Page sx={{ padding: { xs: "10px", md: "20px" } }}>
+    <Page sx={{ padding: { xs: "10px", md: "10px 30px" } }}>
 
       <Box sx={{display: topic != null ? "block" : "none"}}>
         <PageTitle data={topic as string} />

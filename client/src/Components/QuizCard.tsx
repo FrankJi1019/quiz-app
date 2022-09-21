@@ -22,7 +22,7 @@ const QuizCard: FC<IProps> = ({ quiz, onClick, onDelete}) => {
       sm={6}
       md={4}
       sx={{
-        padding: "15px"
+        padding: "0 15px 25px"
       }}
     >
       <Box

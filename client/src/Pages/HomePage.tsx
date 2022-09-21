@@ -25,11 +25,9 @@ const HomePage = () => {
     <Page
       sx={{
         width: "100%",
-        height: "100%",
         display: "flex",
         alignItems: "center",
-        flexDirection: "column",
-        overflowX: 'hidden'
+        flexDirection: "column"
       }}
     >
       <Box

@@ -23,7 +23,7 @@ const UserQuizPage = () => {
   const quizzes = quizzesFetch.data as Array<IQuiz>
 
   return (
-    <Page sx={{ padding: { xs: "20px", md: "40px" } }}>
+    <Page sx={{ padding: { xs: "10px", md: "10px 30px" } }}>
       <Box>
         <PageTitle data={"Quizzes that you created"} />
       </Box>

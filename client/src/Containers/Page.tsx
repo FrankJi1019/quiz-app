@@ -49,7 +49,8 @@ const Page: FC<PageProps> = ({sx, children}) => {
         flex: 1,
         display: 'flex',
         flexDirection: 'column',
-        height: '100%'
+        minHeight: '100%',
+        overflowX: 'hidden'
       }}
     >
       <Box

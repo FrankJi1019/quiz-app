@@ -21,7 +21,7 @@ const AttemptedQuizListPage = () => {
   const data = attemptedQuizzesFetch.data as Array<IQuiz>
 
   return (
-    <Page sx={{ padding: { xs: "20px", md: "40px" } }}>
+    <Page sx={{ padding: { xs: "10px", md: "10px 30px" } }}>
       <Box>
         <PageTitle data={"You have attempted"} />
       </Box>
