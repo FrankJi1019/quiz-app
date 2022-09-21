@@ -2,9 +2,17 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="88d1d2c7-6a39-4e3d-a86e-efff11763a3b" name="Changes" comment="feat: a usable UI is completed">
-      <change beforePath="$PROJECT_DIR$/../README.md" beforeDir="false" afterPath="$PROJECT_DIR$/../README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Server/Server/Server/Seed.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../Server/Server/Server/Seed.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Assets/background.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Components/TopicList.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Server/Server/Server/Controllers/QuizController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../Server/Server/Server/Controllers/QuizController.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Server/Server/Server/Controllers/TopicController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../Server/Server/Server/Controllers/TopicController.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Server/Server/Server/Repositories/QuizRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../Server/Server/Server/Repositories/QuizRepository.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Server/Server/Server/Repositories/TopicRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../Server/Server/Server/Repositories/TopicRepository.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Api/QuizAPI.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/Api/QuizAPI.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Api/TopicAPI.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/Api/TopicAPI.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Components/SearchBar.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/Components/SearchBar.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Pages/HomePage.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/Pages/HomePage.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -49,7 +57,7 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../../../../work/Centrapass/Power'd/admin-portal" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/Asset" />
     <property name="list.type.of.created.stylesheet" value="CSS" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.standard" value="true" />
@@ -62,11 +70,11 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\self-study\C#\Quiz App\quiz-app\client\src\Asset" />
       <recent name="D:\self-study\C#\Quiz System\quiz-system\client\src\Themes" />
       <recent name="D:\self-study\C#\Quiz System\quiz-system\client\src\Components\QuestionEditPage" />
       <recent name="D:\self-study\C#\Quiz System\quiz-system\client\src\Components\UserQuizPage" />
       <recent name="D:\self-study\C#\Quiz System\quiz-system\client\src\Components\AllQuizPage" />
-      <recent name="D:\self-study\C#\Quiz System\quiz-system\client\src\Pages\LandingPage" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="D:\self-study\C#\Quiz App\quiz-app\client\src\Pages" />
@@ -198,6 +206,10 @@
       <workItem from="1663405576711" duration="183000" />
       <workItem from="1663486855116" duration="6157000" />
       <workItem from="1663538217649" duration="26000" />
+      <workItem from="1663573826311" duration="5290000" />
+      <workItem from="1663668399503" duration="2515000" />
+      <workItem from="1663702509751" duration="4000" />
+      <workItem from="1663720860420" duration="2805000" />
     </task>
     <task id="LOCAL-00001" summary="feat: a usable UI is completed">
       <created>1658825818092</created>

@@ -69,3 +69,10 @@ export const useDeleteQuiz = () => {
   })
 }
 
+export const useFetchTopQuizzes = () : UseQueryResult<Array<IQuiz>> => {
+  return useQuery(['top pick quizzes'], async () => {
+    const {data} = await axios.get(`${constants.general.backend}/quizzes/top-picks`)
+    return data
+  })
+}
+

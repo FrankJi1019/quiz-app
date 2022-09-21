@@ -139,4 +139,21 @@ public class QuizRepository {
         return quizzes;
     }
 
+    public ICollection<Quiz> GetTopPicks(int limit) {
+        return this._context.Quizzes
+            .OrderByDescending(x => x.Sessions.Count)
+            .Select(x => new Quiz {
+                Id = x.Id,
+                Name = x.Name,
+                Description = x.Description,
+                CreatedAt = x.CreatedAt,
+                QuestionCount = x.Questions.Count,
+                SessionCount = x.Sessions.Count,
+                AuthorName = x.Author.Username,
+                TopicList = x.Topics.Select(y => y.Name).ToList()
+            })
+            .Take(limit)
+            .ToList();
+    }
+
 }

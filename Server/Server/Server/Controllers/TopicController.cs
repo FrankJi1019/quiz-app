@@ -93,4 +93,11 @@ public class TopicController : Controller {
         return Ok(quizOutput);
     }
 
+    [HttpGet("top-picks")]
+    public IActionResult GetTopTopics() {
+        var topics = this._topicRepository.GetTopTopics(3);
+        var topicOutputs = topics.Select(t => t.Name).ToList();
+        return Ok(topicOutputs);
+    }
+
 }

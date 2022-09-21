@@ -59,7 +59,7 @@ const Page: FC<PageProps> = ({sx, children}) => {
             md: username && 'flex'
           },
           alignItems: 'center',
-          padding: '20px 50px 10px',
+          padding: '10px 50px 10px',
           justifyContent: 'flex-end'
         }}
       >

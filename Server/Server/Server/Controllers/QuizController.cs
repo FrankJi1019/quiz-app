@@ -187,6 +187,13 @@ public class QuizController : Controller {
         return Ok(answerOutputList);
     }
 
+    [HttpGet("top-picks")]
+    public IActionResult GetTopPicks() {
+        var quizzes = this._quizRepository.GetTopPicks(3);
+        var quizOutputs = this._mapper.Map<ICollection<QuizOutputDto>>(quizzes);
+        return Ok(quizOutputs);
+    }
+
     private void AppendTopicStringList(Quiz quiz, QuizOutputDto quizOutputDto) {
         quizOutputDto.Topics = quiz.Topics.Select(x => x.Name).ToList();
     }

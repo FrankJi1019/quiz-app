@@ -64,6 +64,14 @@ public class TopicRepository {
             .Where(x => !ignoreEmpty || x.Questions.Count != 0)
             .ToList();
         return quizzes;
-    } 
-    
+    }
+
+    public ICollection<Topic> GetTopTopics(int limit) {
+        var topics = this._context.Topics
+            .OrderByDescending(x => x.Quizzes.Count)
+            .Take(limit)
+            .ToList();
+        return topics;
+    }
+
 }
