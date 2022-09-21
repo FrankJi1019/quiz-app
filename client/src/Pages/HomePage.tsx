@@ -1,6 +1,6 @@
 import Page from "../Containers/Page"
 import React from "react"
-import {Box, Typography, useTheme} from "@mui/material"
+import {Box, Slide, Typography, useTheme} from "@mui/material"
 import {createSearchParams, useNavigate} from "react-router-dom"
 import {getQuizIntroPageURL, getQuizListPageURL} from "../routes"
 import background from "../Assets/background.png"
@@ -104,12 +104,18 @@ const HomePage = () => {
         }}
       >
         <PageTitle data="Top Picks" />
-        <QuizList
-          quizzes={quizzes}
-          onQuizClick={(quiz) => navigate({
-            pathname: getQuizIntroPageURL(quiz.id)
-          })}
-        />
+        <Box sx={{overflow: 'hidden'}}>
+          <Slide in direction="down">
+            <Box>
+              <QuizList
+                quizzes={quizzes}
+                onQuizClick={(quiz) => navigate({
+                  pathname: getQuizIntroPageURL(quiz.id)
+                })}
+              />
+            </Box>
+          </Slide>
+        </Box>
       </Box>
     </Page>
   )

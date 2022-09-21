@@ -1,6 +1,6 @@
 import React from "react"
 import Page from "../Containers/Page"
-import { Box, useTheme } from "@mui/material"
+import {Box, Slide, useTheme} from "@mui/material"
 import {useNavigate, useParams} from "react-router-dom"
 import { IQuiz } from "../types/IQuiz"
 import LoadingPage from "./LoadingPage"
@@ -27,14 +27,18 @@ const UserQuizPage = () => {
       <Box>
         <PageTitle data={"Quizzes that you created"} />
       </Box>
-      <Box>
-        <QuizList
-          quizzes={quizzes}
-          onQuizClick={(quiz) => navigate(getQuizManagingPageURL(quiz.id))}
-          onQuizDelete={(quiz) => {
-            deleteQuizMutation.mutateAsync(quiz.id).then(() => quizzesFetch.refetch())
-          }}
-        />
+      <Box sx={{overflow: "hidden"}}>
+        <Slide in direction="down">
+          <Box>
+            <QuizList
+              quizzes={quizzes}
+              onQuizClick={(quiz) => navigate(getQuizManagingPageURL(quiz.id))}
+              onQuizDelete={(quiz) => {
+                deleteQuizMutation.mutateAsync(quiz.id).then(() => quizzesFetch.refetch())
+              }}
+            />
+          </Box>
+        </Slide>
       </Box>
     </Page>
   )

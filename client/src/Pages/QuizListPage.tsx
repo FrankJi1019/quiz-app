@@ -8,7 +8,7 @@ import LoadingPage from "./LoadingPage"
 import {useNavigate, useSearchParams} from "react-router-dom"
 import QuizList from "../Components/QuizList";
 import Page from "../Containers/Page";
-import {Box} from "@mui/material";
+import {Box, Fade, Slide} from "@mui/material";
 import SearchBar from "../Components/SearchBar";
 import PageTitle from "../Components/PageTitle";
 import {getQuizIntroPageURL} from "../routes";
@@ -35,13 +35,26 @@ const QuizListPage = () => {
         <PageTitle data={topic as string} />
       </Box>
 
-      <Box sx={{display: keyword != null ? "block" : "none"}}>
-        <SearchBar initValue={keyword as string} onSearch={(data) => setSearchParams({keyword: data})} />
+      <Box
+        sx={{
+          display: keyword != null ? "flex" : "none",
+          justifyContent: 'center',
+          mb: "10px"
+        }}
+      >
+        <Box sx={{width: "70%"}}>
+          <SearchBar initValue={keyword as string} onSearch={(data) => setSearchParams({keyword: data})} />
+        </Box>
       </Box>
 
-      <Box>
-        <QuizList quizzes={quizzes} onQuizClick={(quiz) => navigate(getQuizIntroPageURL(quiz.id))} />
+      <Box sx={{overflow: 'hidden', paddingY: "5px"}}>
+        <Slide in direction="down">
+          <Box>
+            <QuizList quizzes={quizzes} onQuizClick={(quiz) => navigate(getQuizIntroPageURL(quiz.id))} />
+          </Box>
+        </Slide>
       </Box>
+
 
     </Page>
   )

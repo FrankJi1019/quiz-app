@@ -73,8 +73,14 @@ const QuizCard: FC<IProps> = ({ quiz, onClick, onDelete}) => {
           }}
         >
           <Box>{quiz.questionCount} Questions</Box>
-          <CircleIcon sx={{fontSize: "7px", marginX: "7px"}} />
-          <Box>{quiz.sessionCount} Attempts</Box>
+          {
+            Boolean(quiz.sessionCount) && (
+              <>
+                <CircleIcon sx={{fontSize: "7px", marginX: "7px"}} />
+                <Box>{quiz.sessionCount} Attempts</Box>
+              </>
+            )
+          }
         </Box>
         <Box sx={{display: 'flex', flexDirection: 'row-reverse', mt: "5px"}}>
           <Button

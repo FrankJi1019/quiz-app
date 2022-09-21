@@ -1,8 +1,8 @@
-import React, {useMemo} from 'react'
+import React from 'react'
 import {useNavigate, useParams} from "react-router-dom";
 import Page from "../Containers/Page";
 import PageTitle from "../Components/PageTitle";
-import {Box} from "@mui/material";
+import {Box, Slide} from "@mui/material";
 import {useFetchAttemptedQuizzes} from "../Api/UserAPI";
 import LoadingPage from "./LoadingPage";
 import {IQuiz} from "../types/IQuiz";
@@ -25,11 +25,15 @@ const AttemptedQuizListPage = () => {
       <Box>
         <PageTitle data={"You have attempted"} />
       </Box>
-      <Box>
-        <QuizList
-          quizzes={data}
-          onQuizClick={(quiz: IQuiz) => navigate(getPastSessionPageURL(quiz.id))}
-        />
+      <Box sx={{overflow: "hidden"}}>
+        <Slide in direction="down">
+          <Box>
+            <QuizList
+              quizzes={data.map(q => ({...q, sessionCount: 0}))}
+              onQuizClick={(quiz: IQuiz) => navigate(getPastSessionPageURL(quiz.id))}
+            />
+          </Box>
+        </Slide>
       </Box>
     </Page>
   )

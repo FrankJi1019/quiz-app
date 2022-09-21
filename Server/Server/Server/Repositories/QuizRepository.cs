@@ -121,7 +121,7 @@ public class QuizRepository {
 
     public ICollection<Quiz> GetUserAttemptedQuizzes(string username) {
         var quizzes = this._context.Sessions
-            .Where(x => x.User.Username == username)
+            .Where(x => x.User.Username == username && x.State == SessionState.FINISHED)
             .Include(x => x.Quiz)
             .Select(x => x.Quiz)
             .Distinct()

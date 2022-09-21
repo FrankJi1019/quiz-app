@@ -72,6 +72,11 @@ const baseTheme: BaseTheme  = {
       fontSize: "16px",
       fontWeight: "800"
     }
+  },
+  transitions: {
+    duration: {
+      enteringScreen: 500
+    }
   }
 }
 
