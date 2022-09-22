@@ -1,4 +1,4 @@
-import React, {FC, useMemo, useState} from "react"
+import React, {FC, useMemo} from "react"
 import {
   Box,
   Drawer,
@@ -7,14 +7,11 @@ import {
   useTheme
 } from "@mui/material"
 import {NavigationPanelProps} from "./NavigationPanel"
-import ThemeSelectorModal from "../Components/ThemeSelectorModal";
 
 export const drawerWidth = "250px"
 
 const PCNavigationPanel: FC<NavigationPanelProps> = ({navOptions, onGoHome}) => {
   const theme = useTheme()
-
-  const [showThemeSelector, setShowThemeSelector] = useState(false)
 
   const NavOption = useMemo(() => styled(Box)({
     cursor: "pointer",
@@ -65,6 +62,7 @@ const PCNavigationPanel: FC<NavigationPanelProps> = ({navOptions, onGoHome}) => 
                 cursor: "pointer",
                 textAlign: "center",
                 color: theme.palette.primary.dark,
+                textShadow: "5px 5px rgba(0,0,0,.25)"
               }}
             >
               {" " + "QUIZZY" + " "}

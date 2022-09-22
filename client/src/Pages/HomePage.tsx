@@ -7,7 +7,7 @@ import background from "../Assets/background.png"
 import SearchBar from "../Components/SearchBar";
 import {useFetchTopTopics} from "../Api/TopicAPI";
 import TopicList from "../Components/TopicList";
-import PageTitle from "../Components/PageTitle";
+import Title from "../Components/Title";
 import {useFetchTopQuizzes} from "../Api/QuizAPI";
 import {IQuiz} from "../types/IQuiz";
 import QuizList from "../Components/QuizList";
@@ -103,7 +103,7 @@ const HomePage = () => {
           boxSizing: 'border-box',
         }}
       >
-        <PageTitle data="Top Picks" />
+        <Title data="Top Picks" />
         <Box sx={{overflow: 'hidden'}}>
           <Slide in direction="down">
             <Box>

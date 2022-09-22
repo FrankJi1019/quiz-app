@@ -194,6 +194,17 @@ public class QuizController : Controller {
         return Ok(quizOutputs);
     }
 
+    [HttpGet("{id}/related-quizzes")]
+    public IActionResult GetRelatedQuizzes(int id) {
+        var quizzes = this._quizRepository.GetRelatedQuizzes(id);
+        if (quizzes == null) {
+            return NotFound("Quiz does not exist");
+        } else {
+            var quizOutput = this._mapper.Map<ICollection<QuizOutputDto>>(quizzes);
+            return Ok(quizOutput);
+        }
+    }
+
     private void AppendTopicStringList(Quiz quiz, QuizOutputDto quizOutputDto) {
         quizOutputDto.Topics = quiz.Topics.Select(x => x.Name).ToList();
     }

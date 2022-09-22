@@ -10,7 +10,7 @@ import QuizList from "../Components/QuizList";
 import Page from "../Containers/Page";
 import {Box, Fade, Slide} from "@mui/material";
 import SearchBar from "../Components/SearchBar";
-import PageTitle from "../Components/PageTitle";
+import Title from "../Components/Title";
 import {getQuizIntroPageURL} from "../routes";
 
 const QuizListPage = () => {
@@ -32,7 +32,7 @@ const QuizListPage = () => {
     <Page sx={{ padding: { xs: "10px", md: "10px 30px" } }}>
 
       <Box sx={{display: topic != null ? "block" : "none"}}>
-        <PageTitle data={topic as string} />
+        <Title data={topic as string} />
       </Box>
 
       <Box

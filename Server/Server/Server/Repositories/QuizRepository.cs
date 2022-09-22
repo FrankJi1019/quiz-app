@@ -156,4 +156,30 @@ public class QuizRepository {
             .ToList();
     }
 
+    public ICollection<Quiz>? GetRelatedQuizzes(int id) {
+        var quiz = this._context
+            .Quizzes
+            .Where(x => x.Id == id)
+            .Include(x => x.Topics)
+            .Include(x => x.Questions)
+            .FirstOrDefault();
+        if (quiz == null) return null;
+        return this._context
+            .Quizzes
+            .Where(x => x.Topics.Any(t => quiz.Topics.Contains(t)))
+            .Where(x => x.Questions.Count != 0)
+            .Where(x => x.Id != id)
+            .Select(x => new Quiz {
+                Id = x.Id,
+                Name = x.Name,
+                Description = x.Description,
+                CreatedAt = x.CreatedAt,
+                QuestionCount = x.Questions.Count,
+                SessionCount = x.Sessions.Count,
+                AuthorName = x.Author.Username,
+                TopicList = x.Topics.Select(y => y.Name).ToList()
+            })
+            .ToList();
+    }
+
 }

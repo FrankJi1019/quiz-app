@@ -3,11 +3,14 @@ import {Box, Typography, useTheme} from "@mui/material";
 
 interface PageTitleProps {
   data: string
+  variant?: "h1" | "h2" | "h3" | "h4" | "h5" | "h6"
 }
 
-const PageTitle: FC<PageTitleProps> = ({data}) => {
+const Title: FC<PageTitleProps> = ({data, variant}) => {
 
   const theme = useTheme()
+
+  const actualVariant = variant ? variant : "h1"
 
   return (
     <Box
@@ -18,12 +21,12 @@ const PageTitle: FC<PageTitleProps> = ({data}) => {
       }}
     >
       <Typography
-        variant="h1"
+        variant={actualVariant}
         sx={{
           color: theme.palette.primary.dark,
           fontSize: {
             xs: "25px",
-            md: theme.typography.h1.fontSize
+            md: theme.typography[actualVariant].fontSize
           }
         }}
       >
@@ -33,4 +36,4 @@ const PageTitle: FC<PageTitleProps> = ({data}) => {
   )
 }
 
-export default PageTitle
+export default Title

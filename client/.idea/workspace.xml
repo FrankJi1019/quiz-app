@@ -3,11 +3,14 @@
   <component name="ChangeListManager">
     <list default="true" id="88d1d2c7-6a39-4e3d-a86e-efff11763a3b" name="Changes" comment="feat: a usable UI is completed">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Components/QuizCard.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/Components/QuizCard.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Api/QuizAPI.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/Api/QuizAPI.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Components/PageTitle.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/Components/Title.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Pages/AttemptedQuizListPage.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/Pages/AttemptedQuizListPage.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Pages/HomePage.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/Pages/HomePage.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Pages/PCNavigationPanel.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/Pages/PCNavigationPanel.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Pages/QuizIntroPage.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/Pages/QuizIntroPage.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Pages/QuizListPage.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/Pages/QuizListPage.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Themes/baseTheme.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/Themes/baseTheme.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Pages/UserQuizPage.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/Pages/UserQuizPage.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -59,7 +62,7 @@
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
     <property name="node.js.selected.package.standard" value="" />
     <property name="nodejs_package_manager_path" value="npm" />
-    <property name="settings.editor.selected.configurable" value="settings.javascript.linters.eslint" />
+    <property name="settings.editor.selected.configurable" value="reference.settingsdialog.IDE.editor.colors.JavaScript" />
     <property name="ts.external.directory.path" value="D:\self-study\C#\Quiz App\quiz-app\client\node_modules\typescript\lib" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
@@ -206,7 +209,18 @@
       <workItem from="1663702509751" duration="4000" />
       <workItem from="1663720860420" duration="3983000" />
       <workItem from="1663735372179" duration="11000" />
-      <workItem from="1663748053262" duration="1117000" />
+      <workItem from="1663748053262" duration="3394000" />
+      <workItem from="1663757251786" duration="10000" />
+      <workItem from="1663802592108" duration="116000" />
+      <workItem from="1663802732276" duration="184000" />
+      <workItem from="1663802940426" duration="89000" />
+      <workItem from="1663803051769" duration="255000" />
+      <workItem from="1663803403366" duration="411000" />
+      <workItem from="1663804243441" duration="420000" />
+      <workItem from="1663807872218" duration="1142000" />
+      <workItem from="1663828716321" duration="3987000" />
+      <workItem from="1663838633860" duration="1065000" />
+      <workItem from="1663845233757" duration="1901000" />
     </task>
     <task id="LOCAL-00001" summary="feat: a usable UI is completed">
       <created>1658825818092</created>

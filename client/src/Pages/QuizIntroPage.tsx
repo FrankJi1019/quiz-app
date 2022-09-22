@@ -1,17 +1,31 @@
 import Page from "../Containers/Page"
 import { IQuiz } from "../types/IQuiz"
-import React, {useCallback} from "react"
-import { Box, Button, Typography } from "@mui/material"
+import React, {useCallback, FC} from "react"
+import {Box, Button, Typography, useTheme} from "@mui/material"
 import moment from "moment"
-import BackButton from "../Components/BackButton"
-import {getQuizListPageURL, getActiveSessionPageURL} from "../routes"
-import Topic from "../Components/Topic"
+import {getQuizListPageURL, getActiveSessionPageURL, getQuizIntroPageURL} from "../routes"
 import LoadingPage from "./LoadingPage"
-import {useFetchQuiz, useFetchQuizQuestionCount} from "../Api/QuizAPI"
-import { useNavigate, useParams } from "react-router-dom"
+import {useFetchQuiz, useFetchQuizQuestionCount, useFetchRelatedQuizzes} from "../Api/QuizAPI"
+import {createSearchParams, useNavigate, useParams} from "react-router-dom"
 import {useCreateSessionMutation, useFetchActiveSessionByQuizAndUser} from "../Api/SessionAPI";
 import {useAuth} from "../Providers/AuthProvider";
 import {ISession} from "../types/Session";
+import TopicList from "../Components/TopicList";
+import Title from "../Components/Title";
+import QuizList from "../Components/QuizList";
+
+const InfoCard: FC<{name: string, value: string}> = ({name, value}) => {
+  return (
+    <Box>
+      <Box sx={{fontSize: "25px", textAlign: "center"}}>
+        {value}
+      </Box>
+      <Box>
+        {name}
+      </Box>
+    </Box>
+  )
+}
 
 const QuizIntroPage = () => {
   const { quizId } = useParams()
@@ -19,11 +33,13 @@ const QuizIntroPage = () => {
   const { getCurrentUser } = useAuth()
 
   const username = getCurrentUser()!.getUsername()
+  const theme = useTheme()
 
   const quizFetch = useFetchQuiz(Number(quizId))
   const questionCountFetch = useFetchQuizQuestionCount(Number(quizId))
   const sessionFetch = useFetchActiveSessionByQuizAndUser(Number(quizId), username)
   const createSessionMutation = useCreateSessionMutation()
+  const relatedQuizFetch = useFetchRelatedQuizzes(Number(quizId))
 
   const noSessionButton = useCallback((disabled: boolean) => (
     <Button
@@ -37,7 +53,7 @@ const QuizIntroPage = () => {
       }}
       disabled={disabled}
     >
-      Start
+      Start Quiz
     </Button>
   ), [quizId])
 
@@ -51,7 +67,8 @@ const QuizIntroPage = () => {
         Resume Quiz
       </Button>
       <Button
-        variant="contained"
+        sx={{ml: "10px"}}
+        variant="outlined"
         onClick={() => {
           createSessionMutation
             .mutateAsync({quizId: Number(quizId), username})
@@ -72,58 +89,112 @@ const QuizIntroPage = () => {
   const questionCount = questionCountFetch.data as number
 
   return (
-    <Page sx={{ padding: { xs: "20px", md: "50px" } }}>
-      <Box>
-        <BackButton url={getQuizListPageURL()} />
-      </Box>
-      <Typography variant="h4" sx={{ textAlign: "center", mb: "20px" }}>
-        {quiz.name}
-      </Typography>
+    <Page
+      sx={{
+        padding: {
+          xs: "20px",
+          md: "20px 30px"
+        }
+      }}
+    >
       <Box
         sx={{
-          pb: "10px",
-          mb: "10px",
-          borderBottom: "2px solid #ccc"
+          boxShadow: "0 0 5px 3px rgba(0,0,0,.3)",
+          padding: "20px 30px",
+          borderRadius: "7px",
+          marginX: "20px"
         }}
       >
-        <Typography variant="body1">{`Created by ${quiz.authorName}`}</Typography>
-        <Typography variant="body1">
-          {`Created on ${moment(new Date(quiz.createdAt)).format(
-            "YYYY-MM-DD"
-          )}`}
-        </Typography>
-      </Box>
-      <Box sx={{ mb: "50px" }}>{quiz.description}</Box>
-      <Box sx={{ mb: "20px" }}>
-        {questionCount !== 0
-          ? `Number of question: ${questionCount}`
-          : "The author has not published any questions to this quiz"}
-      </Box>
-      <Box>
-        {
-          quiz.topics.map((topic) => (
-            <Topic
-              text={topic}
-              key={topic}
-              onClick={(topic) => navigate(`${getQuizListPageURL()}?topic=${topic}`)}
+        <Box
+          sx={{
+            mb: "20px",
+            display: "flex",
+            alignItems: "center",
+            paddingX: "10px"
+          }}
+        >
+          <Box sx={{mr: "10px", color: theme.palette.grey.A700}}>
+            <Typography variant="h2">
+              {quiz.name}
+            </Typography>
+          </Box>
+          <Box>
+            <TopicList
+              topics={quiz.topics}
+              onClick={(topic) => navigate({
+                pathname: getQuizListPageURL(),
+                search: createSearchParams({topic}).toString()
+              })}
             />
-          ))
-        }
+          </Box>
+        </Box>
+        <Box
+          sx={{
+            display: "flex",
+            justifyContent: "space-between",
+            borderBottom: "2px solid #bbb",
+            color: "#666",
+            paddingX: "10px"
+          }}
+        >
+          <Box>
+            <Box sx={{mb: "5px"}}>
+              {quiz.authorName}
+            </Box>
+            <Box sx={{mb: "20px"}}>
+              Created on {moment(quiz.createdAt).format("DD/MM/YYYY")}
+            </Box>
+          </Box>
+          <Box
+            sx={{
+              display: "flex"
+            }}
+          >
+            <Box sx={{mr: "20px"}}>
+              <InfoCard name="questions" value={`${quiz.questionCount}`} />
+            </Box>
+            <Box>
+              <InfoCard name="attempts" value={`${quiz.sessionCount}`} />
+            </Box>
+          </Box>
+        </Box>
+        <Box sx={{mt: "20px", paddingX: "10px"}}>
+          <Typography variant="body1">
+            {quiz.description}
+          </Typography>
+        </Box>
+        <Box
+          sx={{
+            mt: "20px",
+            display: "flex",
+            justifyContent: "right"
+          }}
+        >
+          {
+            sessionFetch.isLoading || (
+              (sessionFetch.data as Array<ISession>).length == 0 ?
+                noSessionButton(questionCount === 0) :
+                sessionExistsButton((sessionFetch.data as Array<ISession>)[0], questionCount === 0)
+            )
+          }
+        </Box>
       </Box>
-      <Box
-        sx={{
-          display: "flex",
-          mt: "20px",
-          justifyContent: "flex-end"
-        }}
-      >
-        {
-          sessionFetch.isLoading || (
-            (sessionFetch.data as Array<ISession>).length == 0 ?
-              noSessionButton(questionCount === 0) :
-              sessionExistsButton((sessionFetch.data as Array<ISession>)[0], questionCount === 0)
-          )
-        }
+      <Box sx={{margin: "50px 20px"}}>
+        <Box>
+          <Title data="Some other quizzes you may like" variant="h4" />
+        </Box>
+        <Box>
+          {
+            relatedQuizFetch.data && (
+              <QuizList
+                quizzes={relatedQuizFetch.data as Array<IQuiz>}
+                onQuizClick={(quiz) => navigate({
+                  pathname: getQuizIntroPageURL(quiz.id)
+                })}
+              />
+            )
+          }
+        </Box>
       </Box>
     </Page>
   )

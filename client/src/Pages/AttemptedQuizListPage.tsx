@@ -1,7 +1,7 @@
 import React from 'react'
 import {useNavigate, useParams} from "react-router-dom";
 import Page from "../Containers/Page";
-import PageTitle from "../Components/PageTitle";
+import Title from "../Components/Title";
 import {Box, Slide} from "@mui/material";
 import {useFetchAttemptedQuizzes} from "../Api/UserAPI";
 import LoadingPage from "./LoadingPage";
@@ -23,7 +23,7 @@ const AttemptedQuizListPage = () => {
   return (
     <Page sx={{ padding: { xs: "10px", md: "10px 30px" } }}>
       <Box>
-        <PageTitle data={"You have attempted"} />
+        <Title data={"You have attempted"} />
       </Box>
       <Box sx={{overflow: "hidden"}}>
         <Slide in direction="down">

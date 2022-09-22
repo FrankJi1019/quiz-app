@@ -8,7 +8,7 @@ import {useFetchUserQuizzes} from "../Api/UserAPI"
 import QuizList from "../Components/QuizList";
 import {getQuizManagingPageURL} from "../routes";
 import {useDeleteQuiz} from "../Api/QuizAPI";
-import PageTitle from "../Components/PageTitle";
+import Title from "../Components/Title";
 
 const UserQuizPage = () => {
 
@@ -25,7 +25,7 @@ const UserQuizPage = () => {
   return (
     <Page sx={{ padding: { xs: "10px", md: "10px 30px" } }}>
       <Box>
-        <PageTitle data={"Quizzes that you created"} />
+        <Title data={"Quizzes that you created"} />
       </Box>
       <Box sx={{overflow: "hidden"}}>
         <Slide in direction="down">

@@ -76,3 +76,10 @@ export const useFetchTopQuizzes = () : UseQueryResult<Array<IQuiz>> => {
   })
 }
 
+export const useFetchRelatedQuizzes = (id: number): UseQueryResult<Array<IQuiz>> => {
+  return useQuery(['related quizzes', id], async () => {
+    const {data} = await axios.get(`${constants.general.backend}/quizzes/${id}/related-quizzes`)
+    return data
+  })
+}
+
