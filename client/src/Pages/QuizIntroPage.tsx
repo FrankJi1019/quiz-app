@@ -1,7 +1,7 @@
 import Page from "../Containers/Page"
 import { IQuiz } from "../types/IQuiz"
 import React, {useCallback, FC} from "react"
-import {Box, Button, Typography, useTheme} from "@mui/material"
+import {Box, Button, Slide, Typography, useTheme} from "@mui/material"
 import moment from "moment"
 import {getQuizListPageURL, getActiveSessionPageURL, getQuizIntroPageURL} from "../routes"
 import LoadingPage from "./LoadingPage"
@@ -183,17 +183,22 @@ const QuizIntroPage = () => {
         <Box>
           <Title data="Some other quizzes you may like" variant="h4" />
         </Box>
-        <Box>
-          {
-            relatedQuizFetch.data && (
-              <QuizList
-                quizzes={relatedQuizFetch.data as Array<IQuiz>}
-                onQuizClick={(quiz) => navigate({
-                  pathname: getQuizIntroPageURL(quiz.id)
-                })}
-              />
-            )
-          }
+        <Box sx={{overflow: 'hidden'}}>
+          <Slide in direction="down">
+            <Box>
+              {
+                relatedQuizFetch.data && (
+                  <QuizList
+                    quizzes={relatedQuizFetch.data as Array<IQuiz>}
+                    onQuizClick={(quiz) => navigate({
+                      pathname: getQuizIntroPageURL(quiz.id)
+                    })}
+                  />
+                )
+              }
+            </Box>
+          </Slide>
+
         </Box>
       </Box>
     </Page>

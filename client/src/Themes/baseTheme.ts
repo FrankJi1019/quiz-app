@@ -27,7 +27,26 @@ const baseTheme: BaseTheme  = {
     MuiButton: {
       defaultProps: {
         variant: "contained"
-      }
+      },
+      variants: [
+        {
+          props: {variant: "outlined"},
+          style: {
+            textTransform: "none",
+            borderWidth: "2px",
+            "&:hover": {
+              borderWidth: "2px"
+            }
+          }
+        },
+        {
+          props: {variant: "contained"},
+          style: {
+            textTransform: "none",
+            borderWidth: "2px"
+          }
+        }
+      ]
     },
     MuiFormHelperText: {
       styleOverrides: {

@@ -8,9 +8,10 @@ import {useFetchQuestionsByQuizId} from "../Api/QuizAPI";
 
 interface QuestionProps {
   question: IQuestion
+  onClick: (question: IQuestion) => void
 }
 
-const QuestionOverview: FC<QuestionProps> = ({ question }) => {
+const QuestionOverview: FC<QuestionProps> = ({ question , onClick}) => {
   const theme = useTheme()
   const { quizId } = useParams()
 
@@ -19,6 +20,7 @@ const QuestionOverview: FC<QuestionProps> = ({ question }) => {
 
   return (
     <Card
+      onClick={() => onClick(question)}
       sx={{
         display: "flex",
         justifyContent: "space-between",

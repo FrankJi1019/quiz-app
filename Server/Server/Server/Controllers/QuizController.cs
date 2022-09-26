@@ -143,7 +143,7 @@ public class QuizController : Controller {
             quiz.Description = updateQuizDto.Description ?? quiz.Description;
             var updatedQuiz = this._quizRepository.UpdateQuiz(id, quiz);
             var quizOutput = this._mapper.Map<QuizOutputDto>(updatedQuiz);
-            this.AppendTopicStringList(updatedQuiz!, quizOutput);
+            quizOutput.Topics = this._topicRepository.GetQuizTopics(id).Select(t => t.Name).ToList();
             return Ok(quizOutput);
         }
     }
@@ -203,6 +203,22 @@ public class QuizController : Controller {
             var quizOutput = this._mapper.Map<ICollection<QuizOutputDto>>(quizzes);
             return Ok(quizOutput);
         }
+    }
+
+    [HttpPatch("{id}/add-topic/{topic}")]
+    public IActionResult AddTopic(int id, string topic) {
+        var quiz = this._quizRepository.AddTopicToQuiz(id, topic);
+        if (quiz == null) return NotFound("Quiz does not exist");
+        var quizOutput = this._mapper.Map<QuizOutputDto>(quiz);
+        return Ok(quizOutput);
+    }
+    
+    [HttpPatch("{id}/remove-topic/{topic}")]
+    public IActionResult RemoveTopic(int id, string topic) {
+        var quiz = this._quizRepository.RemoveTopicFromQuiz(id, topic);
+        if (quiz == null) return NotFound("Quiz does not exist");
+        var quizOutput = this._mapper.Map<QuizOutputDto>(quiz);
+        return Ok(quizOutput);
     }
 
     private void AppendTopicStringList(Quiz quiz, QuizOutputDto quizOutputDto) {

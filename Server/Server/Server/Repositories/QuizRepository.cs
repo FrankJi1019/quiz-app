@@ -84,22 +84,11 @@ public class QuizRepository {
         this._context.SaveChanges();
         return quiz;
     }
-
-    /**
-     * If a quiz with the id exists, update the quiz and return it
-     * If no quiz with the id exists, return null
-     */
+    
     public Quiz? UpdateQuiz(int id, Quiz updatedQuizValue) {
-        updatedQuizValue.Id = id;
-        var originalQuiz = this.GetOneById(id);
-        if (originalQuiz == null) {
-            return null;
-        } else {
-            this._context.Quizzes.Update(updatedQuizValue);
-            this._context.SaveChanges();
-            updatedQuizValue.Topics = originalQuiz.Topics;
-            return updatedQuizValue;
-        }
+        this._context.Update(updatedQuizValue);
+        this._context.SaveChanges();
+        return updatedQuizValue;
     }
 
     public ICollection<Question>? GetAllQuestions(int quizId) {
@@ -115,7 +104,19 @@ public class QuizRepository {
     }
 
     public ICollection<Quiz> GetQuizzesByUser(string user) {
-        var quizzes = this._context.Quizzes.Where(x => x.Author.Username == user).ToList();
+        var quizzes = this._context.Quizzes
+            .Where(x => x.Author.Username == user)
+            .Select(x => new Quiz {
+                Id = x.Id,
+                Name = x.Name,
+                Description = x.Description,
+                CreatedAt = x.CreatedAt,
+                QuestionCount = x.Questions.Count,
+                SessionCount = x.Sessions.Count,
+                AuthorName = x.Author.Username,
+                TopicList = x.Topics.Select(y => y.Name).ToList()
+            })
+            .ToList();
         return quizzes;
     }
 
@@ -180,6 +181,42 @@ public class QuizRepository {
                 TopicList = x.Topics.Select(y => y.Name).ToList()
             })
             .ToList();
+    }
+
+    public Quiz? AddTopicToQuiz(int quizId, string topicString) {
+        var topic = this._context.Topics.FirstOrDefault(x => x.Name == topicString);
+        var quiz = this._context.Quizzes
+            .Where(x => x.Id == quizId)
+            .Include(x => x.Topics)
+            .FirstOrDefault();
+        if (quiz == null) return null;
+        if (topic == null) {
+            topic = this._context.Topics.Add(new Topic {
+                Name = topicString
+            }).Entity;
+            this._context.SaveChanges();
+        }
+        if (quiz.Topics.Contains(topic)) return quiz;
+        quiz.Topics.Add(topic);
+        this._context.Update(quiz);
+        this._context.Update(topic);
+        this._context.SaveChanges();
+        return quiz;
+    }
+
+    public Quiz? RemoveTopicFromQuiz(int quizId, string topicString) {
+        var topic = this._context.Topics.FirstOrDefault(x => x.Name == topicString);
+        var quiz = this._context.Quizzes
+            .Where(x => x.Id == quizId)
+            .Include(x => x.Topics)
+            .FirstOrDefault();
+        if (quiz == null) return null;
+        if (topic == null) return null;
+        quiz.Topics.Remove(topic);
+        this._context.Update(quiz);
+        this._context.Update(topic);
+        this._context.SaveChanges();
+        return quiz;
     }
 
 }

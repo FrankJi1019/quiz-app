@@ -74,4 +74,8 @@ public class TopicRepository {
         return topics;
     }
 
+    public ICollection<Topic> GetQuizTopics(int quizId) {
+        return this._context.Topics.Where(t => t.Quizzes.Any(q => q.Id == quizId)).ToList();
+    }
+
 }

@@ -83,3 +83,18 @@ export const useFetchRelatedQuizzes = (id: number): UseQueryResult<Array<IQuiz>>
   })
 }
 
+export const useAddTopicToQuizMutation = () => {
+  return useMutation(async ({id, topic}: {id: number, topic: string}) => {
+    const {data} = await axios.patch(`${constants.general.backend}/quizzes/${id}/add-topic/${topic}`)
+    return data
+  })
+}
+
+export const useRemoveTopicToQuizMutation = () => {
+  return useMutation(async ({id, topic}: {id: number, topic: string}) => {
+    const {data} = await axios.patch(`${constants.general.backend}/quizzes/${id}/remove-topic/${topic}`)
+    return data
+  })
+}
+
+

@@ -28,6 +28,7 @@ public class QuestionRepository {
         var existingQuestion = this._context.Questions.FirstOrDefault(x => x.Equals(question));
         if (existingQuestion != null) return question;
         var entityEntry = this._context.Questions.Add(question);
+        this._context.Update(question.Quiz);
         this._context.SaveChanges();
         return entityEntry.Entity;
     }
