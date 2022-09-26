@@ -1,35 +1,36 @@
-import React, { useCallback, useState } from "react"
+import React, {useCallback, useState} from "react"
 import Page from "../Containers/Page"
 import {
   Box,
   Button,
+  Card,
   FormHelperText,
-  FormLabel,
-  styled,
-  TextField,
-  Typography,
-  useTheme
+  FormLabel, Grid, IconButton,
+  styled, Switch,
+  TextField
 } from "@mui/material"
-import { useFormik } from "formik"
+import {useFormik} from "formik"
 import * as yup from "yup"
-import { useUtil } from "../Providers/UtilProvider"
+import {useUtil} from "../Providers/UtilProvider"
 import {useCreateQuestionWithOptions} from "../Api/QuestionAPI"
-import { ICreateQuestionWithOptions } from "../types/IQuestion"
-import { useNavigate, useParams } from "react-router-dom"
-import { getQuizManagingPageURL } from "../routes"
+import {ICreateQuestionWithOptions} from "../types/IQuestion"
+import {useNavigate, useParams} from "react-router-dom"
+import {getQuizManagingPageURL} from "../routes"
 import CreatedOption from "../Components/CreatedOption"
+import AddIcon from "@mui/icons-material/Add";
 
 const InputBox = styled(Box)({
   marginBottom: "20px"
 })
 
 const QuestionCreationPage = () => {
-  const { forceRerender } = useUtil()
-  const { quizId } = useParams()
+  const {forceRerender} = useUtil()
+  const {quizId} = useParams()
   const navigate = useNavigate()
-  const theme = useTheme()
 
   const [option, setOption] = useState("")
+  const [addingOption, setAddingOption] = useState(false)
+  const [includeExplanation, setIncludeExplanation] = useState(false)
 
   const createQuestionMutation = useCreateQuestionWithOptions()
 
@@ -80,100 +81,144 @@ const QuestionCreationPage = () => {
   }, [option, formik])
 
   return (
-    <Page sx={{ padding: { xs: "20px", md: "20px 100px" } }}>
-      <Box
-        sx={{
-          display: "flex",
-          justifyContent: "center",
-          mb: "20px"
-        }}
-      >
-        <Typography
-          variant="h1"
-          sx={{
-            fontSize: {
-              xs: "25px",
-              md: theme.typography.h1.fontSize
-            }
-          }}
-        >
-          Create Question
-        </Typography>
-      </Box>
+    <Page sx={{padding: {xs: "20px", md: "20px 100px"}}}>
       <form onSubmit={formik.handleSubmit}>
         <InputBox>
-          <FormLabel>Question</FormLabel>
           <TextField
             name="content"
             onChange={formik.handleChange}
+            variant="standard"
+            placeholder="Type your question here..."
             error={
               Boolean(formik.touched.content) && Boolean(formik.errors.content)
             }
+            InputProps={{
+              disableUnderline: true,
+            }}
+            sx={{
+              border: "none",
+              "& input": {
+                fontWeight: "bold",
+                fontSize: "25px",
+                textAlign: "center"
+              }
+            }}
           />
           <FormHelperText
             sx={{
-              visibility:
-                formik.touched.content && Boolean(formik.errors.content)
-                  ? "visible"
-                  : "none"
+              visibility: formik.touched.content && Boolean(formik.errors.content) ? "visible" : "none"
             }}
           >
             {formik.touched.content && formik.errors.content}
           </FormHelperText>
         </InputBox>
         <InputBox>
-          {formik.values.options.map((option) => (
-            <CreatedOption
-              content={option.content}
-              isCorrect={option.isCorrect}
-              onToggleCorrect={() => {
-                formik.values.options.forEach(
-                  (option) => (option.isCorrect = false)
-                )
-                option.isCorrect = true
-                forceRerender()
-              }}
-            />
-          ))}
-          <Box>
-            <Box sx={{ display: "flex" }}>
-              <TextField
-                fullWidth={false}
-                placeholder={"OptionView " + (formik.values.options.length + 1)}
-                value={option}
-                onChange={(e) => setOption(e.target.value)}
-                error={
-                  Boolean(formik.touched.options) &&
-                  Boolean(formik.errors.options)
-                }
-                sx={{ flex: 1 }}
-              />
-              <Button variant="contained" onClick={addOption}>
-                Add option
-              </Button>
-            </Box>
-            <FormHelperText
-              sx={{
-                visibility:
-                  formik.touched.options && Boolean(formik.errors.options)
-                    ? "visible"
-                    : "none"
-              }}
-            >
-              {(formik.touched.options && formik.errors.options) as string}
-            </FormHelperText>
-          </Box>
+          <Grid container>
+            {
+              formik.values.options.map((option) => (
+                <Grid item xs={12} sm={6} md={4} sx={{padding: "10px"}}>
+                  <CreatedOption
+                    content={option.content}
+                    isCorrect={option.isCorrect}
+                    onToggleCorrect={() => {
+                      formik.values.options.forEach(
+                        (option) => (option.isCorrect = false)
+                      )
+                      option.isCorrect = true
+                      forceRerender()
+                    }}
+                  />
+                </Grid>
+              ))
+            }
+            {
+              addingOption && (
+                <Grid item xs={12} sm={6} md={4} sx={{padding: "10px"}}>
+                  <Card
+                    sx={{
+                      width: "100%",
+                      height: "100%",
+                      cursor: "pointer",
+                      borderRadius: "5px",
+                      transition: ".2s",
+                      display: "flex",
+                      alignItems: "center",
+                      padding: "0 15px",
+                      backgroundColor: "#F9F9F9",
+                      boxSizing: "border-box"
+                    }}
+                  >
+                    <TextField
+                      autoFocus
+                      variant="standard"
+                      InputProps={{disableUnderline: true}}
+                      placeholder="New option"
+                      value={option}
+                      onChange={(e) => setOption(e.target.value)}
+                      error={
+                        Boolean(formik.touched.options) &&
+                        Boolean(formik.errors.options)
+                      }
+                      onBlur={() => {
+                        addOption()
+                        setAddingOption(false)
+                      }}
+                    />
+                  </Card>
+                </Grid>
+              )
+            }
+            <Grid item xs={12} sm={6} md={4} sx={{padding: "10px"}}>
+              <Box
+                onClick={() => setAddingOption(true)}
+                sx={{
+                  width: "100%",
+                  cursor: "pointer",
+                  border: "2px dashed #ccc",
+                  borderRadius: "5px",
+                  transition: ".2s",
+                  display: "flex",
+                  alignItems: "center",
+                  padding: "9px",
+                  boxSizing: "border-box",
+                  "&:hover": {
+                    transform: "translateY(-3px)",
+                    borderColor: "primary.dark"
+                  }
+                }}
+              >
+                <IconButton>
+                  <AddIcon />
+                </IconButton>
+                <Box>
+                  New Option
+                </Box>
+              </Box>
+            </Grid>
+          </Grid>
         </InputBox>
         <InputBox>
-          <FormLabel>Explanation</FormLabel>
-          <TextField
-            multiline
-            rows={3}
-            name="explanation"
-            onChange={formik.handleChange}
+          <Switch
+            value={includeExplanation}
+            onChange={(e) => {
+              formik.setValues({...formik.values, explanation: ""})
+              setIncludeExplanation(e.target.checked)
+            }}
           />
+          <FormLabel>Add Explanation</FormLabel>
+          {
+            includeExplanation && (
+              <TextField
+                focused
+                multiline
+                rows={3}
+                name="explanation"
+                onChange={formik.handleChange}
+              />
+            )
+          }
         </InputBox>
-        <InputBox>
+        <InputBox sx={{display: "flex", justifyContent: "right"}}>
           <Button variant="contained" type="submit">
             Submit
           </Button>

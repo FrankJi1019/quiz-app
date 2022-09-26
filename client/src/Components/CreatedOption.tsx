@@ -1,5 +1,5 @@
 import React, { FC } from "react"
-import { Box, IconButton, Typography, useTheme } from "@mui/material"
+import { Card, IconButton, Typography, useTheme } from "@mui/material"
 import CheckCircleIcon from "@mui/icons-material/CheckCircle"
 
 interface CreatedOptionProps {
@@ -16,14 +16,21 @@ const CreatedOption: FC<CreatedOptionProps> = ({
   const theme = useTheme()
 
   return (
-    <Box sx={{display: "flex", alignItems: "center"}}>
+    <Card
+      sx={{
+        display: "flex",
+        alignItems: "center",
+        backgroundColor: "#F9F9F9",
+        padding: "10px"
+      }}
+    >
       <IconButton onClick={onToggleCorrect}>
         <CheckCircleIcon
           sx={{color: isCorrect ? theme.palette.success.main : "auto"}}
         />
       </IconButton>
       <Typography>{content}</Typography>
-    </Box>
+    </Card>
   )
 }
 

@@ -2,19 +2,14 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="88d1d2c7-6a39-4e3d-a86e-efff11763a3b" name="Changes" comment="feat: a usable UI is completed">
-      <change beforePath="$PROJECT_DIR$/../Server/Server/Server/Controllers/QuizController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../Server/Server/Server/Controllers/QuizController.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Server/Server/Server/Repositories/QuestionRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../Server/Server/Server/Repositories/QuestionRepository.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Server/Server/Server/Repositories/QuizRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../Server/Server/Server/Repositories/QuizRepository.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Server/Server/Server/Repositories/TopicRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../Server/Server/Server/Repositories/TopicRepository.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Api/QuizAPI.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/Api/QuizAPI.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Api/TopicAPI.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/Api/TopicAPI.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Components/CreatedOption.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/Components/CreatedOption.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Components/OptionView.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/Components/OptionView.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Components/QuestionOverview.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/Components/QuestionOverview.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Components/Topic.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/Components/Topic.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Components/TopicList.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/Components/TopicList.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Pages/QuizIntroPage.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/Pages/QuizIntroPage.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Pages/QuestionCreationPage.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/Pages/QuestionCreationPage.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Pages/QuestionDetailPage.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/Pages/QuestionDetailPage.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Pages/QuizManagingPage.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/Pages/QuizManagingPage.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Themes/baseTheme.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/Themes/baseTheme.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -230,7 +225,7 @@
       <workItem from="1663908594497" duration="595000" />
       <workItem from="1664012794571" duration="233000" />
       <workItem from="1664092676718" duration="5928000" />
-      <workItem from="1664152165176" duration="2629000" />
+      <workItem from="1664152165176" duration="7136000" />
     </task>
     <task id="LOCAL-00001" summary="feat: a usable UI is completed">
       <created>1658825818092</created>

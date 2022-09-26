@@ -40,7 +40,6 @@ const QuestionOverview: FC<QuestionProps> = ({ question , onClick}) => {
         <IconButton
           onClick={async (e) => {
             e.stopPropagation()
-            // await deleteQuestion(question.id)
             await deleteQuestionMutation.mutateAsync(question.id)
             questionsFetch.refetch()
           }}

@@ -8,15 +8,13 @@ import {
   useFetchQuiz,
   useRemoveTopicToQuizMutation
 } from "../Api/QuizAPI"
-import {Box, Grid, Typography, useTheme} from "@mui/material"
+import {Box, Grid, IconButton, Typography, useTheme} from "@mui/material"
 import {IQuestion} from "../types/IQuestion"
-import {
-  getCreateQuestionPageURL,
-  getQuestionDetailPageURL
-} from "../routes"
+import {getCreateQuestionPageURL, getQuestionDetailPageURL} from "../routes"
 import QuestionOverview from "../Components/QuestionOverview"
 import TopicList from "../Components/TopicList";
 import {useFetchTopics} from "../Api/TopicAPI";
+import AddIcon from '@mui/icons-material/Add';
 
 const QuizManagingPage = () => {
   const {quizId} = useParams()
@@ -115,28 +113,40 @@ const QuizManagingPage = () => {
                 You have not created any question
               </Typography>
             ) : (
-              <Grid item xs={12} sm={6} md={4}
-                    sx={{padding: "20px 10px"}}
+              <Grid
+                item
+                xs={12}
+                sm={6}
+                md={4}
+                sx={{
+                  padding: "20px 10px",
+                  display: "flex",
+                  alignItems: "center"
+                }}
               >
                 <Box
                   onClick={() => navigate(getCreateQuestionPageURL(quizId))}
                   sx={{
                     width: "100%",
-                    height: "100%",
                     cursor: "pointer",
                     border: "2px dashed #ccc",
                     borderRadius: "5px",
                     transition: ".2s",
                     display: "flex",
                     alignItems: "center",
-                    pl: "20px",
+                    padding: "9px",
                     "&:hover": {
                       transform: "translateY(-3px)",
                       borderColor: "primary.dark"
                     }
                   }}
                 >
-                  New Question
+                  <IconButton>
+                    <AddIcon />
+                  </IconButton>
+                  <Box>
+                    New Question
+                  </Box>
                 </Box>
               </Grid>
             )

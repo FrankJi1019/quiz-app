@@ -62,10 +62,6 @@ const TopicList: FC<TopicListProps> = ({topics, onClick, onDelete, onAdd, topicP
                   onAdd(newTopic)
                   setDisplayElement("button")
                 }}
-                // onChange={() => {
-                //   onAdd(newTopic)
-                //   setDisplayElement("button")
-                // }}
                 renderInput={(params) => (
                   <TextField
                     {...params}

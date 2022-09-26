@@ -1,5 +1,5 @@
 import CheckCircleIcon from "@mui/icons-material/CheckCircle";
-import {Box, Card} from "@mui/material";
+import {Box, Card, IconButton} from "@mui/material";
 import React, {FC} from "react";
 import {IOption} from "../types/IOption";
 import ModifiableTextView from "./ModifiableTextView";
@@ -14,8 +14,7 @@ const OptionView: FC<OptionProps> = ({option, onChangeContent, onSetToCorrect}) 
   return (
     <Card
       sx={{
-        color: option.isCorrect ? "green" : "auto",
-        margin: "20px 0",
+        color: option.isCorrect ? "green" : "grey.A700",
         padding: "10px 20px",
         display: "flex",
         justifyContent: "flex-end",
@@ -31,30 +30,12 @@ const OptionView: FC<OptionProps> = ({option, onChangeContent, onSetToCorrect}) 
           flex: "1"
         }}
       >
-        <CheckCircleIcon
-          sx={{
-            display: option.isCorrect ? "block" : "none",
-            mr: "10px"
-          }}
-        />
+        <IconButton sx={{color: option.isCorrect ? "green" : "grey.A700"}}>
+          <CheckCircleIcon onClick={onSetToCorrect} />
+        </IconButton>
         <Box sx={{flex: 1, mr: "20px"}}>
           <ModifiableTextView content={option.content} onChangeValue={onChangeContent} />
         </Box>
-      </Box>
-      <Box
-        onClick={onSetToCorrect}
-        sx={{
-          cursor: "pointer",
-          fontSize: {
-            xs: "14px",
-            md: "16px"
-          },
-          "&:hover": {
-            textDecoration: "underline"
-          }
-        }}
-      >
-        Set as correct
       </Box>
     </Card>
   )

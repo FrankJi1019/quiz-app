@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from "react"
 import Page from "../Containers/Page"
 import {useParams} from "react-router-dom"
-import {Box, Button} from "@mui/material"
+import {Box, Button, Grid} from "@mui/material"
 import {IQuestion} from "../types/IQuestion"
 import {IOption} from "../types/IOption"
 import {
@@ -62,28 +62,40 @@ const QuestionDetailPage = () => {
         />
       </Box>
       <Box sx={{mt: "40px"}}>
-        {options.map((option, index) =>
-          <OptionView
-            key={option.id}
-            option={option}
-            onChangeContent={(newValue) => {
-              const newState = [...options]
-              newState[index].content = newValue
-              setOptions(newState)
-            }}
-            onSetToCorrect={() => {
-              setOptions(prevState => {
-                if (!prevState) return prevState
-                const newState = [...prevState]
-                newState.forEach(option => option.isCorrect = false)
-                newState[index].isCorrect = true
-                return newState
-              })
-            }}
-          />)
-        }
+        <Grid container sx={{width: "100%"}}>
+          {
+            options.map((option, index) =>
+              <Grid item xs={12} sm={6} md={4} sx={{padding: "10px 10px"}}>
+                <OptionView
+                  key={option.id}
+                  option={option}
+                  onChangeContent={(newValue) => {
+                    const newState = [...options]
+                    newState[index].content = newValue
+                    setOptions(newState)
+                  }}
+                  onSetToCorrect={() => {
+                    setOptions(prevState => {
+                      if (!prevState) return prevState
+                      const newState = [...prevState]
+                      newState.forEach(option => option.isCorrect = false)
+                      newState[index].isCorrect = true
+                      return newState
+                    })
+                  }}
+                />
+              </Grid>
+            )
+          }
+        </Grid>
       </Box>
-      <Box sx={{mt: "20px"}}>
+      <Box
+        sx={{
+          mt: "40px",
+          display: "flex",
+          justifyContent: "right"
+        }}
+      >
         <Button
           sx={{
             width: {
@@ -110,7 +122,14 @@ const QuestionDetailPage = () => {
               xs: "100%",
               md: "auto",
             },
-            mt: "10px"
+            mt: {
+              xs: "10px",
+              md: "0"
+            },
+            ml: {
+              xs: "0",
+              md: "10px"
+            }
           }}
           variant="outlined"
           onClick={() => {
