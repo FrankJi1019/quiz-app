@@ -4,12 +4,16 @@ import {useNavigate, useParams} from "react-router-dom"
 import LoadingPage from "./LoadingPage"
 import {IUserAnswer} from "../types/IQuestion"
 import QuestionForm from "../Components/QuestionForm"
-import {Box, Button, LinearProgress} from "@mui/material"
+import {Box, Button, IconButton, LinearProgress, Slide, Typography} from "@mui/material"
 import {getFinishedSessionPageURL} from "../routes"
 import {useUtil} from "../Providers/UtilProvider"
 import {useFetchSession, useFetchSessionRecord} from "../Api/SessionAPI";
 import {ISession, Record, SessionState} from "../types/Session";
 import {useChangeAttemptOptionMutation} from "../Api/AttemptAPI";
+import {useDispatch} from "react-redux";
+import {hideSidebar, showSidebar} from "../Slices/showSidebarSlice";
+import ArrowBackIcon from '@mui/icons-material/ArrowBack';
+import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 
 const getProgress = (userAnswer: Array<IUserAnswer>) => {
   const total = userAnswer.length
@@ -22,8 +26,10 @@ const ActiveSessionPage = () => {
   const { sessionId } = useParams()
   const navigate = useNavigate()
   const { forceRerender } = useUtil()
+  const dispatch = useDispatch()
 
   const [userAnswers, setUserAnswers] = useState<Array<IUserAnswer>>([])
+  const [currentQuestion, setCurrentQuestion] = useState(0)
 
   const sessionRecordFetch = useFetchSessionRecord(Number(sessionId))
   const changeAttemptOptionMutation = useChangeAttemptOptionMutation()
@@ -40,6 +46,13 @@ const ActiveSessionPage = () => {
     )
   }, [sessionRecordFetch.isLoading])
 
+  useEffect(() => {
+    dispatch(hideSidebar())
+    return () => {
+      dispatch(showSidebar())
+    }
+  }, [])
+
   if (sessionRecordFetch.isLoading || sessionFetch.isLoading) return <LoadingPage />
 
   if ((sessionFetch.data as ISession).state != SessionState.ACTIVE)
@@ -47,15 +60,15 @@ const ActiveSessionPage = () => {
 
   const sessionRecord = sessionRecordFetch.data as Array<Record>
 
-  const questionComponents = sessionRecord.map((record, index) => (
-    <Box sx={{ mb: "40px" }} key={record.question.id}>
+  const questionComponent = (
+    <Box sx={{ mb: "40px" }} key={sessionRecord[currentQuestion].question.id}>
       <QuestionForm
-        questionId={record.question.id}
-        questionNo={index}
-        initAnswer={record.option == undefined ? undefined : record.option.id}
+        questionId={sessionRecord[currentQuestion].question.id}
+        questionNo={currentQuestion + 1}
+        initAnswer={sessionRecord[currentQuestion].option ? sessionRecord[currentQuestion].option!.id : undefined}
         onUserAnswer={(optionId) => {
           changeAttemptOptionMutation
-            .mutateAsync(({questionId: record.question.id, optionId, sessionId: Number(sessionId)}))
+            .mutateAsync(({questionId: sessionRecord[currentQuestion].question.id, optionId, sessionId: Number(sessionId)}))
             .then(() => sessionRecordFetch.refetch())
             .then(({data: records}) => {
               if (records == undefined) return
@@ -70,44 +83,49 @@ const ActiveSessionPage = () => {
         }}
       />
     </Box>
-  ))
+  )
 
   return (
-    <Page sx={{ padding: { xs: "20px", md: "50px 80px" } }}>
+    <Page sx={{ padding: { xs: "20px", md: "40px 200px" } }}>
       <Box
         sx={{
-          position: "fixed",
-          top: {
-            xs: "auto",
-            md: "0px"
-          },
-          bottom: {
-            xs: "0px",
-            md: "auto"
-          },
-          left: "0px",
-          right: "0px",
-          zIndex: "1300"
+          display: "flex",
+          justifyContent: "space-between"
         }}
       >
-        <LinearProgress
-          color="secondary"
-          variant="determinate"
-          value={getProgress(userAnswers)}
-          sx={{ height: "15px" }}
-        />
+        <Box sx={{display: "flex", alignItems: "center"}}>
+          <Box sx={{mr: "20px"}}>
+            <Typography variant='h6'>
+              {`${currentQuestion + 1}/${sessionRecord.length}`}
+            </Typography>
+          </Box>
+          <IconButton
+            disabled={currentQuestion == 0}
+            onClick={() => setCurrentQuestion(prevState => prevState - 1)}
+          >
+            <ArrowBackIcon />
+          </IconButton>
+          <IconButton
+            disabled={currentQuestion == sessionRecord.length - 1}
+            onClick={() => setCurrentQuestion(prevState => prevState + 1)}
+          >
+            <ArrowForwardIcon />
+          </IconButton>
+        </Box>
+        <Box>
+          <Button
+            variant="contained"
+            onClick={async () => {
+              navigate(getFinishedSessionPageURL(sessionId))
+            }}
+            disabled={getProgress(userAnswers) < 100}
+          >
+            Submit
+          </Button>
+        </Box>
       </Box>
-      <Box>{questionComponents}</Box>
-      <Box>
-        <Button
-          variant="contained"
-          onClick={async () => {
-            navigate(getFinishedSessionPageURL(sessionId))
-          }}
-          disabled={getProgress(userAnswers) < 100}
-        >
-          Submit
-        </Button>
+      <Box sx={{mt: "20px"}}>
+        {questionComponent}
       </Box>
     </Page>
   )

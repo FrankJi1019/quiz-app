@@ -1,5 +1,5 @@
-import React, { ReactNode, useMemo, useState } from "react"
-import { Box } from "@mui/material"
+import React, {ReactNode, useEffect, useMemo, useState} from "react"
+import {Box, useTheme} from "@mui/material"
 import PCNavigationPanel from "./PCNavigationPanel"
 import MobileNavigationPanel from "./MobileNavigationPanel"
 import {useLocation, useNavigate} from "react-router-dom"
@@ -37,7 +37,9 @@ const NavigationPanel = () => {
     () => getCurrentUser()!.getUsername(),
     [getCurrentUser]
   )
+  const theme = useTheme()
 
+  const [navigatorType, setNavigatorType] = useState<"pc" | "mobile" | null>(null)
   const [openQuizCreator, setOpenQuizCreator] = useState(false)
 
   const dispatch = useDispatch()
@@ -91,21 +93,32 @@ const NavigationPanel = () => {
     }
   } as NavigationPanelProps
 
+  useEffect(() => {
+    const resizeHandler = () => {
+      if (window.innerWidth > theme.breakpoints.values.md) {
+        setNavigatorType("pc")
+      } else {
+        setNavigatorType("mobile")
+      }
+    }
+    resizeHandler()
+    window.addEventListener("resize", resizeHandler)
+    return () => window.removeEventListener("resize", resizeHandler)
+  }, [])
+
   return (
-    <Box>
-      <Box sx={{ display: { xs: "none", md: "block" } }}>
-        <PCNavigationPanel {...data} />
-      </Box>
-      <Box sx={{ display: { xs: "block", md: "none" } }}>
-        <MobileNavigationPanel {...data} />
-      </Box>
+    <>
+      {
+        navigatorType == "pc" ?
+          <PCNavigationPanel {...data} /> : <MobileNavigationPanel {...data} />
+      }
       <Box>
         <QuizCreationModal
           open={openQuizCreator}
           onClose={() => setOpenQuizCreator(false)}
         />
       </Box>
-    </Box>
+    </>
   )
 }
 

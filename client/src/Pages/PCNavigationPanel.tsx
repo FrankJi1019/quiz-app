@@ -7,11 +7,13 @@ import {
   useTheme
 } from "@mui/material"
 import {NavigationPanelProps} from "./NavigationPanel"
+import {useSelector} from "react-redux";
 
 export const drawerWidth = "250px"
 
 const PCNavigationPanel: FC<NavigationPanelProps> = ({navOptions, onGoHome}) => {
   const theme = useTheme()
+  const showSidebar = useSelector(state => (state as {showSidebar: boolean}).showSidebar)
 
   const NavOption = useMemo(() => styled(Box)({
     cursor: "pointer",
@@ -40,8 +42,8 @@ const PCNavigationPanel: FC<NavigationPanelProps> = ({navOptions, onGoHome}) => 
   }), [theme])
 
   return (
-    <Box sx={{width: drawerWidth}}>
-      <Drawer anchor="left" variant="persistent" open container={undefined}>
+    <Box sx={{width: showSidebar ? drawerWidth : 0}}>
+      <Drawer anchor="left" variant="persistent" open={showSidebar}>
         <Box
           sx={{
             width: drawerWidth,

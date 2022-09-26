@@ -1,4 +1,4 @@
-import { Box } from "@mui/material"
+import {Box, Slide} from "@mui/material"
 import React from "react"
 import { Routes, Route, Navigate } from "react-router-dom"
 import {
@@ -32,6 +32,7 @@ import {hideModal} from "../Slices/showThemeSelectorSlice";
 
 const Dashboard = () => {
 
+  const showSidebar = useSelector(state => (state as {showSidebar: boolean}).showSidebar)
   const dispatch = useDispatch()
   const showModal = useSelector(state => (state as {showThemeSelector: boolean}).showThemeSelector)
 

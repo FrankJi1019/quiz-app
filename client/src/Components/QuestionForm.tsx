@@ -32,7 +32,7 @@ const QuestionForm: FC<IProps> = ({ questionId, questionNo, onUserAnswer, initAn
   return (
     <Card sx={{ padding: "20px" }} raised>
       <Typography sx={{ fontWeight: "800" }}>
-        {`(${questionNo + 1}) ${question}`}
+        {question}
       </Typography>
       <Box>
         <RadioGroup
