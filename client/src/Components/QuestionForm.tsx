@@ -1,4 +1,4 @@
-import React, { FC, useState } from "react"
+import React, {FC, useState} from "react"
 import {
   Box,
   Card,
@@ -10,6 +10,7 @@ import {
 import {IOption} from "../types/IOption"
 import {useFetchOptionsByQuestionId, useFetchQuestionById} from "../Api/QuestionAPI"
 import {IQuestion} from "../types/IQuestion";
+import OptionForm from "./OptionForm";
 
 interface IProps {
   questionId: number
@@ -18,7 +19,7 @@ interface IProps {
   onUserAnswer: (newOptionId: number) => void
 }
 
-const QuestionForm: FC<IProps> = ({ questionId, questionNo, onUserAnswer, initAnswer = -1 }) => {
+const QuestionForm: FC<IProps> = ({questionId, questionNo, onUserAnswer, initAnswer = -1}) => {
   const [userAnswer, setUserAnswer] = useState<number>(initAnswer)
 
   const questionFetch = useFetchQuestionById(questionId)
@@ -30,27 +31,33 @@ const QuestionForm: FC<IProps> = ({ questionId, questionNo, onUserAnswer, initAn
   const options = optionsFetch.data as Array<IOption>
 
   return (
-    <Card sx={{ padding: "20px" }} raised>
-      <Typography sx={{ fontWeight: "800" }}>
+    <Card raised sx={{padding: "40px 20px", borderRadius: "10px"}}>
+      <Typography variant="h5" sx={{pl: "10px"}}>
         {question}
       </Typography>
-      <Box>
-        <RadioGroup
-          onChange={(e) => {
-            setUserAnswer(Number(e.target.value))
-            onUserAnswer(Number(e.target.value))
-          }}
-          value={userAnswer}
-        >
-          {options.map((option) => (
-            <FormControlLabel
-              key={option.content}
-              value={option.id}
-              label={option.content}
-              control={<Radio color="primary" />}
-            />
-          ))}
-        </RadioGroup>
+      <Box sx={{mt: "30px", display: "flex", flexWrap: "wrap"}}>
+        {
+          options.map(option => (
+            <Box
+              sx={{
+                flex: "50%",
+                padding: "10px 10px",
+                boxSizing: "border-box",
+                flexGrow: "0",
+                flexShrink: "0",
+              }}
+            >
+              <OptionForm
+                option={option}
+                onChoose={(option) => {
+                  setUserAnswer(option.id)
+                  onUserAnswer(option.id)
+                }}
+                isChosen={userAnswer === option.id}
+              />
+            </Box>
+          ))
+        }
       </Box>
     </Card>
   )

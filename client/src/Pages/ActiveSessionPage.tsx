@@ -4,7 +4,7 @@ import {useNavigate, useParams} from "react-router-dom"
 import LoadingPage from "./LoadingPage"
 import {IUserAnswer} from "../types/IQuestion"
 import QuestionForm from "../Components/QuestionForm"
-import {Box, Button, IconButton, LinearProgress, Slide, Typography} from "@mui/material"
+import {Box, Button, Fade, IconButton, Slide, Typography} from "@mui/material"
 import {getFinishedSessionPageURL} from "../routes"
 import {useUtil} from "../Providers/UtilProvider"
 import {useFetchSession, useFetchSessionRecord} from "../Api/SessionAPI";
@@ -60,30 +60,35 @@ const ActiveSessionPage = () => {
 
   const sessionRecord = sessionRecordFetch.data as Array<Record>
 
-  const questionComponent = (
-    <Box sx={{ mb: "40px" }} key={sessionRecord[currentQuestion].question.id}>
-      <QuestionForm
-        questionId={sessionRecord[currentQuestion].question.id}
-        questionNo={currentQuestion + 1}
-        initAnswer={sessionRecord[currentQuestion].option ? sessionRecord[currentQuestion].option!.id : undefined}
-        onUserAnswer={(optionId) => {
-          changeAttemptOptionMutation
-            .mutateAsync(({questionId: sessionRecord[currentQuestion].question.id, optionId, sessionId: Number(sessionId)}))
-            .then(() => sessionRecordFetch.refetch())
-            .then(({data: records}) => {
-              if (records == undefined) return
-              setUserAnswers(
-                records.map((record) => ({
-                  questionId: record.question.id,
-                  answerOptionId: record.option == undefined ? undefined : record.option.id
-                }))
-              )
-            })
-          forceRerender()
-        }}
-      />
-    </Box>
-  )
+  const questionComponent = sessionRecord.map((record, index) => (
+    <Fade in={currentQuestion == index} mountOnEnter unmountOnExit>
+      <Box
+        sx={{ mb: "40px", display: currentQuestion == index ? "block" : "none"}}
+        key={record.question.id}
+      >
+        <QuestionForm
+          questionId={record.question.id}
+          questionNo={index + 1}
+          initAnswer={record.option ? record.option!.id : undefined}
+          onUserAnswer={(optionId) => {
+            changeAttemptOptionMutation
+              .mutateAsync(({questionId: record.question.id, optionId, sessionId: Number(sessionId)}))
+              .then(() => sessionRecordFetch.refetch())
+              .then(({data: records}) => {
+                if (records == undefined) return
+                setUserAnswers(
+                  records.map((r) => ({
+                    questionId: r.question.id,
+                    answerOptionId: r.option == undefined ? undefined : r.option.id
+                  }))
+                )
+              })
+            forceRerender()
+          }}
+        />
+      </Box>
+    </Fade>
+  ))
 
   return (
     <Page sx={{ padding: { xs: "20px", md: "40px 200px" } }}>

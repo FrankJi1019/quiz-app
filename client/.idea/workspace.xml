@@ -2,14 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="88d1d2c7-6a39-4e3d-a86e-efff11763a3b" name="Changes" comment="feat: a usable UI is completed">
-      <change afterPath="$PROJECT_DIR$/src/Slices/showSidebarSlice.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Components/OptionForm.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Components/QuestionForm.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/Components/QuestionForm.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Pages/ActiveSessionPage.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/Pages/ActiveSessionPage.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Pages/NavigationPanel.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/Pages/NavigationPanel.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Pages/PCNavigationPanel.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/Pages/PCNavigationPanel.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/RouteControllers/Dashboard.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/RouteControllers/Dashboard.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/store.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/store.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -54,7 +50,7 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/Asset" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../../../../work/Centrapass/Futureverse/asset-registry-frontend" />
     <property name="list.type.of.created.stylesheet" value="CSS" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.standard" value="true" />
@@ -226,7 +222,9 @@
       <workItem from="1664012794571" duration="233000" />
       <workItem from="1664092676718" duration="5928000" />
       <workItem from="1664152165176" duration="7380000" />
-      <workItem from="1664180133566" duration="3837000" />
+      <workItem from="1664180133566" duration="3935000" />
+      <workItem from="1664237389471" duration="22000" />
+      <workItem from="1664266138270" duration="3283000" />
     </task>
     <task id="LOCAL-00001" summary="feat: a usable UI is completed">
       <created>1658825818092</created>
