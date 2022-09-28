@@ -57,7 +57,8 @@ const QuestionResultPage = () => {
                   sx={{
                     flex: "50%",
                     padding: "10px 15px",
-                    boxSizing: "border-box"
+                    boxSizing: "border-box",
+                    flexGrow: "0"
                   }}
                 >
                   <Card

@@ -3,25 +3,22 @@ import {Box, Button, Card, CardContent, Typography} from "@mui/material"
 import DoneIcon from "@mui/icons-material/Done"
 import CloseIcon from "@mui/icons-material/Close"
 import {IQuestion} from "../types/IQuestion";
-import {useNavigate, useParams} from "react-router-dom";
-import {getQuestionResultPageURL} from "../routes";
 
 interface QuestionAnswerContainerProps {
   question: IQuestion
   userAnswer: string
   correctAnswer: string
   isCorrect: boolean
+  onViewDetail: (question: IQuestion) => void
 }
 
 const QuestionResult: FC<QuestionAnswerContainerProps> = ({
   question,
   userAnswer,
   correctAnswer,
-  isCorrect
+  isCorrect,
+  onViewDetail
 }) => {
-
-  const navigate = useNavigate()
-  const {sessionId} = useParams()
 
   return (
     <Card
@@ -52,7 +49,7 @@ const QuestionResult: FC<QuestionAnswerContainerProps> = ({
         <Box>
           <Button
             variant="outlined"
-            onClick={() => navigate(getQuestionResultPageURL(sessionId, question.id))}
+            onClick={() => onViewDetail(question)}
           >
             View Details
           </Button>

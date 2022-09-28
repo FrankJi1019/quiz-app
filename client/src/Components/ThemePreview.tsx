@@ -6,7 +6,7 @@ interface ThemePreviewProps {
   onPaletteChange: (palette: PaletteOptions) => void
 }
 
-const width = "50px"
+const width = "80px"
 const height = "80px"
 
 const ThemePreview: FC<ThemePreviewProps> = ({palette, onPaletteChange}) => {
@@ -18,22 +18,16 @@ const ThemePreview: FC<ThemePreviewProps> = ({palette, onPaletteChange}) => {
         alignItems: "center"
       }}
     >
-      <Box sx={{display: "flex"}}>
-        <Box
-          sx={{
-            width, height,
-            backgroundColor: (palette.primary as {main: string}).main
-          }}
-        />
-        <Box
-          sx={{
-            width, height,
-            backgroundColor: (palette.secondary as {main: string}).main
-          }}
-        />
-      </Box>
       <Box sx={{mt: "20px"}}>
-        <Button onClick={() => onPaletteChange(palette)}>
+        <Button
+          onClick={() => onPaletteChange(palette)}
+          sx={{
+            backgroundColor: (palette.primary as {main: string}).main,
+            "&:hover": {
+              backgroundColor: (palette.primary as {dark: string}).dark
+            }
+          }}
+        >
           SET
         </Button>
       </Box>

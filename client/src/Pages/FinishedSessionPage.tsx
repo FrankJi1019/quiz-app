@@ -1,14 +1,16 @@
 import React, {useMemo} from "react"
 import Page from "../Containers/Page"
-import {useParams} from "react-router-dom"
+import {useNavigate, useParams} from "react-router-dom"
 import { Box, Typography } from "@mui/material"
 import {useFetchSessionResult} from "../Api/SessionAPI";
 import LoadingPage from "./LoadingPage";
 import {Result} from "../types/Session";
 import QuestionResultList from "../Components/QuestionResultList";
+import {getQuestionResultPageURL} from "../routes";
 
 const FinishedSessionPage = () => {
   const {sessionId} = useParams()
+  const navigate = useNavigate()
 
   const sessionResultFetch = useFetchSessionResult(Number(sessionId))
 
@@ -30,7 +32,10 @@ const FinishedSessionPage = () => {
         <Typography variant="h3">{"Your result is: " + mark}</Typography>
       </Box>
       <Box>
-        <QuestionResultList results={result} />
+        <QuestionResultList
+          results={result}
+          onViewDetail={(question) => navigate(getQuestionResultPageURL(Number(sessionId), question.id))}
+        />
       </Box>
     </Page>
   )

@@ -1,18 +1,20 @@
 import React from 'react'
 import Page from "../Containers/Page";
 import {useAuth} from "../Providers/AuthProvider";
-import {useParams, useSearchParams} from "react-router-dom";
+import {useNavigate, useParams, useSearchParams} from "react-router-dom";
 import {useFetchFinishedSessionByQuizAndUser, useFetchSessionResult} from "../Api/SessionAPI";
 import LoadingPage from "./LoadingPage";
 import {ISession} from "../types/Session";
 import {Box} from "@mui/material";
 import SessionOverview from "../Components/SessionOverview";
 import QuestionResultList from "../Components/QuestionResultList";
+import {getQuestionResultPageURL} from "../routes";
 
 const PastSessionPage = () => {
 
   const {getCurrentUser} = useAuth()
   const username = getCurrentUser()!.getUsername()
+  const navigate = useNavigate()
 
   const {quizId} = useParams()
   const [searchParam, setSearchParam] = useSearchParams()
@@ -43,7 +45,12 @@ const PastSessionPage = () => {
         }
       </Box>
       <Box>
-        {result && <QuestionResultList results={result} />}
+        {result && (
+          <QuestionResultList
+            results={result}
+            onViewDetail={(question) => navigate(getQuestionResultPageURL(Number(sessionId), question.id))}
+          />
+        )}
       </Box>
     </Page>
   )

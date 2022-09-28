@@ -2,12 +2,14 @@ import React, {FC} from "react"
 import {Result} from "../types/Session";
 import {Box} from "@mui/material";
 import QuestionResult from "./QuestionResult";
+import {IQuestion} from "../types/IQuestion";
 
 interface QuestionResultListProps {
   results: Array<Result>
+  onViewDetail: (question: IQuestion) => void
 }
 
-const QuestionResultList: FC<QuestionResultListProps> = ({results}) => {
+const QuestionResultList: FC<QuestionResultListProps> = ({results, onViewDetail}) => {
   return (
     <Box>
       {
@@ -18,6 +20,7 @@ const QuestionResultList: FC<QuestionResultListProps> = ({results}) => {
               userAnswer={r.userAnswer}
               correctAnswer={r.correctAnswer}
               isCorrect={r.isCorrect}
+              onViewDetail={onViewDetail}
             />
           </Box>
         ))
