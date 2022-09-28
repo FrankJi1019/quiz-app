@@ -1,10 +1,8 @@
 ﻿namespace Server.Dto; 
 
 public class AnswerOutputDto {
-    
-    public int QuestionId { get; set; }
-    
-    public string QuestionContent { get; set; }
+
+    public QuestionOutputDto Question { get; set; }
     
     public string CorrectAnswer { get; set; }
     

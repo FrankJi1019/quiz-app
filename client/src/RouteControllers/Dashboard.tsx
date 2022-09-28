@@ -12,7 +12,7 @@ import {
   getActiveSessionPageURL,
   getFinishedSessionPageURL,
   getAttemptedQuizzesPageURL,
-  getPastSessionPageURL
+  getPastSessionPageURL, getQuestionResultPageURL
 } from "../routes"
 import QuizListPage from "../Pages/QuizListPage"
 import HomePage from "../Pages/HomePage"
@@ -29,6 +29,7 @@ import PastSessionPage from "../Pages/PastSessionPage";
 import ThemeSelectorModal from "../Components/ThemeSelectorModal";
 import {useDispatch, useSelector} from "react-redux";
 import {hideModal} from "../Slices/showThemeSelectorSlice";
+import QuestionResultPage from "../Pages/QuestionResultPage";
 
 const Dashboard = () => {
 
@@ -61,6 +62,7 @@ const Dashboard = () => {
         <Route path={getUserQuizPageURL()} element={<UserQuizPage />} />
         <Route path={getAttemptedQuizzesPageURL()} element={<AttemptedQuizListPage />} />
         <Route path={getPastSessionPageURL()} element={<PastSessionPage />} />
+        <Route path={getQuestionResultPageURL()} element={<QuestionResultPage />} />
         <Route path={"*"} element={<Navigate to={getHomePageURL()} />} />
       </Routes>
       <ThemeSelectorModal

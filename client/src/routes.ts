@@ -24,6 +24,10 @@ export const getAttemptedQuizzesPageURL = (username: string = ":username") => "/
 
 export const getPastSessionPageURL = (quizId: string | number = ":quizId") => "/quiz/" + quizId + "/finished-sessions"
 
+export const getQuestionResultPageURL =
+  (sessionId: string | number = ":sessionId", questionId: string | number = ":questionId") =>
+    getFinishedSessionPageURL(sessionId) + "/question/" + questionId
+
 export const getLoginPageURL = () => "/login"
 
 export const getSignupPageURL = () => "/signup"

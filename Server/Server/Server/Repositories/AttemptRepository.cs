@@ -29,7 +29,9 @@ public class AttemptRepository {
 
     public Attempt? GetAttemptBySessionAndQuestion(int sessionId, int questionId) {
         return this._context.Attempts
-            .FirstOrDefault(x => x.Session.Id == sessionId && x.Question.Id == questionId);
+            .Where(x => x.Session.Id == sessionId && x.Question.Id == questionId)
+            .Include(x => x.Option)
+            .FirstOrDefault();
     }
 
     public Attempt ChangeOption(int attemptId, int optionId) {

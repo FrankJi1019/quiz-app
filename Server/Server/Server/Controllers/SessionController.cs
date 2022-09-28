@@ -96,8 +96,7 @@ public class SessionController : Controller {
             var correctAnswer = this._questionRepository.GetAnswer(question.Id)!;
             var attempt = attemptList.FirstOrDefault(x => x.Question.Id == question.Id);
             var answerOutput = new AnswerOutputDto {
-                QuestionId = question.Id, 
-                QuestionContent = question.Content, 
+                Question = this._mapper.Map<QuestionOutputDto>(question),
                 CorrectAnswer = correctAnswer.Content,
                 UserAnswer = attempt == null ? "" : attempt.Option.Content,
                 IsCorrect = attempt != null && attempt.Option.IsCorrect
@@ -145,6 +144,23 @@ public class SessionController : Controller {
             recordOutputList.Add(recordOutput);
         }
         return Ok(recordOutputList);
+    }
+
+    [HttpGet("{sessionId}/questions/{questionId}/check-answer")]
+    public IActionResult GetQuestionResult(int sessionId, int questionId) {
+        var question = this._questionRepository.GetOneById(questionId);
+        if (question == null) return NotFound("Question does not exist");
+        var session = this._sessionRepository.GetOneById(sessionId);
+        if (session == null) return NotFound("Session does not exist");
+        var correctAnswer = this._questionRepository.GetAnswer(question.Id)!;
+        var attempt = this._attemptRepository.GetAttemptBySessionAndQuestion(session.Id, question.Id);
+        var resultOutput = new AnswerOutputDto {
+            Question = this._mapper.Map<QuestionOutputDto>(question),
+            CorrectAnswer = correctAnswer.Content,
+            IsCorrect = attempt != null && attempt.Option.Id == correctAnswer.Id,
+            UserAnswer = attempt == null ? "" : attempt.Option.Content
+        };
+        return Ok(resultOutput);
     }
 
 }

@@ -51,8 +51,6 @@ public class AttemptController : Controller {
         if (attempt == null) return NotFound("Attempt does not exist");
         var correctOption = this._questionRepository.GetAnswer(attempt.Question.Id)!;
         var output = new AnswerOutputDto {
-            QuestionId = attempt.Question.Id,
-            QuestionContent = attempt.Question.Content,
             CorrectAnswer = correctOption.Content,
             UserAnswer = attempt.Option.Content,
             IsCorrect = attempt.Option.IsCorrect

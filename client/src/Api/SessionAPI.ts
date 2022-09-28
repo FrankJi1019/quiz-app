@@ -62,3 +62,10 @@ export const useFetchSession = (id: number): UseQueryResult<ISession> => {
     return data
   })
 }
+
+export const useFetchQuestionResult = (sessionId: number, questionId: number): UseQueryResult<Result> => {
+  return useQuery(["get-question-result", sessionId, questionId], async () => {
+    const {data} = await axios.get(`${constants.general.backend}/sessions/${sessionId}/questions/${questionId}/check-answer`)
+    return data
+  })
+}

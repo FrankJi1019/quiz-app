@@ -2,10 +2,20 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="88d1d2c7-6a39-4e3d-a86e-efff11763a3b" name="Changes" comment="feat: a usable UI is completed">
-      <change afterPath="$PROJECT_DIR$/src/Components/OptionForm.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Pages/QuestionResultPage.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Server/Server/Server/Controllers/AttemptController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../Server/Server/Server/Controllers/AttemptController.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Server/Server/Server/Controllers/QuizController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../Server/Server/Server/Controllers/QuizController.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Server/Server/Server/Controllers/SessionController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../Server/Server/Server/Controllers/SessionController.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Server/Server/Server/Dto/AnswerOutputDto.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../Server/Server/Server/Dto/AnswerOutputDto.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Server/Server/Server/Repositories/AttemptRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../Server/Server/Server/Repositories/AttemptRepository.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Server/Server/Server/Repositories/SessionRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../Server/Server/Server/Repositories/SessionRepository.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Components/QuestionForm.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/Components/QuestionForm.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Pages/ActiveSessionPage.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/Pages/ActiveSessionPage.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Api/SessionAPI.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/Api/SessionAPI.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Components/QuestionResult.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/Components/QuestionResult.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Components/QuestionResultList.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/Components/QuestionResultList.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/RouteControllers/Dashboard.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/RouteControllers/Dashboard.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/routes.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/types/Session.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/types/Session.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -224,7 +234,9 @@
       <workItem from="1664152165176" duration="7380000" />
       <workItem from="1664180133566" duration="3935000" />
       <workItem from="1664237389471" duration="22000" />
-      <workItem from="1664266138270" duration="3283000" />
+      <workItem from="1664266138270" duration="6303000" />
+      <workItem from="1664311694594" duration="36000" />
+      <workItem from="1664355735608" duration="1896000" />
     </task>
     <task id="LOCAL-00001" summary="feat: a usable UI is completed">
       <created>1658825818092</created>

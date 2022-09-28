@@ -177,8 +177,6 @@ public class QuizController : Controller {
                 userOptionContent = userOption.Content;
             }
             var answerOutput = new AnswerOutputDto {
-                QuestionId = question.Id,
-                QuestionContent = question.Content,
                 CorrectAnswer = correctOption.Content,
                 UserAnswer = userOptionContent
             };

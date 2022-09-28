@@ -12,11 +12,12 @@ const QuestionResultList: FC<QuestionResultListProps> = ({results}) => {
     <Box>
       {
         results.map((r) => (
-          <Box key={r.questionId} sx={{ mb: "20px" }}>
+          <Box key={r.question.id} sx={{ mb: "40px" }}>
             <QuestionResult
-              question={r.questionContent}
+              question={r.question}
               userAnswer={r.userAnswer}
               correctAnswer={r.correctAnswer}
+              isCorrect={r.isCorrect}
             />
           </Box>
         ))

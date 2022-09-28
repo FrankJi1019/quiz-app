@@ -19,8 +19,7 @@ export interface Record {
 }
 
 export interface Result {
-  questionId: number
-  questionContent: string
+  question: IQuestion
   correctAnswer: string
   userAnswer: string
   isCorrect: boolean
