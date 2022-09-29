@@ -27,7 +27,8 @@ const TopicList: FC<TopicListProps> = ({topics, onClick, onDelete, onAdd, topicP
       <Box
         sx={{
           display: "flex",
-          alignItems: "center"
+          alignItems: "center",
+          flexWrap: "wrap"
         }}
       >
         {

@@ -4,7 +4,7 @@ import {
   Box,
   Button,
   Drawer,
-  IconButton,
+  IconButton, Slide,
   Toolbar,
   Typography,
   useTheme
@@ -12,32 +12,35 @@ import {
 import MenuIcon from "@mui/icons-material/Menu"
 import CloseIcon from "@mui/icons-material/Close"
 import { NavigationPanelProps } from "./NavigationPanel"
+import {useSelector} from "react-redux";
 
 const MobileNavigationPanel: FC<NavigationPanelProps> = ({ navOptions }) => {
   const theme = useTheme()
+  const showSidebar = useSelector(state => (state as {showSidebar: boolean}).showSidebar)
 
   const [openSideBar, setOpenSideBar] = useState(false)
 
   return (
     <Box>
-      <AppBar position="fixed">
-        <Toolbar>
-          <IconButton onClick={() => setOpenSideBar(true)}>
-            <MenuIcon />
-          </IconButton>
-          <Typography
-            variant="h1"
-            sx={{
-              fontSize: "30px",
-              background: `linear-gradient(to right, ${theme.palette.primary.dark}, ${theme.palette.secondary.dark})`,
-              WebkitBackgroundClip: "text",
-              WebkitTextFillColor: "transparent"
-            }}
-          >
-            QUIZZY
-          </Typography>
-        </Toolbar>
-      </AppBar>
+      <Slide in={showSidebar}>
+        <AppBar position="fixed">
+          <Toolbar>
+            <IconButton onClick={() => setOpenSideBar(true)}>
+              <MenuIcon />
+            </IconButton>
+            <Typography
+              variant="h1"
+              sx={{
+                fontSize: "30px",
+                color: "primary.dark",
+                textShadow: "3px 3px rgba(0,0,0,.25)"
+              }}
+            >
+              QUIZZY
+            </Typography>
+          </Toolbar>
+        </AppBar>
+      </Slide>
       <Drawer
         sx={{
           "& .MuiDrawer-paper": {

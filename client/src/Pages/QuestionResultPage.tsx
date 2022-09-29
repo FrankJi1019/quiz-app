@@ -1,11 +1,11 @@
 import React, {useState} from 'react'
 import {Box, Card, Typography, Collapse, IconButton} from "@mui/material";
-import {useFetchQuestionResult, useFetchSessionResult} from "../Api/SessionAPI";
+import {useFetchQuestionResult} from "../Api/SessionAPI";
 import {useParams} from "react-router-dom";
 import {useFetchOptionsByQuestionId} from "../Api/QuestionAPI";
 import LoadingPage from "./LoadingPage";
 import Page from "../Containers/Page";
-import {ISession, Result} from "../types/Session";
+import {Result} from "../types/Session";
 import {IOption} from "../types/IOption";
 import CheckIcon from '@mui/icons-material/Check';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
@@ -24,11 +24,6 @@ const QuestionResultPage = () => {
   const result = resultFetch.data as Result
   const options = optionsFetch.data as Array<IOption>
 
-  console.log(result)
-  console.log(options)
-
-  // todo display on screen: question content (from session.question.content), all options (from options), explanation (session.question.explanation)
-  // todo highlight the one user chose, highlight the correct answer
   return (
     <Page sx={{paddingY: "40px"}}>
       <Box sx={{display: "flex", justifyContent: "center"}}>
@@ -55,10 +50,13 @@ const QuestionResultPage = () => {
                 <Box
                   key={option.content}
                   sx={{
-                    flex: "50%",
+                    flex: {
+                      xs: "100%",
+                      md: "50%"
+                    },
                     padding: "10px 15px",
                     boxSizing: "border-box",
-                    flexGrow: "0"
+                    flexGrow: "0 !important"
                   }}
                 >
                   <Card

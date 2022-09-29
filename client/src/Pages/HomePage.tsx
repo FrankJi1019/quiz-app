@@ -33,9 +33,15 @@ const HomePage = () => {
       <Box
         sx={{
           width: "100%",
-          background: `url(${background}) center center`,
+          background: {
+            xs: "none",
+            md: `url(${background}) center center`
+          },
           backgroundSize: "cover",
-          padding: "150px 100px",
+          padding: {
+            xs: "30px",
+            md: "150px 100px"
+          },
           boxSizing: "border-box",
           position: 'relative',
           '&::before': {
@@ -54,6 +60,10 @@ const HomePage = () => {
           <Typography
             variant="h1"
             sx={{
+              display: {
+                xs: "none",
+                sm: "block"
+              },
               textAlign: "center",
               fontSize: {
                 xs: "20px",
@@ -69,13 +79,16 @@ const HomePage = () => {
         </Box>
         <Box
           sx={{
-            mt: "20px",
+            mt: {
+              xs: "0",
+              sm: "20px"
+            },
             display: "flex",
             alignItems: "center",
             justifyContent: "center",
           }}
         >
-          <Box sx={{width: "70%"}}>
+          <Box sx={{width: {xs: "100%", sm: "70%"}}}>
             <SearchBar
               onSearch={(keyword) => {
                 if (keyword.trim() === "") return

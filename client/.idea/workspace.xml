@@ -3,12 +3,15 @@
   <component name="ChangeListManager">
     <list default="true" id="88d1d2c7-6a39-4e3d-a86e-efff11763a3b" name="Changes" comment="feat: a usable UI is completed">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Components/QuestionResult.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/Components/QuestionResult.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Components/QuestionResultList.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/Components/QuestionResultList.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Components/ThemePreview.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/Components/ThemePreview.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Pages/FinishedSessionPage.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/Pages/FinishedSessionPage.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Pages/PastSessionPage.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/Pages/PastSessionPage.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Pages/QuestionResultPage.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/Pages/QuestionResultPage.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Components/QuizCard.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/Components/QuizCard.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Components/SearchBar.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/Components/SearchBar.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Components/TopicList.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/Components/TopicList.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Pages/HomePage.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/Pages/HomePage.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Pages/MobileNavigationPanel.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/Pages/MobileNavigationPanel.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Pages/QuestionCreationPage.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/Pages/QuestionCreationPage.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Pages/QuizIntroPage.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/Pages/QuizIntroPage.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Pages/QuizManagingPage.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/Pages/QuizManagingPage.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Providers/UtilProvider.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/Providers/UtilProvider.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -230,6 +233,10 @@
       <workItem from="1664266138270" duration="6303000" />
       <workItem from="1664311694594" duration="36000" />
       <workItem from="1664355735608" duration="1896000" />
+      <workItem from="1664392985885" duration="12000" />
+      <workItem from="1664424953291" duration="292000" />
+      <workItem from="1664440440408" duration="4188000" />
+      <workItem from="1664476721799" duration="6000" />
     </task>
     <task id="LOCAL-00001" summary="feat: a usable UI is completed">
       <created>1658825818092</created>

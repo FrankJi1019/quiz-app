@@ -4,6 +4,7 @@ import {Box, Button, Grid, IconButton, Paper, Typography, useTheme} from "@mui/m
 import moment from "moment"
 import RemoveCircleIcon from "@mui/icons-material/RemoveCircle";
 import CircleIcon from '@mui/icons-material/Circle';
+import {useUtil} from "../Providers/UtilProvider";
 
 interface IProps {
   quiz: IQuiz
@@ -14,6 +15,7 @@ interface IProps {
 const QuizCard: FC<IProps> = ({ quiz, onClick, onDelete}) => {
 
   const theme = useTheme()
+  const {getScreenSize} = useUtil()
 
   return (
     <Grid
@@ -22,48 +24,52 @@ const QuizCard: FC<IProps> = ({ quiz, onClick, onDelete}) => {
       sm={6}
       md={4}
       sx={{
-        padding: "0 15px 25px"
+        padding: "5px 15px 20px"
       }}
     >
       <Box
+        onClick={getScreenSize() < theme.breakpoints.values.md ? (() => onClick(quiz)) : undefined}
         sx={{
           userSelect: 'none',
           position: "relative",
           padding: "15px",
           transition: ".2s",
-          boxShadow: "2px 2px 6px 2px " + theme.palette.primary.dark + "99",
+          boxShadow: "2px 2px 5px 2px " + theme.palette.primary.dark + "99",
           borderRadius: "5px",
         }}
       >
-        <IconButton
+        <Box
           sx={{
-            display: onDelete != undefined ? "block" : "none",
-            position: onDelete != undefined ? "absolute" : "none",
-            top: "5px",
-            right: "5px",
-            "&:hover": {
-              color: theme.palette.warning.main
-            }
-          }}
-          onClick={(e) => {
-            e.stopPropagation()
-            onDelete != undefined && onDelete(quiz)
-          }}
-        >
-          <RemoveCircleIcon/>
-        </IconButton>
-        <Typography
-          variant="h5"
-          sx={{
-            whiteSpace: "nowrap",
-            overflow: "hidden",
-            textOverflow: "ellipsis",
+            display: "flex",
             borderBottom: "1px solid #ccc",
-            pb: "5px"
+            alignItems: "center",
+            justifyContent: "space-between"
           }}
         >
-          {quiz.name}
-        </Typography>
+          <Typography
+            variant="h5"
+            sx={{
+              whiteSpace: "nowrap",
+              overflow: "hidden",
+              textOverflow: "ellipsis",
+              pb: "5px"
+            }}
+          >
+            {quiz.name}
+          </Typography>
+          <IconButton
+            sx={{
+              display: onDelete != undefined ? "block" : "none",
+              "&:hover": {color: "error.main"}
+            }}
+            onClick={(e) => {
+              e.stopPropagation()
+              onDelete != undefined && onDelete(quiz)
+            }}
+          >
+            <RemoveCircleIcon/>
+          </IconButton>
+        </Box>
         <Box
           sx={{
             display: "flex",
@@ -82,7 +88,16 @@ const QuizCard: FC<IProps> = ({ quiz, onClick, onDelete}) => {
             )
           }
         </Box>
-        <Box sx={{display: 'flex', flexDirection: 'row-reverse', mt: "5px"}}>
+        <Box
+          sx={{
+            display: {
+              xs: "none",
+              md: 'flex'
+            },
+            flexDirection: 'row-reverse',
+            mt: "5px"
+          }}
+        >
           <Button
             onClick={() => onClick(quiz)}
             sx={{

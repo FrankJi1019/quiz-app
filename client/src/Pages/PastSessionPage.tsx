@@ -31,10 +31,10 @@ const PastSessionPage = () => {
 
   return (
     <Page sx={{ padding: { xs: "20px", md: "50px" } }}>
-      <Box sx={{pb: "20px", display: "flex"}}>
+      <Box sx={{pb: "20px", display: "flex", flexWrap: "wrap"}}>
         {
           sessions.map(s =>
-            <Box sx={{pr: "10px"}}>
+            <Box sx={{pr: "10px", pt: "5px"}}>
               <SessionOverview
                 session={s}
                 shouldHighlight={s.id === Number(sessionId)}

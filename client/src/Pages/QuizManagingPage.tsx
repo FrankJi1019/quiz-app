@@ -77,7 +77,8 @@ const QuizManagingPage = () => {
         >
           <TopicList
             topics={quiz.topics}
-            onClick={() => {}}
+            onClick={() => {
+            }}
             onDelete={quiz.topics.length > 1 ? removeTopic : undefined}
             onAdd={quiz.topics.length <= 2 ? addTopic : undefined}
             topicPool={topics.filter(x => !quiz.topics.includes(x))}
@@ -92,7 +93,7 @@ const QuizManagingPage = () => {
           {
             questions.map((question) => (
               <Grid item xs={12} sm={6} md={4}
-                sx={{padding: "20px 10px"}}
+                    sx={{padding: "20px 10px"}}
               >
                 <QuestionOverview
                   question={question}
@@ -101,56 +102,43 @@ const QuizManagingPage = () => {
               </Grid>
             ))
           }
-          {
-            questions.length === 0 ? (
-              <Typography
-                sx={{
-                  color: "#777777",
-                  padding: "10px",
-                  mb: "30px"
-                }}
-              >
-                You have not created any question
-              </Typography>
-            ) : (
-              <Grid
-                item
-                xs={12}
-                sm={6}
-                md={4}
-                sx={{
-                  padding: "20px 10px",
-                  display: "flex",
-                  alignItems: "center"
-                }}
-              >
-                <Box
-                  onClick={() => navigate(getCreateQuestionPageURL(quizId))}
-                  sx={{
-                    width: "100%",
-                    cursor: "pointer",
-                    border: "2px dashed #ccc",
-                    borderRadius: "5px",
-                    transition: ".2s",
-                    display: "flex",
-                    alignItems: "center",
-                    padding: "9px",
-                    "&:hover": {
-                      transform: "translateY(-3px)",
-                      borderColor: "primary.dark"
-                    }
-                  }}
-                >
-                  <IconButton>
-                    <AddIcon />
-                  </IconButton>
-                  <Box>
-                    New Question
-                  </Box>
-                </Box>
-              </Grid>
-            )
-          }
+          <Grid
+            item
+            xs={12}
+            sm={6}
+            md={4}
+            sx={{
+              padding: "20px 10px",
+              display: "flex",
+              alignItems: "center"
+            }}
+          >
+            <Box
+              onClick={() => navigate(getCreateQuestionPageURL(quizId))}
+              sx={{
+                width: "100%",
+                cursor: "pointer",
+                border: "2px dashed #ccc",
+                borderRadius: "5px",
+                transition: ".2s",
+                display: "flex",
+                alignItems: "center",
+                padding: "9px",
+                "&:hover": {
+                  transform: "translateY(-3px)",
+                  borderColor: "primary.dark"
+                }
+              }}
+            >
+              <IconButton>
+                <AddIcon/>
+              </IconButton>
+              <Box>
+                New Question
+              </Box>
+            </Box>
+          </Grid>
+
         </Grid>
       </Box>
     </Page>

@@ -40,11 +40,14 @@ const QuestionForm: FC<IProps> = ({questionId, questionNo, onUserAnswer, initAns
           options.map(option => (
             <Box
               sx={{
-                flex: "50%",
+                flex: {
+                  xs: "100%",
+                  md: "50%"
+                },
                 padding: "10px 10px",
                 boxSizing: "border-box",
-                flexGrow: "0",
-                flexShrink: "0",
+                flexGrow: "0 !important",
+                flexShrink: "0 !important",
               }}
             >
               <OptionForm

@@ -30,7 +30,10 @@ const QuestionResult: FC<QuestionAnswerContainerProps> = ({
     >
       <CardContent
         sx={{
-          display: "flex",
+          display: {
+            xs: "block",
+            md: "flex"
+          },
           alignItems: "center",
           justifyContent: "space-between",
           mb: "10px"
@@ -46,7 +49,7 @@ const QuestionResult: FC<QuestionAnswerContainerProps> = ({
             {question.content}
           </Typography>
         </Box>
-        <Box>
+        <Box sx={{display: "flex", justifyContent: "flex-end"}}>
           <Button
             variant="outlined"
             onClick={() => onViewDetail(question)}

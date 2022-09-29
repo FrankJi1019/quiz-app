@@ -18,6 +18,7 @@ import {useNavigate, useParams} from "react-router-dom"
 import {getQuizManagingPageURL} from "../routes"
 import CreatedOption from "../Components/CreatedOption"
 import AddIcon from "@mui/icons-material/Add";
+import CheckCircleIcon from "@mui/icons-material/CheckCircle";
 
 const InputBox = styled(Box)({
   marginBottom: "20px"
@@ -99,7 +100,10 @@ const QuestionCreationPage = () => {
               border: "none",
               "& input": {
                 fontWeight: "bold",
-                fontSize: "25px",
+                fontSize: {
+                  xs: "20px",
+                  sm: "25px"
+                },
                 textAlign: "center"
               }
             }}
@@ -143,7 +147,7 @@ const QuestionCreationPage = () => {
                       transition: ".2s",
                       display: "flex",
                       alignItems: "center",
-                      padding: "0 15px",
+                      padding: "16px 15px",
                       backgroundColor: "#F9F9F9",
                       boxSizing: "border-box"
                     }}
@@ -223,6 +227,15 @@ const QuestionCreationPage = () => {
             Submit
           </Button>
         </InputBox>
+        <FormHelperText
+          sx={{
+            display: Boolean(formik.touched.options) && Boolean(formik.errors.options) ? "block" : "none"
+          }}
+        >
+          {
+            Boolean(formik.touched.options) && formik.errors.options as string
+          }
+        </FormHelperText>
       </form>
     </Page>
   )

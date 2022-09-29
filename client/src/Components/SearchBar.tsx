@@ -42,7 +42,10 @@ const SearchBar: FC<SearchBarProps> = ({initValue = "", onSearch}) => {
           type="submit"
           sx={{
             borderRadius: '0 100px 100px 0',
-            padding: "10px 40px"
+            padding: {
+              xs: "0 20px",
+              md: "0 30px"
+            }
           }}
         >
           Research
