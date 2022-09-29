@@ -131,6 +131,12 @@ const QuestionCreationPage = () => {
                       option.isCorrect = true
                       forceRerender()
                     }}
+                    onDelete={() => {
+                      formik.setValues({
+                        ...formik.values,
+                        options: formik.values.options.filter(x => x.content !== option.content)
+                      })
+                    }}
                   />
                 </Grid>
               ))
