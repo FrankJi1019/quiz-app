@@ -2,21 +2,28 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="88d1d2c7-6a39-4e3d-a86e-efff11763a3b" name="Changes" comment="feat: a usable UI is completed">
+      <change afterPath="$PROJECT_DIR$/src/Pages/ProfilePage.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Slices/modalSlice.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Themes/palette3.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/types/User.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Components/QuizCard.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/Components/QuizCard.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Components/SearchBar.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/Components/SearchBar.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Components/TopicList.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/Components/TopicList.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Pages/HomePage.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/Pages/HomePage.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Pages/MobileNavigationPanel.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/Pages/MobileNavigationPanel.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Pages/QuestionCreationPage.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/Pages/QuestionCreationPage.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Pages/QuizIntroPage.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/Pages/QuizIntroPage.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Pages/QuizManagingPage.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/Pages/QuizManagingPage.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Providers/UtilProvider.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/Providers/UtilProvider.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Api/UserAPI.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/Api/UserAPI.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Containers/Page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/Containers/Page.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Pages/NavigationPanel.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/Pages/NavigationPanel.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/RouteControllers/Dashboard.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/RouteControllers/Dashboard.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Slices/showThemeSelectorSlice.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Themes/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/Themes/index.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Themes/palette1.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/Themes/palette1.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/routes.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/store.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/store.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ExportToHTMLSettings">
+    <option name="OUTPUT_DIRECTORY" value="$PROJECT_DIR$/../client\exportToHTML" />
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -56,7 +63,7 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../../../../work/Centrapass/Futureverse/asset-registry-frontend" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/Themes" />
     <property name="list.type.of.created.stylesheet" value="CSS" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.standard" value="true" />
@@ -69,11 +76,11 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\self-study\C#\Quiz App\quiz-app\client\src\Themes" />
       <recent name="D:\self-study\C#\Quiz App\quiz-app\client\src\Asset" />
       <recent name="D:\self-study\C#\Quiz System\quiz-system\client\src\Themes" />
       <recent name="D:\self-study\C#\Quiz System\quiz-system\client\src\Components\QuestionEditPage" />
       <recent name="D:\self-study\C#\Quiz System\quiz-system\client\src\Components\UserQuizPage" />
-      <recent name="D:\self-study\C#\Quiz System\quiz-system\client\src\Components\AllQuizPage" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="D:\self-study\C#\Quiz App\quiz-app\client\src\Pages" />
@@ -237,6 +244,11 @@
       <workItem from="1664424953291" duration="292000" />
       <workItem from="1664440440408" duration="4188000" />
       <workItem from="1664476721799" duration="6000" />
+      <workItem from="1664477790903" duration="3750000" />
+      <workItem from="1664482778682" duration="8000" />
+      <workItem from="1664526853153" duration="3623000" />
+      <workItem from="1664611291590" duration="6703000" />
+      <workItem from="1664684877624" duration="2196000" />
     </task>
     <task id="LOCAL-00001" summary="feat: a usable UI is completed">
       <created>1658825818092</created>

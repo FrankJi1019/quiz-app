@@ -6,7 +6,7 @@ import {useLocation, useNavigate} from "react-router-dom"
 import {
   getQuizListPageURL,
   getHomePageURL,
-  getUserQuizPageURL, getAttemptedQuizzesPageURL
+  getUserQuizPageURL, getAttemptedQuizzesPageURL, getProfilePageURL
 } from "../routes"
 import QuizCreationModal from "../Components/QuizCreationModal"
 import HomeIcon from "@mui/icons-material/Home"
@@ -16,6 +16,7 @@ import PortraitIcon from "@mui/icons-material/Portrait"
 import { useAuth } from "../Providers/AuthProvider"
 import {resetTheme} from "../Slices/themeSlice";
 import {useDispatch} from "react-redux";
+import {showQuizCreatorModal} from "../Slices/modalSlice";
 
 interface NavigationOption {
   text: string
@@ -40,7 +41,6 @@ const NavigationPanel = () => {
   const theme = useTheme()
 
   const [navigatorType, setNavigatorType] = useState<"pc" | "mobile" | null>(null)
-  const [openQuizCreator, setOpenQuizCreator] = useState(false)
 
   const dispatch = useDispatch()
   const { logout } = useAuth()
@@ -61,21 +61,15 @@ const NavigationPanel = () => {
         shouldHighlight: () => pathname === getQuizListPageURL()
       },
       {
-        text: "Your Quizzes",
+        text: "Profile",
         icon: <PortraitIcon />,
-        onClick: () => navigate(getUserQuizPageURL(username)),
-        shouldHighlight: () => new RegExp("^" + getUserQuizPageURL(".*") + "$").test(pathname)
-      },
-      {
-        text: "Attempted Quizzes",
-        icon: <PortraitIcon />,
-        onClick: () => navigate(getAttemptedQuizzesPageURL(username)),
-        shouldHighlight: () => new RegExp("^" + getAttemptedQuizzesPageURL(".*") + "$").test(pathname)
+        onClick: () => navigate(getProfilePageURL(username)),
+        shouldHighlight: () => new RegExp("^" + getProfilePageURL(".*") + "$").test(pathname)
       },
       {
         text: "Create Quiz",
         icon: <AddCircleIcon />,
-        onClick: () => setOpenQuizCreator(true),
+        onClick: () => dispatch(showQuizCreatorModal()),
         shouldHighlight: () => false
       }
     ],
@@ -112,12 +106,6 @@ const NavigationPanel = () => {
         navigatorType == "pc" ?
           <PCNavigationPanel {...data} /> : <MobileNavigationPanel {...data} />
       }
-      <Box>
-        <QuizCreationModal
-          open={openQuizCreator}
-          onClose={() => setOpenQuizCreator(false)}
-        />
-      </Box>
     </>
   )
 }

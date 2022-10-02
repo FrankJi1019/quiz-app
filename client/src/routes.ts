@@ -28,6 +28,8 @@ export const getQuestionResultPageURL =
   (sessionId: string | number = ":sessionId", questionId: string | number = ":questionId") =>
     getFinishedSessionPageURL(sessionId) + "/question/" + questionId
 
+export const getProfilePageURL = (username: string = ":username") => "users/" + username + "/profile"
+
 export const getLoginPageURL = () => "/login"
 
 export const getSignupPageURL = () => "/signup"

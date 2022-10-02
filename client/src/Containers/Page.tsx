@@ -3,11 +3,14 @@ import React, {FC, ReactNode, useMemo, useState} from "react";
 import {useAuth} from "../Providers/AuthProvider";
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import {useDispatch} from "react-redux";
-import {showModal} from "../Slices/showThemeSelectorSlice";
+import {showThemeSelector} from "../Slices/modalSlice";
+import {useNavigate} from "react-router-dom";
+import {getProfilePageURL} from "../routes";
 
 interface PageProps {
   sx?: SxProps
   children: ReactNode
+  showHeader?: boolean
 }
 
 const ProfileAvatar = styled(Box)({
@@ -24,10 +27,15 @@ const ProfileAvatar = styled(Box)({
   boxShadow: "0 0 4px 4px rgba(0, 0, 0, .3)"
 })
 
-const Page: FC<PageProps> = ({sx, children}) => {
+const Page: FC<PageProps> = ({
+  sx,
+  children,
+  showHeader = true
+}) => {
 
   const dispatch = useDispatch()
   const { getCurrentUser, logout } = useAuth()
+  const navigate = useNavigate()
 
   const username = useMemo(
     () => {
@@ -43,6 +51,21 @@ const Page: FC<PageProps> = ({sx, children}) => {
 
   const [menuAnchor, setMenuAnchor] = useState(null)
 
+  const menuItems = [
+    {
+      text: "Profile",
+      onClick: () => navigate(getProfilePageURL(username as string))
+    },
+    {
+      text: "Change Theme",
+      onClick: () => dispatch(showThemeSelector())
+    },
+    {
+      text: "Logout",
+      onClick: () => logout()
+    }
+  ] as Array<{text: string, onClick: () => void}>
+
   return (
     <Box
       sx={{
@@ -57,7 +80,7 @@ const Page: FC<PageProps> = ({sx, children}) => {
         sx={{
           display: {
             xs: 'none',
-            md: username && 'flex'
+            md: username && showHeader ? 'flex' : "none"
           },
           alignItems: 'center',
           padding: '10px 50px 10px',
@@ -100,10 +123,11 @@ const Page: FC<PageProps> = ({sx, children}) => {
                 onMouseLeave: () => setMenuAnchor(null)
               }}
             >
-              <MenuItem onClick={() => dispatch(showModal())}>Change Theme</MenuItem>
-              <MenuItem onClick={logout}>
-                Log Out
-              </MenuItem>
+              {
+                menuItems.map(({text, onClick}) => (
+                  <MenuItem onClick={onClick}>{text}</MenuItem>
+                ))
+              }
             </Menu>
           </Box>
         </Box>

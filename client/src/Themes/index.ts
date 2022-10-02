@@ -1,6 +1,7 @@
 import {createTheme} from "@mui/material";
 import palette1 from "./palette1";
 import palette2 from "./palette2"
+import palette3 from "./palette3"
 import baseTheme from "./baseTheme";
 
 const theme = createTheme({
@@ -10,4 +11,4 @@ const theme = createTheme({
 
 export default theme
 
-export const palettes = [palette1, palette2]
+export const palettes = [palette1, palette2, palette3]

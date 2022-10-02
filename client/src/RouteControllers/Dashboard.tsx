@@ -1,18 +1,20 @@
-import {Box, Slide} from "@mui/material"
+import {Box} from "@mui/material"
 import React from "react"
-import { Routes, Route, Navigate } from "react-router-dom"
+import {Navigate, Route, Routes} from "react-router-dom"
 import {
-  getHomePageURL,
-  getQuizListPageURL,
-  getQuizIntroPageURL,
-  getQuizManagingPageURL,
-  getQuestionDetailPageURL,
-  getCreateQuestionPageURL,
-  getUserQuizPageURL,
   getActiveSessionPageURL,
-  getFinishedSessionPageURL,
   getAttemptedQuizzesPageURL,
-  getPastSessionPageURL, getQuestionResultPageURL
+  getCreateQuestionPageURL,
+  getFinishedSessionPageURL,
+  getHomePageURL,
+  getPastSessionPageURL,
+  getProfilePageURL,
+  getQuestionDetailPageURL,
+  getQuestionResultPageURL,
+  getQuizIntroPageURL,
+  getQuizListPageURL,
+  getQuizManagingPageURL,
+  getUserQuizPageURL
 } from "../routes"
 import QuizListPage from "../Pages/QuizListPage"
 import HomePage from "../Pages/HomePage"
@@ -28,14 +30,15 @@ import AttemptedQuizListPage from "../Pages/AttemptedQuizListPage";
 import PastSessionPage from "../Pages/PastSessionPage";
 import ThemeSelectorModal from "../Components/ThemeSelectorModal";
 import {useDispatch, useSelector} from "react-redux";
-import {hideModal} from "../Slices/showThemeSelectorSlice";
 import QuestionResultPage from "../Pages/QuestionResultPage";
+import ProfilePage from "../Pages/ProfilePage";
+import QuizCreationModal from "../Components/QuizCreationModal";
+import {hideAllModal, ModalType} from "../Slices/modalSlice";
 
 const Dashboard = () => {
 
-  const showSidebar = useSelector(state => (state as {showSidebar: boolean}).showSidebar)
   const dispatch = useDispatch()
-  const showModal = useSelector(state => (state as {showThemeSelector: boolean}).showThemeSelector)
+  const showModal = useSelector(state => (state as {modal: ModalType}).modal)
 
   return (
     <Box
@@ -59,15 +62,18 @@ const Dashboard = () => {
         <Route path={getQuizManagingPageURL()} element={<QuizManagingPage />} />
         <Route path={getQuestionDetailPageURL()} element={<QuestionDetailPage />}/>
         <Route path={getCreateQuestionPageURL()} element={<QuestionCreationPage />}/>
-        <Route path={getUserQuizPageURL()} element={<UserQuizPage />} />
-        <Route path={getAttemptedQuizzesPageURL()} element={<AttemptedQuizListPage />} />
         <Route path={getPastSessionPageURL()} element={<PastSessionPage />} />
         <Route path={getQuestionResultPageURL()} element={<QuestionResultPage />} />
+        <Route path={getProfilePageURL()} element={<ProfilePage />} />
         <Route path={"*"} element={<Navigate to={getHomePageURL()} />} />
       </Routes>
       <ThemeSelectorModal
-        open={showModal}
-        onClose={() => dispatch(hideModal())}
+        open={showModal === ModalType.THEME_SELECTOR}
+        onClose={() => dispatch(hideAllModal())}
+      />
+      <QuizCreationModal
+        open={showModal === ModalType.QUIZ_CREATION_FORM}
+        onClose={() => dispatch(hideAllModal())}
       />
     </Box>
   )

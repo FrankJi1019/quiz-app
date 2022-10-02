@@ -1,13 +1,13 @@
 import {configureStore} from '@reduxjs/toolkit'
 import themeReducer from './Slices/themeSlice'
-import showThemeSelectorReducer from "./Slices/showThemeSelectorSlice";
 import showSidebarReducer from "./Slices/showSidebarSlice";
+import modalReducer from "./Slices/modalSlice";
 
 export const store = configureStore({
   reducer: {
     theme: themeReducer,
-    showThemeSelector: showThemeSelectorReducer,
-    showSidebar: showSidebarReducer
+    showSidebar: showSidebarReducer,
+    modal: modalReducer
   }
 })
 
