@@ -15,11 +15,14 @@ import QuestionOverview from "../Components/QuestionOverview"
 import TopicList from "../Components/TopicList";
 import {useFetchTopics} from "../Api/TopicAPI";
 import AddIcon from '@mui/icons-material/Add';
+import {useDispatch} from "react-redux";
+import {showNotification} from "../Slices/modalSlice";
 
 const QuizManagingPage = () => {
   const {quizId} = useParams()
   const navigate = useNavigate()
   const theme = useTheme()
+  const dispatch = useDispatch()
 
   const quizFetch = useFetchQuiz(Number(quizId))
   const questionsFetch = useFetchQuestionsByQuizId(Number(quizId))
@@ -77,9 +80,11 @@ const QuizManagingPage = () => {
         >
           <TopicList
             topics={quiz.topics}
-            onClick={() => {
-            }}
-            onDelete={quiz.topics.length > 1 ? removeTopic : undefined}
+            onClick={() => {}}
+            onDelete={quiz.topics.length > 1 ?
+              removeTopic :
+              () => dispatch(showNotification("You cannot at least the last topic"))
+            }
             onAdd={quiz.topics.length <= 2 ? addTopic : undefined}
             topicPool={topics.filter(x => !quiz.topics.includes(x))}
           />
@@ -138,7 +143,6 @@ const QuizManagingPage = () => {
               </Box>
             </Box>
           </Grid>
-
         </Grid>
       </Box>
     </Page>

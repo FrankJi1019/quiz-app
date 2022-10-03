@@ -12,24 +12,20 @@ import {
 } from "@mui/material"
 import { useFormik } from "formik"
 import {ICreateQuizDto} from "../types/IQuiz"
-import {useCreateQuiz, useFetchNonEmptyQuizzes} from "../Api/QuizAPI"
+import {useCreateQuiz} from "../Api/QuizAPI"
 import { getQuizManagingPageURL } from "../routes"
 import * as yup from "yup"
 import { useNavigate } from "react-router-dom"
 import {useFetchTopics} from "../Api/TopicAPI"
 import CloseIcon from "@mui/icons-material/Close"
 import { useAuth } from "../Providers/AuthProvider"
-
-interface QuizCreationModalProps {
-  open: boolean
-  onClose: () => void
-}
+import {ModalProps} from "./index";
 
 const InputWrapper = styled(Box)({
   marginTop: "20px"
 })
 
-const QuizCreationModal: FC<QuizCreationModalProps> = ({ open, onClose }) => {
+const QuizCreationModal: FC<ModalProps> = ({ open, onClose }) => {
   const { getCurrentUser } = useAuth()
   const username = useMemo(
     () => getCurrentUser()!.getUsername(),

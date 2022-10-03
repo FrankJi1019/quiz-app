@@ -8,7 +8,7 @@ import {
   getHomePageURL,
   getUserQuizPageURL, getAttemptedQuizzesPageURL, getProfilePageURL
 } from "../routes"
-import QuizCreationModal from "../Components/QuizCreationModal"
+import QuizCreationModal from "../Modals/QuizCreationModal"
 import HomeIcon from "@mui/icons-material/Home"
 import QuestionAnswerIcon from "@mui/icons-material/QuestionAnswer"
 import AddCircleIcon from "@mui/icons-material/AddCircle"

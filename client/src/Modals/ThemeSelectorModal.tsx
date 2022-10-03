@@ -3,15 +3,11 @@ import {Box, IconButton, Modal, Typography} from "@mui/material"
 import CloseIcon from "@mui/icons-material/Close";
 import {useCustomTheme} from "../Providers/CustomThemeProvider";
 import {palettes} from "../Themes";
-import ThemePreview from "./ThemePreview";
-
-interface ThemeSelectionModalProps {
-  open: boolean
-  onClose: () => void
-}
+import ThemePreview from "../Components/ThemePreview";
+import {ModalProps} from "./index";
 
 
-const QuizCreationModal: FC<ThemeSelectionModalProps> = ({open, onClose}) => {
+const QuizCreationModal: FC<ModalProps> = ({open, onClose}) => {
 
   const {setTheme} = useCustomTheme()
 

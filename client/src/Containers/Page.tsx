@@ -1,11 +1,13 @@
-import {Box, Menu, MenuItem, styled, SxProps} from "@mui/material"
-import React, {FC, ReactNode, useMemo, useState} from "react";
+import {Box, Menu, MenuItem, styled, SxProps, Button, IconButton} from "@mui/material"
+import React, {FC, ReactNode, useCallback, useMemo, useState} from "react";
 import {useAuth} from "../Providers/AuthProvider";
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import {useDispatch} from "react-redux";
 import {showThemeSelector} from "../Slices/modalSlice";
 import {useNavigate} from "react-router-dom";
 import {getProfilePageURL} from "../routes";
+import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
+import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 
 interface PageProps {
   sx?: SxProps
@@ -36,6 +38,10 @@ const Page: FC<PageProps> = ({
   const dispatch = useDispatch()
   const { getCurrentUser, logout } = useAuth()
   const navigate = useNavigate()
+
+  const goBack = useCallback(() => {
+    window.history.back()
+  }, [])
 
   const username = useMemo(
     () => {
@@ -78,57 +84,83 @@ const Page: FC<PageProps> = ({
     >
       <Box
         sx={{
-          display: {
-            xs: 'none',
-            md: username && showHeader ? 'flex' : "none"
-          },
+          display: "flex",
           alignItems: 'center',
-          padding: '10px 50px 10px',
-          justifyContent: 'flex-end'
+          padding: {
+            xs: "10px",
+            md: '10px 50px 10px'
+          },
+          justifyContent: {
+            xs: "flex-start",
+            md: 'space-between'
+          },
         }}
       >
-        <ProfileAvatar>
-          {username && username.toUpperCase()[0]}
-        </ProfileAvatar>
+        <Box>
+          <Button
+            variant={'outlined'}
+            sx={{display: {xs: "none", md: "flex"}}}
+            startIcon={<ChevronLeftIcon/>}
+            onClick={goBack}
+          >
+            Back
+          </Button>
+          <IconButton onClick={goBack} sx={{display: {xs: "block", md: "none"}}}>
+            <ChevronLeftIcon />
+          </IconButton>
+        </Box>
         <Box
-          onMouseEnter={(e) => setMenuAnchor(e.currentTarget as any)}
-          onMouseLeave={() => setMenuAnchor(null)}
           sx={{
-            ml: '10px',
-            fontSize: "22px",
-            display: 'flex'
+            display: {
+              xs: 'none',
+              md: showHeader ? "flex" : "none"
+            },
+            alignItems: "center"
           }}
         >
-          <Box>
-            {username}
-          </Box>
+          <ProfileAvatar>
+            {username && username.toUpperCase()[0]}
+          </ProfileAvatar>
           <Box
+            onMouseEnter={(e) => setMenuAnchor(e.currentTarget as any)}
+            onMouseLeave={() => setMenuAnchor(null)}
             sx={{
-              transition: 'all .2s',
-              transformOrigin: "center center",
-              transform: Boolean(menuAnchor) ? "rotate(180deg)" : "none",
-              display: 'flex',
-              alignItems: 'center'
+              ml: '10px',
+              fontSize: "22px",
+              display: 'flex'
             }}
           >
-            <ExpandMoreIcon sx={{fontSize: '30px'}} />
-          </Box>
-          <Box>
-            <Menu
-              autoFocus={false}
-              open={Boolean(menuAnchor)}
-              anchorEl={menuAnchor}
-              onClose={() => setMenuAnchor(null)}
-              MenuListProps={{
-                onMouseLeave: () => setMenuAnchor(null)
+            <Box>
+              {username}
+            </Box>
+            <Box
+              sx={{
+                transition: 'all .2s',
+                transformOrigin: "center center",
+                transform: Boolean(menuAnchor) ? "rotate(180deg)" : "none",
+                display: 'flex',
+                alignItems: 'center'
               }}
             >
-              {
-                menuItems.map(({text, onClick}) => (
-                  <MenuItem onClick={onClick}>{text}</MenuItem>
-                ))
-              }
-            </Menu>
+              <ExpandMoreIcon sx={{fontSize: '30px'}} />
+            </Box>
+            <Box>
+              <Menu
+                autoFocus={false}
+                open={Boolean(menuAnchor)}
+                anchorEl={menuAnchor}
+                onClose={() => setMenuAnchor(null)}
+                MenuListProps={{
+                  onMouseLeave: () => setMenuAnchor(null)
+                }}
+              >
+                {
+                  menuItems.map(({text, onClick}) => (
+                    <MenuItem onClick={onClick}>{text}</MenuItem>
+                  ))
+                }
+              </Menu>
+            </Box>
           </Box>
         </Box>
       </Box>
